@@ -70,6 +70,7 @@
 // account.name = 'Aliya';   //будет ошибка, так как свойство readonly
 
 
+
 // let array: string[];
 // let array1: Array<string>;
 // let array2: {
@@ -239,6 +240,82 @@ interface Shaker {
 
 
 //Классы
-1.45
+/*class Point {
+    public x: number; //доступен извне
+    private y: number;  //доступен только внутри Point
+    protected z: number; //доступен в наследнике
 
+    constructor() {
+        this.x = 1;
+        this.y = 1;
+        this.z = 1;
+    }
+
+    getX():number {
+        return this.x;
+    }
+
+    getY():number {
+        return this.y;
+    }
+}
+
+let point = new Point();
+//
+// point.y; //error
+// point.z; //error
+
+
+class MyPoint extends Point {
+    constructor() {
+        super();
+        console.log(this);
+    }
+}
+
+let myPoint = new MyPoint();*/
+
+//появились приватные конструкторы
+/*class Singleton {
+    private static instance;
+
+    private constructor() {
+        console.log("Singleton created");
+    }
+
+    static getInstance() {
+        if (!Singleton.instance) {
+            Singleton.instance = new Singleton();
+        }
+
+        return Singleton.instance;
+    }
+}
+
+// let singleton = new Singleton(); //error
+let singleton = Singleton.getInstance();
+console.log(singleton);
+let singleton1 = Singleton.getInstance();
+let singleton2 = Singleton.getInstance();
+let singleton3 = Singleton.getInstance();*/
+
+
+//имплементирование интерфейсов
+interface Point {
+    x: number;
+    y: number;
+}
+
+interface Calc {
+    countCoord():number;
+}
+
+class BasicPoint implements Point,Calc {
+    public x:number;
+    public y:number;
+
+    public countCoord():number {
+        return 1;
+    }
+}
 
