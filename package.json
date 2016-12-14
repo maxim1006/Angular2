@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/jquery": "^2.0.34",
     "typescript": "^2.0.10"
   }
 }
