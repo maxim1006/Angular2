@@ -106,11 +106,13 @@
 // let account: Account;
 
 
+/*
 interface Mover {
-    move(): void,
+    move(): void;
     //getStatus:()=>{speed: number} - либо так
     getStatus():{speed: number}
 }
+*/
 
 /*let mover: Mover = {
     move() {},
@@ -121,10 +123,12 @@ interface Mover {
     }
 };*/
 
+/*
 interface Shaker {
-    move(): void,
+    move(): void;
     getStatus():{frequency: number};
 }
+*/
 
 /*let shaker: Shaker = {
     move() {},
@@ -137,9 +141,9 @@ interface Shaker {
 };*/
 
 /*Наследование от интерфейсов*/
-// interface MoverShaker extends Mover, Shaker {
-//     getStatus():{frequency: number, speed: number};
-// }
+/*interface MoverShaker extends Mover, Shaker {
+    getStatus():{frequency: number, speed: number};
+}*/
 
 //декларативное слияние интерфейсов, т.е. надо прописывать все свойства интерфейсво, если они созаданы в нескольких экземплярах
 // interface IBase {
