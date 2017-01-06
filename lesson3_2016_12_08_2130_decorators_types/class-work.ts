@@ -1,16 +1,21 @@
 "use strict";
 
 //definitions
-// import * as $ from 'jquery'; //вот так импорчу
+// import * as $ from 'jquery'; //вот так импорчу, тут минус, если не используешь require js
 //
 // $();
+
+//или так
+/// <reference path="../../node_modules/@types/jquery/index.d.ts" />
 
 //для своих библиотек, или для библиотек, для которых нет определения делаю кастомный index.d.ts в папке types,
 //также не забыть прописать "typeRoots": ["node_modules", "types"] в tsconfig.json,
 // если нужны конкретные типы types: []
-//если не знаю где брпть и лень описывать
+//если не знаю где брть и лень описывать
 // declare const _:any;
 // _.a;
+
+//или так let define = (window as any).define;
 
 //"lib": ["es5", "dom", "es2015.promise"] - библиотеки, которые надо подключить, входят в состав ts
 

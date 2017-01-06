@@ -202,40 +202,38 @@ interface Shaker {
 //    this.a = 1; //ошибка
 // }
 //Классы
-/*class Point {
-    public x: number; //доступен извне
-    private y: number;  //доступен только внутри Point
-    protected z: number; //доступен в наследнике
-
-    constructor() {
-        this.x = 1;
-        this.y = 1;
-        this.z = 1;
-    }
-
-    getX():number {
-        return this.x;
-    }
-
-    getY():number {
-        return this.y;
-    }
-}
-
-let point = new Point();
+// class Point {
+//     public x: number; //доступен извне
+//     private y: number;  //доступен только внутри Point
+//     protected z: number; //доступен в наследнике
+//
+//     constructor() {
+//         this.x = 1;
+//         this.y = 1;
+//         this.z = 1;
+//     }
+//
+//     getX():number {
+//         return this.x;
+//     }
+//
+//     getY():number {
+//         return this.y;
+//     }
+// }
+//
+// let point = new Point();
 //
 // point.y; //error
 // point.z; //error
-
-
-class MyPoint extends Point {
-    constructor() {
-        super();
-        console.log(this);
-    }
-}
-
-let myPoint = new MyPoint();*/
+// class MyPoint extends Point {
+//     constructor() {
+//         super();
+//         console.log(this);
+//     }
+// }
+//
+// let myPoint = new MyPoint();
 //появились приватные конструкторы
 /*class Singleton {
     private static instance;
