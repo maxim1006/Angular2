@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: "data-binding",
-    templateUrl: "./data-binding.component.html"
+    templateUrl: "./dataBindingComponent.html"
 })
 
 export class DataBindingComponent {

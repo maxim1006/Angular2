@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: "inner-data-binding",
-    templateUrl: "./inner-data-binding.component.html"
+    templateUrl: "./innerDataBindingComponent.html"
 })
 
 export class InnerDataBindingComponent {

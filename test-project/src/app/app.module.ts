@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
+/*Components*/
 import {AppComponent} from './components/app/AppComponent';
 import {ElementLinkComponent} from "./components/element-link/ElementLinkComponent";
 import {DataBindingComponent} from "./components/data-binding/DataBindingComponent";
@@ -11,9 +12,22 @@ import {ClassExampleComponent} from "./components/class-example/classExampleComp
 import {AttributeExampleComponent} from "./components/attribute-example/attributeExampleComponent";
 import {StyleExampleComponent} from "./components/style-example/styleExampleComponent";
 import {EventExampleComponent} from "./components/event-example/eventExampleComponent";
+import {EncapsulationExampleComponent} from "./components/encapsulation-example/encapsulationExampleComponent";
+import {ComponentWithDirectiveComponent} from "./components/component-with-directive/componentWithDirectiveComponent";
+import {NgforExampleComponent} from "./components/ng-for-example/ngforExampleComponent";
+import {NgSwitchExampleComponent} from "./components/ng-switch-example/ngSwitchExampleComponent";
+import {PipeExampleComponent} from "./components/pipe-example/pipeExampleComponent";
+
+/*Directive*/
+import {SimpleLogDirective} from "./directives/simple-log/simpleLogDirective";
+
+/*Pipes*/
+import {CustomPipe} from "./pipes/customPipe";
+
 
 @NgModule({
     declarations: [
+        /*Components*/
         AppComponent,
         ElementLinkComponent,
         DataBindingComponent,
@@ -22,10 +36,21 @@ import {EventExampleComponent} from "./components/event-example/eventExampleComp
         AttributeExampleComponent,
         StyleExampleComponent,
         EventExampleComponent,
+        EncapsulationExampleComponent,
+        ComponentWithDirectiveComponent,
+        NgforExampleComponent,
+        NgSwitchExampleComponent,
+        PipeExampleComponent,
+
+        /*Directive*/
+        SimpleLogDirective,
+
+        /*Pipes*/
+        CustomPipe
     ],
     imports: [
-        BrowserModule,
-        FormsModule,
+        BrowserModule, //подключает коммон модуль, директивы, пайпы
+        FormsModule, //подключает ngModel модуль
         HttpModule
     ],
     providers: [],

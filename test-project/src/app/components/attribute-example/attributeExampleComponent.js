@@ -18,7 +18,7 @@ var AttributeExampleComponent = (function () {
     AttributeExampleComponent = __decorate([
         core_1.Component({
             selector: "attribute-example",
-            templateUrl: "./attribute-example.component.html"
+            templateUrl: "./attributeExampleComponent.html"
         })
     ], AttributeExampleComponent);
     return AttributeExampleComponent;

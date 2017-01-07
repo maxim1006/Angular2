@@ -20,7 +20,7 @@ var StyleExampleComponent = (function () {
     StyleExampleComponent = __decorate([
         core_1.Component({
             selector: "style-example",
-            templateUrl: "./style-example.component.html"
+            templateUrl: "./styleExampleComponent.html"
         })
     ], StyleExampleComponent);
     return StyleExampleComponent;

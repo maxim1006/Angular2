@@ -9,6 +9,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
+/*Components*/
 var AppComponent_1 = require('./components/app/AppComponent');
 var ElementLinkComponent_1 = require("./components/element-link/ElementLinkComponent");
 var DataBindingComponent_1 = require("./components/data-binding/DataBindingComponent");
@@ -17,12 +18,22 @@ var classExampleComponent_1 = require("./components/class-example/classExampleCo
 var attributeExampleComponent_1 = require("./components/attribute-example/attributeExampleComponent");
 var styleExampleComponent_1 = require("./components/style-example/styleExampleComponent");
 var eventExampleComponent_1 = require("./components/event-example/eventExampleComponent");
+var encapsulationExampleComponent_1 = require("./components/encapsulation-example/encapsulationExampleComponent");
+var componentWithDirectiveComponent_1 = require("./components/component-with-directive/componentWithDirectiveComponent");
+var ngforExampleComponent_1 = require("./components/ng-for-example/ngforExampleComponent");
+var ngSwitchExampleComponent_1 = require("./components/ng-switch-example/ngSwitchExampleComponent");
+var pipeExampleComponent_1 = require("./components/pipe-example/pipeExampleComponent");
+/*Directive*/
+var simpleLogDirective_1 = require("./directives/simple-log/simpleLogDirective");
+/*Pipes*/
+var customPipe_1 = require("./pipes/customPipe");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
+                /*Components*/
                 AppComponent_1.AppComponent,
                 ElementLinkComponent_1.ElementLinkComponent,
                 DataBindingComponent_1.DataBindingComponent,
@@ -31,6 +42,15 @@ var AppModule = (function () {
                 attributeExampleComponent_1.AttributeExampleComponent,
                 styleExampleComponent_1.StyleExampleComponent,
                 eventExampleComponent_1.EventExampleComponent,
+                encapsulationExampleComponent_1.EncapsulationExampleComponent,
+                componentWithDirectiveComponent_1.ComponentWithDirectiveComponent,
+                ngforExampleComponent_1.NgforExampleComponent,
+                ngSwitchExampleComponent_1.NgSwitchExampleComponent,
+                pipeExampleComponent_1.PipeExampleComponent,
+                /*Directive*/
+                simpleLogDirective_1.SimpleLogDirective,
+                /*Pipes*/
+                customPipe_1.CustomPipe
             ],
             imports: [
                 platform_browser_1.BrowserModule,

@@ -2,7 +2,7 @@ import {Component, ViewChild, ViewChildren, ElementRef} from '@angular/core';
 
 @Component({
     selector: "element-link",
-    templateUrl: "./element-link.component.html"
+    templateUrl: "./elementLinkComponent.html"
 })
 
 export class ElementLinkComponent {

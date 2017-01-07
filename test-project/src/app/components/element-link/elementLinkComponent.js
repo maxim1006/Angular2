@@ -30,7 +30,7 @@ var ElementLinkComponent = (function () {
     ElementLinkComponent = __decorate([
         core_1.Component({
             selector: "element-link",
-            templateUrl: "./element-link.component.html"
+            templateUrl: "./elementLinkComponent.html"
         })
     ], ElementLinkComponent);
     return ElementLinkComponent;

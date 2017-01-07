@@ -31,7 +31,7 @@ var DataBindingComponent = (function () {
     DataBindingComponent = __decorate([
         core_1.Component({
             selector: "data-binding",
-            templateUrl: "./data-binding.component.html"
+            templateUrl: "./dataBindingComponent.html"
         })
     ], DataBindingComponent);
     return DataBindingComponent;
