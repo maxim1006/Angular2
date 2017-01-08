@@ -16,9 +16,7 @@
         "target": "es5",
         "typeRoots": [
             "../node_modules/@types"
-        ]
-    },
-    "exclude": [
-        "../node_modules"
-    ]
+        ],
+        "skipLibCheck": true
+    }
 }

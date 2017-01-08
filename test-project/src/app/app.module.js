@@ -23,6 +23,10 @@ var componentWithDirectiveComponent_1 = require("./components/component-with-dir
 var ngforExampleComponent_1 = require("./components/ng-for-example/ngforExampleComponent");
 var ngSwitchExampleComponent_1 = require("./components/ng-switch-example/ngSwitchExampleComponent");
 var pipeExampleComponent_1 = require("./components/pipe-example/pipeExampleComponent");
+var transcludeExampleComponent_1 = require("./components/transclude-example/transcludeExampleComponent");
+var parentComponent_1 = require("./components/parent-component/parentComponent");
+var childComponent_1 = require("./components/parent-component/child-component/childComponent");
+var rxjsExampleComponent_1 = require("./components/rxjs-example/rxjsExampleComponent");
 /*Directive*/
 var simpleLogDirective_1 = require("./directives/simple-log/simpleLogDirective");
 /*Pipes*/
@@ -47,6 +51,10 @@ var AppModule = (function () {
                 ngforExampleComponent_1.NgforExampleComponent,
                 ngSwitchExampleComponent_1.NgSwitchExampleComponent,
                 pipeExampleComponent_1.PipeExampleComponent,
+                transcludeExampleComponent_1.TranscludeExampleComponent,
+                parentComponent_1.ParentComponent,
+                childComponent_1.ChildComponent,
+                rxjsExampleComponent_1.RxjsExampleComponent,
                 /*Directive*/
                 simpleLogDirective_1.SimpleLogDirective,
                 /*Pipes*/

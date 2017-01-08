@@ -17,13 +17,16 @@ import {ComponentWithDirectiveComponent} from "./components/component-with-direc
 import {NgforExampleComponent} from "./components/ng-for-example/ngforExampleComponent";
 import {NgSwitchExampleComponent} from "./components/ng-switch-example/ngSwitchExampleComponent";
 import {PipeExampleComponent} from "./components/pipe-example/pipeExampleComponent";
+import {TranscludeExampleComponent} from "./components/transclude-example/transcludeExampleComponent";
+import {ParentComponent} from "./components/parent-component/parentComponent";
+import {ChildComponent} from "./components/parent-component/child-component/childComponent";
+import {RxjsExampleComponent} from "./components/rxjs-example/rxjsExampleComponent";
 
 /*Directive*/
 import {SimpleLogDirective} from "./directives/simple-log/simpleLogDirective";
 
 /*Pipes*/
 import {CustomPipe} from "./pipes/customPipe";
-
 
 @NgModule({
     declarations: [
@@ -41,6 +44,10 @@ import {CustomPipe} from "./pipes/customPipe";
         NgforExampleComponent,
         NgSwitchExampleComponent,
         PipeExampleComponent,
+        TranscludeExampleComponent,
+        ParentComponent,
+        ChildComponent,
+        RxjsExampleComponent,
 
         /*Directive*/
         SimpleLogDirective,
