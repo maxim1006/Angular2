@@ -11,7 +11,6 @@ export class EventExampleComponent {
 
     public onButtonClick(element, value, event):void {
         console.log(arguments);
-        console.log(this.onButtonClick.name);
     }
 
     public onInput(value) {

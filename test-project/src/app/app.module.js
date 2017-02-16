@@ -20,13 +20,15 @@ var styleExampleComponent_1 = require("./components/style-example/styleExampleCo
 var eventExampleComponent_1 = require("./components/event-example/eventExampleComponent");
 var encapsulationExampleComponent_1 = require("./components/encapsulation-example/encapsulationExampleComponent");
 var componentWithDirectiveComponent_1 = require("./components/component-with-directive/componentWithDirectiveComponent");
-var ngforExampleComponent_1 = require("./components/ng-for-example/ngforExampleComponent");
+var ng_for_example_component_1 = require("./components/ng-for-example-with-service/ng-for-example.component");
 var ngSwitchExampleComponent_1 = require("./components/ng-switch-example/ngSwitchExampleComponent");
 var pipeExampleComponent_1 = require("./components/pipe-example/pipeExampleComponent");
 var transcludeExampleComponent_1 = require("./components/transclude-example/transcludeExampleComponent");
 var parentComponent_1 = require("./components/parent-component/parentComponent");
 var childComponent_1 = require("./components/parent-component/child-component/childComponent");
 var rxjsExampleComponent_1 = require("./components/rxjs-example/rxjsExampleComponent");
+/*Tokens*/
+var tokens_1 = require("./tokens/tokens");
 /*Directive*/
 var simpleLogDirective_1 = require("./directives/simple-log/simpleLogDirective");
 /*Pipes*/
@@ -48,7 +50,7 @@ var AppModule = (function () {
                 eventExampleComponent_1.EventExampleComponent,
                 encapsulationExampleComponent_1.EncapsulationExampleComponent,
                 componentWithDirectiveComponent_1.ComponentWithDirectiveComponent,
-                ngforExampleComponent_1.NgforExampleComponent,
+                ng_for_example_component_1.NgforExampleComponent,
                 ngSwitchExampleComponent_1.NgSwitchExampleComponent,
                 pipeExampleComponent_1.PipeExampleComponent,
                 transcludeExampleComponent_1.TranscludeExampleComponent,
@@ -65,7 +67,9 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 http_1.HttpModule
             ],
-            providers: [],
+            providers: [
+                { provide: tokens_1.domenToken, useValue: tokens_1.domenToken }
+            ],
             bootstrap: [
                 AppComponent_1.AppComponent
             ]
