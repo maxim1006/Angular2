@@ -1,12 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: "data-binding",
     templateUrl: "./dataBindingComponent.html"
 })
 
-export class DataBindingComponent {
+export class DataBindingComponent implements OnInit {
     public constructor() {
+    }
+
+    ngOnInit() {
+        setInterval(()=> {
+            console.log(this.prop);
+        }, 3000)
     }
 
     //one-way binding
