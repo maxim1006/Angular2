@@ -310,21 +310,21 @@ let singleton3 = Singleton.getInstance();*/
 
 
 //имплементирование интерфейсов
-// interface Point {
-//     x: number;
-//     y: number;
-// }
-//
-// interface Calc {
-//     countCoord():number;
-// }
-//
-// class BasicPoint implements Point,Calc {
-//     public x:number;
-//     public y:number;
-//
-//     public countCoord():number {
-//         return 1;
-//     }
-// }
+interface Point {
+    x: number;
+    y: number;
+}
+
+interface Calc {
+    countCoord():number;
+}
+
+class BasicPoint implements Point,Calc {
+    public x:number;
+    public y:number;
+
+    public countCoord():number {
+        return 1;
+    }
+}
 

@@ -3,7 +3,8 @@
 
 
 //Паттерн Singleton
-/*class Singleton {
+/*
+class Singleton {
     private static instance;
 
     private constructor() {
@@ -21,7 +22,8 @@
 
 let singleton1 = Singleton.getInstance();
 let singleton2 = Singleton.getInstance();
-let singleton3 = Singleton.getInstance();*/
+let singleton3 = Singleton.getInstance();
+*/
 
 
 
