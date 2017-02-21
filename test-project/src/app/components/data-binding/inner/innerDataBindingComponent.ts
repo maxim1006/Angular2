@@ -1,18 +1,14 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: "inner-data-binding",
     templateUrl: "./innerDataBindingComponent.html"
 })
 
-export class InnerDataBindingComponent implements OnInit{
+export class InnerDataBindingComponent {
     public selectedItem:string;
 
     public constructor() {
-    }
-
-    ngOnInit() {
-        this.prop.name = "prop inner";
     }
 
     @Input()
@@ -22,20 +18,23 @@ export class InnerDataBindingComponent implements OnInit{
     public twoWayProp;
 
     @Output()
-    public twoWayPropChange = new EventEmitter();
+    twoWayPropChange = new EventEmitter();
 
     @Output()
     onTwoWayClick: EventEmitter<string[]> = new EventEmitter<string[]>();
+    //или
+    //onTwoWayClick = new EventEmitter();
 
     @Output()
     onSelectItem: EventEmitter<string> = new EventEmitter<string>();
 
-    public twoWayClick(string) {
-        this.twoWayPropChange.emit(string);
+    public twoWayClick(string, string1) {
+        this.onTwoWayClick.emit([string, string1]);
     };
 
     public selectItem(item):void {
         this.selectedItem = item;
         this.onSelectItem.emit(item);
+        this.twoWayPropChange.emit(item);
     }
 }
