@@ -18,7 +18,12 @@ export class InnerDataBindingComponent {
     public twoWayProp;
 
     @Output()
+    twoWayPropChange = new EventEmitter();
+
+    @Output()
     onTwoWayClick: EventEmitter<string[]> = new EventEmitter<string[]>();
+    //или
+    //onTwoWayClick = new EventEmitter();
 
     @Output()
     onSelectItem: EventEmitter<string> = new EventEmitter<string>();
@@ -30,5 +35,6 @@ export class InnerDataBindingComponent {
     public selectItem(item):void {
         this.selectedItem = item;
         this.onSelectItem.emit(item);
+        this.twoWayPropChange.emit(item);
     }
 }
