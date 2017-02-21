@@ -20,7 +20,10 @@ export class NgForExampleService {
                    return res.json();
                    //console.log(res.json());
                })
-               .catch(err => Observable.of([]));
+               .catch(err => {
+                   return Observable.of([]);
+                   //return Observable.throw(err);
+               });
 
         // return [
         //     {

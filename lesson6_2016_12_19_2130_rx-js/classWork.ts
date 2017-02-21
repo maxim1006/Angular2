@@ -155,7 +155,7 @@ import '../test-project/node_modules/rxjs/add/operator/first';
 
 
 
-/* Последовательность строк
+/* //Последовательность строк
 let sequence: Observable<string> = Observable.create((observer:Observer<string>) => {
     observer.next("Typescript");
     observer.next("=>");

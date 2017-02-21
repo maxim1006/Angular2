@@ -15,6 +15,12 @@ var DataBindingComponent = (function () {
             name: 'Property from parent component'
         };
     }
+    DataBindingComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setInterval(function () {
+            console.log(_this.prop);
+        }, 3000);
+    };
     DataBindingComponent.prototype.onImage1Click = function () {
         console.log("image1 clicked!");
     };

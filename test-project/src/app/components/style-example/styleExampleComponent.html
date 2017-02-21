@@ -8,12 +8,14 @@
 
     <button [ngStyle]="getStyles()">Multiple styles</button>
 
-    <button [ngStyle]='{
-                width: "10%",
-                color: "red",
-                fontSize: "20px",
-                transform: "translate(10px, 0)"
-            }'
+    <button [ngStyle]="{
+                width: '10%',
+                color: 'red',
+                fontSize: '20px',
+                transform: 'translate(10px, 0)',
+                'background-image': 'url(' + imageUrl + ')',
+                'background-size': 'contain'
+            }"
             >Multiple styles inline</button>
 
 </p>

@@ -6,6 +6,8 @@ import {Component} from '@angular/core';
 })
 
 export class StyleExampleComponent {
+    imageUrl:string = "http://grinz.ru/jquery/imagePreloading/images/1.jpg";
+
     public constructor() {
     }
 
