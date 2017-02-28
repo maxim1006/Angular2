@@ -2,7 +2,12 @@
 
 <p>
 
-    <input type="text" (input)="onInput(inputValue)" #myInput [(ngModel)]="inputValue"> {{myInput.value + ' myInput.value'}} {{inputValue ? inputValue  + ' inputValue': ''}}
+    <input type="text"
+           (input)="onInput(inputValue)" #myInput
+           [(ngModel)]="inputValue">
+
+    {{myInput.value + ' myInput.value'}} {{inputValue ? inputValue  + ' inputValue': ''}}
+
     <button (click)="onButtonClick(myInput, inputValue, $event)">Get input</button>
 
 </p>

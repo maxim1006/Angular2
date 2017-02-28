@@ -10,9 +10,9 @@ export class DataBindingComponent implements OnInit {
     }
 
     ngOnInit() {
-        setInterval(()=> {
-            console.log(this.prop);
-        }, 3000)
+        // setInterval(()=> {
+        //     console.log(this.prop);
+        // }, 3000)
     }
 
     //one-way binding
