@@ -422,7 +422,17 @@ button {
 ._hidden {
   display: none !important;
 }
+h3 {
+  margin: 40px 0 20px;
+}
+input[type="text"] {
+  border: 1px solid #ccc;
+}
 /* Media query */
+.app-component {
+  display: block;
+  margin: 30px;
+}
 .block {
   color: darkblue;
 }

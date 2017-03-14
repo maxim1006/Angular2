@@ -11,7 +11,7 @@ export class RootComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(123);
+        console.log(13);
     }
 
 }

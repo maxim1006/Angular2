@@ -12,22 +12,19 @@ let webpack         = require('webpack');
 
 
 //Watchers
-gulp.task('watch', () => {
+gulp.task('watch', ['bsync'], () => {
     gulp.watch(config.watch.less, ['less']);
     gulp.watch(config.watch.icons, ['icons']);
-    gulp.watch(config.watch.html, ['html:watch']);
 });
 
 
 
 gulp.task('bsync', ['icons', 'less'], () => {
-    bsync.init({
-        server: {
-            baseDir: config.bsync.base,
-            directory: true
-        },
-        startPath: config.bsync.start
-    });
+    bsync.init(
+        {
+            proxy: 'http://localhost:9000/markup/',
+            port:9001
+        });
 });
 
 
@@ -54,25 +51,25 @@ gulp.task('less', () =>
 
 
 //JS tasks
-gulp.task('js', ['bsync'], () =>
-    gulp.src(config.js.src)
-        .pipe(plugins.plumber({
-            errorHandler: onPlumberError
-        }))
-        .pipe(webpackStream(webpackConfig, webpack))
-        .pipe(gulp.dest(config.js.dest))
-        .pipe(bsync.stream())
-);
-
-gulp.task('js:prod', () =>
-    gulp.src(config.js.src)
-        .pipe(plugins.plumber({
-            errorHandler: onPlumberError
-        }))
-        .pipe(webpackStream(webpackConfig, webpack))
-        .pipe(gulp.dest(config.js.dest))
-        .pipe(bsync.stream())
-);
+// gulp.task('js', ['bsync'], () =>
+//     gulp.src(config.js.src)
+//         .pipe(plugins.plumber({
+//             errorHandler: onPlumberError
+//         }))
+//         .pipe(webpackStream(webpackConfig, webpack))
+//         .pipe(gulp.dest(config.js.dest))
+//         .pipe(bsync.stream())
+// );
+//
+// gulp.task('js:prod', () =>
+//     gulp.src(config.js.src)
+//         .pipe(plugins.plumber({
+//             errorHandler: onPlumberError
+//         }))
+//         .pipe(webpackStream(webpackConfig, webpack))
+//         .pipe(gulp.dest(config.js.dest))
+//         .pipe(bsync.stream())
+// );
 
 
 
@@ -106,7 +103,7 @@ gulp.task('copyNgResources', ['js:prod'], function () {
 
 
 //General tasks
-gulp.task('default', ['watch', 'js']);
+gulp.task('default', ['watch']);
 gulp.task('prod', ['icons', 'less', 'copyNgResources']);
 
 

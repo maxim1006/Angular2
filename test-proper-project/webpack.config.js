@@ -14,82 +14,40 @@ var ENV = process.env.npm_lifecycle_event;
 var isTestWatch = ENV === 'test-watch';
 var isTest = ENV === 'test' || isTestWatch;
 var isProd = ENV === 'build:prod';
-var isPortal = ENV === 'build:portal';
+
 
 module.exports = function makeWebpackConfig() {
-    /**
-     * Config
-     * Reference: http://webpack.github.io/docs/configuration.html
-     * This is the object where all configuration gets set
-     */
     var config = {};
 
-    config.watch = !isPortal;
-
-    /**
-     * Devtool
-     * Reference: http://webpack.github.io/docs/configuration.html#devtool
-     * Type of sourcemap to use per build type
-     */
+    // config.watch = !isProd;
     config.devtool = 'source-map';
 
-    /**
-     * Entry
-     * Reference: http://webpack.github.io/docs/configuration.html#entry
-     */
+
+
     config.entry = {
         'ng-app': './src/scripts/ng-main.ts', // our angular app
-        // 'ng': './src/ng.ts',
         'ng-polyfills': './src/scripts/ng-polyfills.ts',
     };
 
-    /**
-     * Output
-     * Reference: http://webpack.github.io/docs/configuration.html#output
-     */
+
+
     config.output = {
-        //path: root('src/public/js'),
-        // publicPath: (isProd || isPortal) ? './' : 'http://localhost:9000/',
-        filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
-        chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
+        path: path.join(__dirname, './src/'),
+        filename: isProd ? 'markup/js/[name].[hash].js' : 'markup/js/[name].js',
+        // chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
     };
-        /**
-     * Resolve
-     * Reference: http://webpack.github.io/docs/configuration.html#resolve
-     */
+
+
+
     config.resolve = {
         // only discover files that have those extensions
-        extensions: isPortal ? ['.ts', '.js', '.json', '.html'] : ['.ts', '.js', '.json'],
+        extensions: ['.ts', '.js', '.json', '.html'],
     };
 
-    /**
-     * Loaders
-     * Reference: http://webpack.github.io/docs/configuration.html#module-loaders
-     * List: http://webpack.github.io/docs/list-of-loaders.html
-     * This handles most of the magic responsible for converting modules
-     */
+
 
     config.module = {
-        rules: !isPortal ? [
-            // Support for .ts files.
-            {
-                    test: /\.ts$/,
-                    use: [
-                        {
-                            loader: 'awesome-typescript-loader?'
-                        },
-                        {
-                            loader: 'nc-a2-html-loader',
-                            options: {
-                                path: path.resolve(__dirname),
-                                publicPath: '../..',
-                            }
-                        }
-                    ],
-                    exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
-                }
-        ] :
-        [{
+        rules: [{
             test: /\.ts$/,
             use: [
                 {
@@ -103,7 +61,7 @@ module.exports = function makeWebpackConfig() {
         },
         {
             test: /\.html$/, loader: 'raw-loader',
-            exclude: [root('src', 'markup'), /node_modules\/(?!(ng2-.+))/]
+            exclude: [/node_modules\/(?!(ng2-.+))/]
         }]
     };
 
@@ -120,11 +78,24 @@ module.exports = function makeWebpackConfig() {
 
 
 
+    //dev server
+    config.devServer = {
+        contentBase: path.join(__dirname, "./src"),
+        // staticOptions: {
+        //     redirect: true
+        // },
+        historyApiFallback: true,
+        compress: false, // enable gzip compression
+        quiet: false,
+        stats: 'minimal', // none (or false), errors-only, minimal, normal (or true) and verbose
+        port: 9000,
+        // watchOptions: {
+        //     aggregateTimeout: 300,
+        //     poll: 1000
+        // }
+    };
+
+
+
     return config;
 }();
-
-// Helper functions
-function root(args) {
-    args = Array.prototype.slice.call(arguments, 0);
-    return path.join.apply(path, [__dirname].concat(args));
-}
