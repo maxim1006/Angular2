@@ -1,0 +1,9 @@
+function svgInjectFunc() {
+    let svgFileContent = fs.readFileSync(config.icons.injectSrc);
+    let indexFileContent = fs.readFileSync(config.icons.injectTarget);
+
+    fs
+        .writeFileSync(config.icons.injectTarget, indexFileContent
+        .toString()
+        .replace(/<!-- inject:svg -->[\s\S]*?<!-- endinject -->/, '<!-- inject:svg -->' + svgFileContent + '<!-- endinject -->'));
+}

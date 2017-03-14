@@ -1,0 +1,17 @@
+    providers: [
+        RouteService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (route: RouteService) => {return () => route.init()},
+            deps: [RouteService],
+            multi: true
+        }
+    ],
+
+
+    init(): Promise<Routes> {
+        let o = this.http.get("/route.json")
+            .map(res => res.json());
+        o.subscribe(routes => this.routes = routes);
+        return o.toPromise();
+    }

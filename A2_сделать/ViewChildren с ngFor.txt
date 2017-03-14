@@ -1,0 +1,43 @@
+//просто так в ngFOr не заработает линка на элемент, надо дождатьс€ конца асинхронного разруливани€ ngFor
+
+
+@ViewChildren("slide")
+    slides: any;
+
+ngAfterViewInit() {
+        this.slides.changes
+            .subscribe((slide: any) => {
+                this.slideWidth = slide._results[0].nativeElement.offsetWidth;
+                this.marginLeft = +parseFloat(getComputedStyle(slide._results[1] && slide._results[1].nativeElement).marginLeft);
+                this.slidesLength = slide._results.length;
+            });
+
+        // setTimeout(() => {
+        //     this.slideWidth = this.slides._results[0].nativeElement.offsetWidth;
+        //     console.log(this.slides._results);
+        // }, 0);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// this.tvServices.changes.subscribe((tvServices) => {
+        //     let arr = tvServices.toArray().map((el:any) => el.nativeElement);
+        //     console.log($(tvServices.toArray())['equalHeight']);
+        //     $(arr)['equalHeight']({
+        //         class: 'jsEqualHeight'
+        //     });
+        // });

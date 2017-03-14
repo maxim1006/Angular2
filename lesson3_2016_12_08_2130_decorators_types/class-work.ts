@@ -43,41 +43,41 @@
 // declare type ParameterDecorator = (target: Function, propertyKey: string | symbol, parameterIndex: number) => void;
 
 
-//пример декорирования метода
-// class MathLib {
-//
-//     @logMethod
-//     public getCircleSquare(r:number) {
-//         return Math.PI * r ** 2; //** - это возведение в степень es7
-//     }
-//
-// }
-//
-// function logMethod(target: any, propertyKey: string, descriptor: PropertyDescriptor):PropertyDescriptor {
-//     let originalDesc = descriptor.value;
-//
-//     //console.log(descriptor); //объект в свойстве value которого лежит функция
-//
-//     descriptor.value = (...args:number[]):number => {
-//         //console.log(args); //3 аргументы декорируемой функции
-//         //console.log(propertyKey); //getCircleSquare имя функции
-//
-//         let b = args.join();
-//         let result = originalDesc(...args);
-//
-//         //console.log(result); //28.274333 - число, результат выполнения функции.
-//
-//         console.log(`Call ${propertyKey}(${b}) => ${result}`);
-//
-//         return result; //могу что-то сделать с результатом выполнения ф-ции, например return result*2
-//     };
-//
-//     return descriptor;
-// }
-//
-// let a = new MathLib();
-//
-// a.getCircleSquare(3);
+// пример декорирования метода
+class MathLib {
+
+    @logMethod
+    public getCircleSquare(r:number) {
+        return Math.PI * r ** 2; //** - это возведение в степень es7
+    }
+
+}
+
+function logMethod(target: any, propertyKey: string, descriptor: PropertyDescriptor):PropertyDescriptor {
+    let originalDesc = descriptor.value;
+
+    //console.log(descriptor); //объект в свойстве value которого лежит функция
+
+    descriptor.value = (...args:number[]):number => {
+        //console.log(args); //3 аргументы декорируемой функции
+        //console.log(propertyKey); //getCircleSquare имя функции
+
+        let b = args.join();
+        let result = originalDesc(...args);
+
+        //console.log(result); //28.274333 - число, результат выполнения функции.
+
+        console.log(`Call ${propertyKey}(${b}) => ${result}`);
+
+        return result; //могу что-то сделать с результатом выполнения ф-ции, например return result*2
+    };
+
+    return descriptor;
+}
+
+let a = new MathLib();
+
+a.getCircleSquare(3);
 
 
 

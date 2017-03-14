@@ -1,0 +1,7 @@
+<h3>Parent Component</h3>
+
+<input type="text" [(ngModel)]="inputValue"> {{inputValue}}
+
+<p *ngIf="inputValueFromInnerComponent">Current color: {{inputValueFromInnerComponent}}</p>
+
+<child-component [inputValue]="inputValue" (onClickOutput)="inputValueFromInnerComponent=$event"></child-component>

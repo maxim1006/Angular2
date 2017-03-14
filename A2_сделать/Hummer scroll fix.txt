@@ -1,0 +1,2 @@
+let Hammer = require("hammerjs/hammer");
+Hammer.defaults.touchAction = "auto";
