@@ -2,9 +2,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-// Webpack Plugins
-var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-var autoprefixer = require('autoprefixer');
+
 
 /**
  * Env
