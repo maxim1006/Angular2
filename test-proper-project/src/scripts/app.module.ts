@@ -32,6 +32,7 @@ import {SimpleLogDirective} from "./directives/simple-log/simpleLogDirective";
 import {CustomPipe} from "./pipes/customPipe";
 import {InnerHtmlComponent} from "./components/inner-html/inner-html.component";
 import {ElNativeElementComponent} from "./components/el-native-element/el-native-element.component";
+import {HostBindingComponent} from "./components/host-binding/host-binding.component";
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import {ElNativeElementComponent} from "./components/el-native-element/el-native
         RxjsExampleComponent,
         InnerHtmlComponent,
         ElNativeElementComponent,
+        HostBindingComponent,
 
         /*Directive*/
         SimpleLogDirective,
