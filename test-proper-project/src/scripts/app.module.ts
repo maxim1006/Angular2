@@ -5,7 +5,7 @@ import {HttpModule} from '@angular/http';
 
 /*Components*/
 import {AppComponent} from './components/app/AppComponent';
-import {ElementLinkComponent} from "./components/element-link/ElementLinkComponent";
+import {ElementLinkComponent} from "./components/element-link_viewChild_viewChildren/ElementLinkComponent";
 import {DataBindingComponent} from "./components/data-binding/DataBindingComponent";
 import {InnerDataBindingComponent} from "./components/data-binding/inner/InnerDataBindingComponent";
 import {ClassExampleComponent} from "./components/class-example/classExampleComponent";
@@ -13,7 +13,10 @@ import {AttributeExampleComponent} from "./components/attribute-example/attribut
 import {StyleExampleComponent} from "./components/style-example/styleExampleComponent";
 import {EventExampleComponent} from "./components/event-example/eventExampleComponent";
 import {EncapsulationExampleComponent} from "./components/encapsulation-example/encapsulationExampleComponent";
-import {ComponentWithDirectiveComponent} from "./components/component-with-directive/componentWithDirectiveComponent";
+import {
+    ComponentWithDirectiveComponent,
+    CustomDirective
+} from "./components/component-with-directive/componentWithDirectiveComponent";
 import {NgforExampleComponent} from "./components/ng-for-example-with-service/ng-for-example.component";
 import {NgSwitchExampleComponent} from "./components/ng-switch-example/ngSwitchExampleComponent";
 import {PipeExampleComponent} from "./components/pipe-example/pipeExampleComponent";
@@ -60,6 +63,7 @@ import {HostBindingComponent} from "./components/host-binding/host-binding.compo
 
         /*Directive*/
         SimpleLogDirective,
+        CustomDirective,
 
         /*Pipes*/
         CustomPipe

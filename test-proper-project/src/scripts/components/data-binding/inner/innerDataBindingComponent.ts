@@ -14,6 +14,9 @@ export class InnerDataBindingComponent {
     @Input()
     public prop;
 
+    @Input('alias-prop')
+    public aliasPropInner: string;
+
     @Input()
     public twoWayProp;
 

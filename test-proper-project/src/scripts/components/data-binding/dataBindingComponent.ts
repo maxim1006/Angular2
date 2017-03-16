@@ -29,6 +29,8 @@ export class DataBindingComponent implements OnInit {
         name: 'Property from parent component'
     };
 
+    public aliasProp:string = "alias prop";
+
     public onModelChange():void {
         console.log(this.inputValue);
     }
