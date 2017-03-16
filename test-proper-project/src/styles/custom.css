@@ -436,3 +436,38 @@ input[type="text"] {
 .block {
   color: darkblue;
 }
+.m-autocomplete {
+  display: inline-block;
+  position: relative;
+}
+.m-autocomplete__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.m-autocomplete__header-button {
+  width: 22px;
+  height: 22px;
+  background-color: #ccc;
+  cursor: pointer;
+}
+.m-autocomplete__body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+.m-autocomplete__list {
+  padding: 10px 0;
+}
+.m-autocomplete__list-item {
+  padding: 0 10px;
+  font-size: 18px;
+  line-height: 34px;
+  cursor: pointer;
+}
+.m-autocomplete__list-item:hover {
+  background-color: #f0f0f0;
+}

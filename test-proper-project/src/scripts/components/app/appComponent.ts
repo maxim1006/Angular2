@@ -1,12 +1,16 @@
-import {Component, HostBinding} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-component',
     templateUrl: './appComponent.html',
     // styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-    @HostBinding('class.app-component') addClass: boolean = true;
+export class AppComponent implements OnInit {
+    @HostBinding('class.app-component')
+    addClass: boolean = true;
+
+    public autocomplete: any;
+    public currentAutocompleteItem: any;
 
     public constructor() {
         console.log("start");
@@ -25,4 +29,17 @@ export class AppComponent {
     public getValue(e): number {
         return 12;
     }
+
+    ngOnInit() {
+        setTimeout(() => {
+            this.autocomplete = [{name: 'Max'}, {name: 'Aliya'}, {name: 'Anton'}];
+            console.log('autocomplete model loaded');
+        }, 2000);
+
+        // setInterval(() => {
+        //     console.log(this.currentAutocompleteItem);
+        // }, 1000)
+    }
+
+
 }

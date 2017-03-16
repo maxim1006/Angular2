@@ -1,0 +1,41 @@
+.m-autocomplete {
+
+    display: inline-block;
+    position: relative;
+    
+    &__header {
+        display: flex;
+        
+        &-button {
+            width: 22px;
+            height: 22px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+    }
+
+    &__body {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        background-color: #fff;
+    }
+
+    &__list {
+        padding: 10px 0;
+
+        &-item {
+            padding: 0 10px;
+            font-size: 18px;
+            line-height: 34px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f0f0f0;
+            }
+        }
+    }
+    
+}

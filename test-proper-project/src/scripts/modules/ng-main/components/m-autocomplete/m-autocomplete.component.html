@@ -1,0 +1,36 @@
+<div class="m-autocomplete {{styleClass}}"
+     [ngClass]="{
+        _opened: opened,
+        _empty: !filteredItems?.length
+     }"
+>
+
+    <div class="m-autocomplete__header">
+        <div class="m-autocomplete__header-input">
+            <input type="text"
+                   #input
+                   [(ngModel)]="currentValue"
+                   (input)="onInputChange(input.value)"
+            >
+        </div>
+        <div class="m-autocomplete__header-button"
+             (click)="onButtonClick()"
+        ></div>
+    </div>
+
+    <div class="m-autocomplete__body"
+         *ngIf="opened && filteredItems?.length"
+    >
+        <div class="m-autocomplete__list">
+            <div class="m-autocomplete__list-item"
+                 (click)="setCurrentItem(item)"
+                 ngClass="{
+                    _current: item === currentItem
+                 }"
+                 *ngFor="let item of filteredItems">
+                {{item?.name || item}}
+            </div>
+        </div>
+    </div>
+
+</div>

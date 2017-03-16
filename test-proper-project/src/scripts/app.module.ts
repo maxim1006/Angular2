@@ -36,6 +36,8 @@ import {CustomPipe} from "./pipes/customPipe";
 import {InnerHtmlComponent} from "./components/inner-html/inner-html.component";
 import {ElNativeElementComponent} from "./components/el-native-element/el-native-element.component";
 import {HostBindingComponent} from "./components/host-binding/host-binding.component";
+import {NgMainModule} from "./modules/ng-main/ng-main.module";
+import {ClickOutsideDirective} from "./directives/click-outside/clickOutsideDirective";
 
 @NgModule({
     declarations: [
@@ -64,6 +66,7 @@ import {HostBindingComponent} from "./components/host-binding/host-binding.compo
         /*Directive*/
         SimpleLogDirective,
         CustomDirective,
+        ClickOutsideDirective,
 
         /*Pipes*/
         CustomPipe
@@ -71,7 +74,8 @@ import {HostBindingComponent} from "./components/host-binding/host-binding.compo
     imports: [
         BrowserModule, //подключает коммон модуль, директивы, пайпы
         FormsModule, //подключает ngModel модуль
-        HttpModule
+        HttpModule,
+        NgMainModule
     ],
     providers: [
         {provide: domenToken, useValue: domenToken}
