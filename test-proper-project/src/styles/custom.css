@@ -422,7 +422,8 @@ button {
 ._hidden {
   display: none !important;
 }
-h3 {
+h3,
+h1 {
   margin: 40px 0 20px;
 }
 input[type="text"] {
@@ -437,8 +438,9 @@ input[type="text"] {
   color: darkblue;
 }
 .m-autocomplete {
-  display: inline-block;
+  width: 100%;
   position: relative;
+  z-index: 10;
 }
 .m-autocomplete__header {
   display: -webkit-box;
@@ -450,6 +452,10 @@ input[type="text"] {
   height: 22px;
   background-color: #ccc;
   cursor: pointer;
+}
+.m-autocomplete._opened .m-autocomplete__header-button:before {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 .m-autocomplete__body {
   position: absolute;
@@ -463,11 +469,41 @@ input[type="text"] {
   padding: 10px 0;
 }
 .m-autocomplete__list-item {
-  padding: 0 10px;
-  font-size: 18px;
-  line-height: 34px;
+  padding: 0 20px;
+  color: #183147;
+  line-height: 50px;
   cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .m-autocomplete__list-item:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(248, 191, 76, 0.3);
+}
+.m-autocomplete__list-item + .m-autocomplete__list-item {
+  margin-top: 4px;
+}
+.m-autocomplete__list-item._selected {
+  color: #fff;
+  background-color: #f8bf4c;
+  cursor: default;
+}
+.m-form__label {
+  display: block;
+}
+.m-form__label + .m-form__label {
+  margin-top: 20px;
+}
+.m-form__errors {
+  margin: 10px 0 0;
+}
+.m-form__error {
+  margin: 10px 0;
+}
+.m-form__error._margin-top-m {
+  margin-top: 25px;
+}
+.m-form__submit {
+  margin-top: 15px;
+  padding: 10px;
+  box-shadow: 0 0 10px #ccc;
 }

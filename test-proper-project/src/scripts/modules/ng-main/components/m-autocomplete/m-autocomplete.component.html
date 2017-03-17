@@ -8,9 +8,9 @@
     <div class="m-autocomplete__header">
         <div class="m-autocomplete__header-input">
             <input type="text"
-                   #input
-                   [(ngModel)]="currentValue"
-                   (input)="onInputChange(input.value)"
+                   [ngClass]="'input _size-x _bordered _length-x'"
+                   [ngModel]="currentValue"
+                   (ngModelChange)="onInputChange($event)"
             >
         </div>
         <div class="m-autocomplete__header-button"
@@ -24,8 +24,8 @@
         <div class="m-autocomplete__list">
             <div class="m-autocomplete__list-item"
                  (click)="setCurrentItem(item)"
-                 ngClass="{
-                    _current: item === currentItem
+                 [ngClass]="{
+                    _selected: item === currentItem
                  }"
                  *ngFor="let item of filteredItems">
                 {{item?.name || item}}

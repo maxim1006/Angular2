@@ -27,13 +27,12 @@ export class MAutocompleteComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.items);
         this.filteredItems = this.items && this.items.slice()
     }
 
     filterResults() {
         if (this.currentValue) {
-            this.filteredItems = this.items.filter(item => {
+            this.filteredItems = this.items.filter((item:any) => {
                 return (item.name ? item.name.toLowerCase() :
                         item.toLowerCase()).indexOf(this.currentValue.toLowerCase()) !== -1
             });
@@ -51,18 +50,19 @@ export class MAutocompleteComponent implements OnInit {
         this.currentValue = value;
         this.filterResults();
 
-        console.log(this.filteredItems);
-        console.log(this.currentValue, "this.currentValue ");
-
         if (this.filteredItems.length && !this.opened) {
             this.opened = true;
-        } 
+        }
     }
 
-    setCurrentItem(item) {
+    setCurrentItem(item:any) {
         this.currentItem = item;
         this.currentValue = item.name || item;
         this.opened = false;
+
+        if (typeof item !== 'string') {
+            this.items.forEach((currentItem:any) => currentItem.selected = currentItem === item);
+        }
 
         this.currentItemChange.emit(this.currentItem);
     }

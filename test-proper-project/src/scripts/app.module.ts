@@ -38,6 +38,7 @@ import {ElNativeElementComponent} from "./components/el-native-element/el-native
 import {HostBindingComponent} from "./components/host-binding/host-binding.component";
 import {NgMainModule} from "./modules/ng-main/ng-main.module";
 import {ClickOutsideDirective} from "./directives/click-outside/clickOutsideDirective";
+import {MFormsModule} from "./modules/m-forms/m-forms.module";
 
 @NgModule({
     declarations: [
@@ -75,7 +76,8 @@ import {ClickOutsideDirective} from "./directives/click-outside/clickOutsideDire
         BrowserModule, //подключает коммон модуль, директивы, пайпы
         FormsModule, //подключает ngModel модуль
         HttpModule,
-        NgMainModule
+        NgMainModule,
+        MFormsModule
     ],
     providers: [
         {provide: domenToken, useValue: domenToken}

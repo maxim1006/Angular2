@@ -1,0 +1,75 @@
+<h3>m-form</h3>
+
+<form class="m-form"
+        novalidate
+        [formGroup]="myForm"
+        (ngSubmit)="onSubmit(myForm?.value)"
+>
+
+    <label class="m-form__label">
+
+        <input type="text" placeholder="name" formControlName="name" class="m-form__input">
+
+        <div class="m-form__errors">
+            <div *ngIf="myForm?.controls['name']?.hasError('required') && !myForm?.controls['name']?.pristine" class="m-form__error">
+                Name is required
+            </div>
+
+            <div *ngIf="myForm?.controls['name']?.hasError('invalidName') && !myForm?.controls['name']?.pristine" class="m-form__error">
+                Name is invalid, please start with capitalized first letter
+            </div>
+
+            <div *ngIf="myForm?.controls['name']?.hasError('maxlength') && !myForm?.controls['name']?.pristine" class="m-form__error">
+                Name maxlength have to be < 10 letters
+            </div>
+        </div>
+
+    </label>
+
+    <label class="m-form__label">
+
+        <input type="text" placeholder="name" formControlName="surname" class="m-form__input">
+
+        <div class="m-form__errors">
+            <div *ngIf="myForm?.controls['surname']?.hasError('required') && !myForm?.controls['surname']?.pristine" class="m-form__error">
+                Surname is required
+            </div>
+
+            <div *ngIf="!myForm?.controls['surname']?.valid && !myForm?.controls['surname']?.pristine" class="m-form__error">
+                Surname is invalid, please start with capitalized first letter
+            </div>
+        </div>
+
+    </label>
+
+    <label class="m-form__label">
+
+        <input type="text" placeholder="phone" formControlName="phone" class="m-form__input">
+
+        <div class="m-form__errors">
+            <div *ngIf="myForm?.controls['phone']?.hasError('pattern') && !myForm?.controls['phone']?.pristine" class="m-form__error">
+                Incorrect phone Number, has to be (123)-456-7899
+            </div>
+        </div>
+
+    </label>
+
+    <label class="m-form__label">
+
+        <input type="text" placeholder="email" formControlName="email" class="m-form__input">
+
+        <div class="m-form__errors">
+            <div *ngIf="myForm?.controls['email']?.hasError('pattern') && !myForm?.controls['email']?.pristine" class="m-form__error">
+                Incorrect email
+            </div>
+        </div>
+
+    </label>
+
+    <div *ngIf="!myForm?.valid && !myForm?.pristine" class="m-form__error _margin-top-m">
+        Form is invalid
+    </div>
+
+    <button type="submit" class="m-form__submit">Submit</button>
+
+</form>
