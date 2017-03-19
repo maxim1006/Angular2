@@ -45,6 +45,8 @@ export class MFormComponent implements OnInit {
             )
         });
 
+        console.log(this.myForm, '++++');
+
         this.myForm.controls["name"].valueChanges.subscribe((value: string) => {
             console.log("name value changed to: ", value);
         });
