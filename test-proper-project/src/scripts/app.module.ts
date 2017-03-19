@@ -17,7 +17,8 @@ import {
     ComponentWithDirectiveComponent,
     CustomDirective
 } from "./components/component-with-directive/componentWithDirectiveComponent";
-import {NgforExampleComponent} from "./components/ng-for-example-with-service/ng-for-example.component";
+import {NgforExampleComponent} from "./components/ng-for-example/ng-for-example.component";
+import {NgforExampleWithObjectComponent} from "./components/ng-for-example-with-object/ng-for-example-with-object.component";
 import {NgSwitchExampleComponent} from "./components/ng-switch-example/ngSwitchExampleComponent";
 import {PipeExampleComponent} from "./components/pipe-example/pipeExampleComponent";
 import {TranscludeExampleComponent} from "./components/transclude-example/transcludeExampleComponent";
@@ -39,6 +40,7 @@ import {HostBindingComponent} from "./components/host-binding/host-binding.compo
 import {NgMainModule} from "./modules/ng-main/ng-main.module";
 import {ClickOutsideDirective} from "./directives/click-outside/clickOutsideDirective";
 import {MFormsModule} from "./modules/m-forms/m-forms.module";
+import {objToArrPipe} from "./pipes/objToArrPipe";
 
 @NgModule({
     declarations: [
@@ -54,6 +56,7 @@ import {MFormsModule} from "./modules/m-forms/m-forms.module";
         EncapsulationExampleComponent,
         ComponentWithDirectiveComponent,
         NgforExampleComponent,
+        NgforExampleWithObjectComponent,
         NgSwitchExampleComponent,
         PipeExampleComponent,
         TranscludeExampleComponent,
@@ -70,7 +73,8 @@ import {MFormsModule} from "./modules/m-forms/m-forms.module";
         ClickOutsideDirective,
 
         /*Pipes*/
-        CustomPipe
+        CustomPipe,
+        objToArrPipe
     ],
     imports: [
         BrowserModule, //подключает коммон модуль, директивы, пайпы
