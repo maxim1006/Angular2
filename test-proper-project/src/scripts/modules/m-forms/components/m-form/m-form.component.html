@@ -6,70 +6,45 @@
         (ngSubmit)="onSubmit(myForm?.value)"
 >
 
-    <label class="m-form__label">
+    <t-field
+            [fieldLabel]="'Name'"
+            [controlName]="'name'"
+            [form]="myForm"
+            [isRequired]="true"
+            (onControlChange)="formModel.name = $event"
+    ></t-field>
 
-        <input type="text" placeholder="name" formControlName="name" class="m-form__input">
+    <t-field
+            [fieldLabel]="'Surname'"
+            [controlName]="'surname'"
+            [form]="myForm"
+            [isRequired]="true"
+            (onControlChange)="formModel.surname = $event"
+    ></t-field>
 
-        <div class="m-form__errors">
-            <div *ngIf="myForm?.controls['name']?.hasError('required') && !myForm?.controls['name']?.pristine" class="m-form__error">
-                Name is required
-            </div>
+    <t-field
+            [fieldLabel]="'Phone'"
+            [controlName]="'phone'"
+            [form]="myForm"
+            [isRequired]="true"
+            (onControlChange)="formModel.phone = $event"
+    ></t-field>
 
-            <div *ngIf="myForm?.controls['name']?.hasError('invalidName') && !myForm?.controls['name']?.pristine" class="m-form__error">
-                Name is invalid, please start with capitalized first letter
-            </div>
-
-            <div *ngIf="myForm?.controls['name']?.hasError('maxlength') && !myForm?.controls['name']?.pristine" class="m-form__error">
-                Name maxlength have to be < 10 letters
-            </div>
-        </div>
-
-    </label>
-
-    <label class="m-form__label">
-
-        <input type="text" placeholder="name" formControlName="surname" class="m-form__input">
-
-        <div class="m-form__errors">
-            <div *ngIf="myForm?.controls['surname']?.hasError('required') && !myForm?.controls['surname']?.pristine" class="m-form__error">
-                Surname is required
-            </div>
-
-            <div *ngIf="!myForm?.controls['surname']?.valid && !myForm?.controls['surname']?.pristine" class="m-form__error">
-                Surname is invalid, please start with capitalized first letter
-            </div>
-        </div>
-
-    </label>
-
-    <label class="m-form__label">
-
-        <input type="text" placeholder="phone" formControlName="phone" class="m-form__input">
-
-        <div class="m-form__errors">
-            <div *ngIf="myForm?.controls['phone']?.hasError('pattern') && !myForm?.controls['phone']?.pristine" class="m-form__error">
-                Incorrect phone Number, has to be (123)-456-7899
-            </div>
-        </div>
-
-    </label>
-
-    <label class="m-form__label">
-
-        <input type="text" placeholder="email" formControlName="email" class="m-form__input">
-
-        <div class="m-form__errors">
-            <div *ngIf="myForm?.controls['email']?.hasError('pattern') && !myForm?.controls['email']?.pristine" class="m-form__error">
-                Incorrect email
-            </div>
-        </div>
-
-    </label>
+    <t-field
+            [fieldLabel]="'Email'"
+            [controlName]="'email'"
+            [form]="myForm"
+            [isRequired]="true"
+            (onControlChange)="formModel.email = $event"
+    ></t-field>
 
     <div *ngIf="!myForm?.valid && !myForm?.pristine" class="m-form__error _margin-top-m">
         Form is invalid
     </div>
 
-    <button type="submit" class="m-form__submit">Submit</button>
+    <button type="submit" class="m-form__submit" [disabled]="!myForm.valid">Submit</button>
+
+    <p>myForm?.value: {{myForm?.value | json}}</p>
+    <p>formModel: {{formModel | json}}</p>
 
 </form>

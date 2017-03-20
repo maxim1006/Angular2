@@ -10,6 +10,7 @@ import {ValidationConstants} from "../../../../constants/validation.constant";
 
 export class MFormComponent implements OnInit {
     private myForm: FormGroup;
+    private formModel: any = {};
 
     constructor(fb: FormBuilder) {
         this.myForm = fb.group({
@@ -45,7 +46,7 @@ export class MFormComponent implements OnInit {
             )
         });
 
-        console.log(this.myForm, '++++');
+        console.log(this.myForm);
 
         this.myForm.controls["name"].valueChanges.subscribe((value: string) => {
             console.log("name value changed to: ", value);
@@ -55,12 +56,26 @@ export class MFormComponent implements OnInit {
             console.log("form changed to: ", form);
         });
 
+        //reset form
         // setTimeout(() => {
         //     //reset form
         //     this.myForm.reset({
         //         name: "Max"
         //     });
         // }, 3000)
+
+        //enable/disable controls
+        // this.valuesToArray(form.controls).map((control: any) => {
+        //     if (state) {
+        //         control.enable();
+        //     } else {
+        //         control.disable();
+        //     }
+        // });
+
+        //Make touched/dirty
+        // this.form.controls[i].markAsTouched();
+        // this.form.controls[i].markAsDirty();
     }
 
     ngOnInit() {
@@ -68,6 +83,7 @@ export class MFormComponent implements OnInit {
 
     onSubmit(value: string):void {
         console.log("submitted info: ", value);
+        console.log("formModel: ", this.formModel);
     }
 
 }
