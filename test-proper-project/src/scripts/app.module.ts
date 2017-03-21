@@ -41,6 +41,7 @@ import {NgMainModule} from "./modules/ng-main/ng-main.module";
 import {ClickOutsideDirective} from "./directives/click-outside/clickOutsideDirective";
 import {MFormsModule} from "./modules/m-forms/m-forms.module";
 import {objToArrPipe} from "./pipes/objToArrPipe";
+import {MHttpModule} from "./modules/m-http/m-http.module";
 
 @NgModule({
     declarations: [
@@ -81,7 +82,8 @@ import {objToArrPipe} from "./pipes/objToArrPipe";
         FormsModule, //подключает ngModel модуль
         HttpModule,
         NgMainModule,
-        MFormsModule
+        MFormsModule,
+        MHttpModule
     ],
     providers: [
         {provide: domenToken, useValue: domenToken}

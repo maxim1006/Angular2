@@ -25,6 +25,7 @@ module.exports = function makeWebpackConfig() {
     config.entry = {
         'ng-app': './src/scripts/ng-main.ts', // our angular app
         'ng-polyfills': './src/scripts/ng-polyfills.ts',
+        'ng': './src/scripts/ng.ts',
     };
 
 
@@ -67,11 +68,15 @@ module.exports = function makeWebpackConfig() {
 
     //let url = process.env.ENV;
     config.plugins = [
+        new webpack.NoErrorsPlugin(), //оптимизация при ошибках
         new webpack.DefinePlugin({
             'process.env': {
                 'IS_STATIC_MODE': !JSON.stringify(ENV)
             }
-        })
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['ng', 'ng-polyfills']
+        }),
     ];
 
 
@@ -87,10 +92,10 @@ module.exports = function makeWebpackConfig() {
         quiet: false,
         stats: 'minimal', // none (or false), errors-only, minimal, normal (or true) and verbose
         port: 9000,
-        // watchOptions: {
-        //     aggregateTimeout: 300,
-        //     poll: 1000
-        // }
+        watchOptions: {
+            aggregateTimeout: 100, //по умолчанию 300
+            //poll: 1000
+        }
     };
 
 
