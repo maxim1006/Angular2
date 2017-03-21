@@ -24,16 +24,14 @@ module.exports = function makeWebpackConfig() {
 
     config.entry = {
         'ng-app': './src/scripts/ng-main.ts', // our angular app
-        'ng-polyfills': './src/scripts/ng-polyfills.ts',
-        'ng': './src/scripts/ng.ts',
+        'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'],
     };
 
 
 
     config.output = {
         path: path.join(__dirname, './src/'),
-        filename: isProd ? 'markup/js/[name].[hash].js' : 'markup/js/[name].js',
-        // chunkFilename: isProd ? '[id].[hash].chunk.js' : '[id].chunk.js'
+        filename: isProd ? 'markup/js/[name].[hash].js' : 'markup/js/[name].js'
     };
 
 
@@ -75,7 +73,7 @@ module.exports = function makeWebpackConfig() {
             }
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['ng', 'ng-polyfills']
+            name: ['ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
         }),
     ];
 
