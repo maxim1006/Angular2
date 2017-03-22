@@ -23,12 +23,14 @@ https://git.netcracker.com/Personal.RND.nlab/ng-samples/tree/feature/lib/ng-lib
 
 
 
-ViewChildren example с изменением
+ViewChildren example пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 
 
 
-Сделать пример с роутерами и guardaми
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ guardaпїЅпїЅ
 https://git.netcracker.com/DEMO.SALESINTEL/sales-intelligence-frontend
+
+РЎРґРµР»Р°С‚СЊ РїСЂРёРјРµСЂ СЃ hammer Рё Р°РЅРёРјР°С†РёРµР№
 
