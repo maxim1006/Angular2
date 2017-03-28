@@ -11,6 +11,8 @@ export class InnerDataBindingComponent {
     public constructor() {
     }
 
+    @Input() oneTimeStringBinding:string;
+
     @Input()
     public prop;
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators, AbstractControl, FormControl} from "@angular/forms";
-import {nameValidator} from "../../validators/validators";
-import {ValidationConstants} from "../../../../constants/validation.constant";
+import {nameValidator} from "./validators/validators";
+import {ValidationConstants} from "../shared/constants/validation.constant";
 
 @Component({
     selector: "m-form",

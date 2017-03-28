@@ -8,7 +8,7 @@ import { Component, OnInit, Inject} from '@angular/core';
         injected key2: {{key2}}
     `
 })
-export class MHttp implements OnInit {
+export class MHttpComponent implements OnInit {
     constructor(@Inject('KEY1') private key1: string, @Inject('KEY2') private key2: string) { }
 
     ngOnInit() {

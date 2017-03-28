@@ -1,12 +1,12 @@
 import {NgModule} from "@angular/core";
 import {HttpModule} from "@angular/http";
-import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MFormComponent} from "./components/m-form/m-form.component";
 import {TField} from "./components/t-field/t-field.component";
+import {MFormComponent} from "./m-form.component";
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, FormsModule, ReactiveFormsModule],
+    imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule],
     declarations: [MFormComponent, TField],
     exports: [MFormComponent],
     providers: [

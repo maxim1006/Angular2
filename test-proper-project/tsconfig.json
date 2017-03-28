@@ -10,6 +10,7 @@
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
         "skipLibCheck": true,
+        "lib": ["es5", "dom", "es2015.promise"],
         "typeRoots": [
             "./node_modules/@types/",
             "./node_modules/@angular/"
@@ -23,7 +24,8 @@
         "node_modules/*",
         "dist/*",
         "dist-serve/*",
-        "node/*"
+        "node/*",
+        "**/*.spec.ts"
     ],
     "files": [
         "./typings.d.ts"

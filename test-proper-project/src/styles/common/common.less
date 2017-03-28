@@ -40,10 +40,15 @@ a {
         outline: none;
     }
 
+    &,
+    &:visited {
+        color: @link;
+    }
+
     &:hover,
     &:focus,
     &:active {
-        color: @link;
+        color: @accepted;
     }
 
 }

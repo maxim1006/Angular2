@@ -9,9 +9,11 @@ var webpack = require('webpack');
  * Get npm lifecycle event to identify the environment
  */
 var ENV = process.env.npm_lifecycle_event;
-var isTestWatch = ENV === 'test-watch';
-var isTest = ENV === 'test' || isTestWatch;
-var isProd = ENV === 'build:prod';
+var isProd = ENV === 'prod';
+var isStatic = ENV === 'dev';
+var isHmr = ENV === 'hmr';
+var isTest = ENV === 'test';
+
 
 
 module.exports = function makeWebpackConfig() {
@@ -62,14 +64,13 @@ module.exports = function makeWebpackConfig() {
         }]
     };
 
-
-
     //let url = process.env.ENV;
     config.plugins = [
         new webpack.NoErrorsPlugin(), //оптимизация при ошибках
         new webpack.DefinePlugin({
             'process.env': {
-                'IS_STATIC_MODE': !JSON.stringify(ENV)
+                'IS_STATIC_MODE': ENV === 'devWebpack',
+                'HMR': ENV === 'hmrWebpack'
             }
         }),
         new webpack.optimize.CommonsChunkPlugin({

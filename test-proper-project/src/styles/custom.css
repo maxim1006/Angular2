@@ -407,10 +407,14 @@ a:active {
   text-decoration: none;
   outline: none;
 }
+a,
+a:visited {
+  color: #0066CC;
+}
 a:hover,
 a:focus,
 a:active {
-  color: #0066CC;
+  color: #f8bf4c;
 }
 ._page-limiter {
   max-width: 1180px;
@@ -510,6 +514,26 @@ input[type="text"] {
 }
 .m-form__submit:disabled {
   opacity: 0.4;
+}
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px 0;
+}
+.nav__link {
+  padding: 0 25px;
+  margin-right: 20px;
+  font-size: 16px;
+  line-height: 50px;
+  background-color: aliceblue;
+  border-radius: 20px;
+}
+.nav__link.active {
+  color: #f8bf4c;
 }
 .t-field__label {
   margin-bottom: 10px;

@@ -1,10 +1,10 @@
 import { Injectable, Inject } from "@angular/core";
 import { Http  } from "@angular/http";
-import {domenToken} from '../../tokens/tokens';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import {Observable} from 'rxjs/Observable';
+import {domenToken} from "../../../shared/tokens/tokens";
 
 @Injectable() //дает возможность инжектировать что-нибудь.
 export class NgForExampleService {
@@ -21,6 +21,7 @@ export class NgForExampleService {
                    //console.log(res.json());
                })
                .catch(err => {
+                   console.log(err);
                    return Observable.of([]);
                    //return Observable.throw(err);
                });
