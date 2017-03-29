@@ -1,14 +1,10 @@
 {
-  "name": "telenet-ssp",
-  "version": "1.0.0-SNAPSHOT",
-  "description": "Telenet Self Service Portal",
+  "name": "test-project",
+  "version": "1.0.0",
+  "description": "",
   "main": "gulpfile.js",
-  "repository": {
-    "type": "svn",
-    "url": "https://svn.netcracker.com/TELENET.Portal/"
-  },
-  "author": "NetCracker Technology Corp.",
-  "license": "UNLICENSED",
+  "author": "maxim1006",
+  "license": "MIT",
   "dependencies": {
     "@angular/common": "^2.1.2",
     "@angular/compiler": "^2.1.2",

@@ -1,18 +1,40 @@
 import { Component, OnInit, Inject} from '@angular/core';
+import {MHttpService} from "./m-http.service";
+import {NewService} from "./new.service";
+
+
+
+export class FamilyMember {
+    name: string;
+    age: number;
+    sex: string;
+}
+
 
 @Component({
     selector: 'm-http',
-    template: `
-        <h3>M-http component</h3>
-        injected key1: {{key1}} <br />
-        injected key2: {{key2}}
-    `
+    templateUrl: "./m-http.component.html"
 })
 export class MHttpComponent implements OnInit {
-    constructor(@Inject('KEY1') private key1: string, @Inject('KEY2') private key2: string) { }
+    private family: FamilyMember[];
+
+    constructor(
+        @Inject('KEY1') private key1: string,
+        @Inject('KEY2') private key2: string,
+        private _mHttpService: MHttpService,
+        @Inject('Value') private _value: string,
+        private _newService: NewService
+    ) { }
 
     ngOnInit() {
+        this._mHttpService.getData().subscribe(data => {
+            this.family = data;
+            console.log(Date.now());
+        });
+        
+        console.log(this._value);
 
+        console.log(this._newService);
     }
 }
 
