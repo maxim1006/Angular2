@@ -28,8 +28,8 @@ export class MHttpComponent implements OnInit {
 
     ngOnInit() {
         this._mHttpService.getData().subscribe(data => {
+            console.log(data);
             this.family = data;
-            console.log(Date.now());
         });
         
         console.log(this._value);
