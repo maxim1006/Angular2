@@ -34,3 +34,6 @@ https://git.netcracker.com/DEMO.SALESINTEL/sales-intelligence-frontend
 
 Сделать пример с hammer и анимацией
 
+
+//publishLast().refCount() - cделать пример
+

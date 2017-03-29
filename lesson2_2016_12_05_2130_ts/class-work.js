@@ -7,3 +7,5 @@ var BasicPoint = (function () {
     };
     return BasicPoint;
 }());
+var days = new Set();
+Array.from(days);

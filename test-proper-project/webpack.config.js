@@ -66,7 +66,7 @@ module.exports = function makeWebpackConfig() {
 
     //let url = process.env.ENV;
     config.plugins = [
-        new webpack.NoErrorsPlugin(), //оптимизация при ошибках
+        new webpack.NoEmitOnErrorsPlugin(), //оптимизация при ошибках
         new webpack.DefinePlugin({
             'process.env': {
                 'IS_STATIC_MODE': ENV === 'devWebpack',

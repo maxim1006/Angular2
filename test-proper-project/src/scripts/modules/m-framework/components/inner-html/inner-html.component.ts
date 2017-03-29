@@ -1,4 +1,5 @@
 import {Component, ViewChild, ViewChildren, ElementRef, OnInit, Input} from '@angular/core';
+import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
     selector: "inner-html",
@@ -6,17 +7,18 @@ import {Component, ViewChild, ViewChildren, ElementRef, OnInit, Input} from '@an
 })
 
 export class InnerHtmlComponent implements OnInit {
-    private htmlContent: string;
+    private htmlContent: SafeHtml;
 
     @Input()
     htmlContentOuter;
 
-    public constructor() {
+    public constructor( private sanitizer: DomSanitizer) {
     }
 
     ngOnInit() {
-        this.htmlContent = `
-            <span class="content">Inner html content from Controller</span>
-        `;
+        this.htmlContent = this.sanitizer.bypassSecurityTrustHtml(`
+            <span class="content">Inner html content from Controller123</span>
+            <el-native-element></el-native-element>
+        `);
     }
 }
