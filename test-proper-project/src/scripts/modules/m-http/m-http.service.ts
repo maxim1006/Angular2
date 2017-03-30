@@ -11,7 +11,7 @@ export class MHttpService {
     getData():Observable<any> {
         if(!this._data){
             this._data = this._http.get(`${domenToken}family.json`)
-                .delay(2000)
+                // .delay(2000)
                 .map (
                     (data) => {
                         return data.json()
@@ -21,8 +21,7 @@ export class MHttpService {
                         return Observable.throw(e);
                     }
                 )
-                .publishReplay(1)
-                .refCount();
+                .share();
         }
         return this._data;
     }

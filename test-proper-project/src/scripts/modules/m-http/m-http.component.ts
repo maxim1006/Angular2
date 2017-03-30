@@ -27,7 +27,19 @@ export class MHttpComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this._mHttpService.getData().subscribe(data => {
+        let getData = this._mHttpService.getData();
+
+        getData.subscribe(data => {
+            console.log(data);
+            this.family = data;
+        });
+
+        getData.subscribe(data => {
+            console.log(data);
+            this.family = data;
+        });
+
+        getData.subscribe(data => {
             console.log(data);
             this.family = data;
         });
