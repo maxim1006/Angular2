@@ -31,7 +31,8 @@ import {SharedModule} from "./modules/shared/shared.module";
         SharedModule
     ],
     providers: [
-        {provide: domenToken, useValue: domenToken}
+        {provide: domenToken, useValue: domenToken},
+        // {provide: APP_BASE_HREF, useValue: '/'} //можно использовать вместо <base href="/">
     ],
     bootstrap: [
         AppComponent
