@@ -9,6 +9,7 @@ export class MFrameworkComponent implements OnInit {
 
     @HostBinding('class.framework-component')
     addClass: boolean = true;
+    private detectVisiblePropertyChange: boolean;
 
     public constructor() {
         console.log("start");
@@ -26,6 +27,10 @@ export class MFrameworkComponent implements OnInit {
 
     public getValue(e): number {
         return 12;
+    }
+
+    public detectPropertyChange() {
+         this.detectVisiblePropertyChange = !this.detectVisiblePropertyChange;
     }
 
     ngOnInit() {

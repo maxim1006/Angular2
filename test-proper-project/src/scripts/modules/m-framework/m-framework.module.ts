@@ -24,6 +24,7 @@ import {InnerHtmlComponent} from "./components/inner-html/inner-html.component";
 import {ElNativeElementComponent} from "./components/el-native-element/el-native-element.component";
 import {HostBindingComponent} from "./components/host-binding/host-binding.component";
 import {SharedModule} from "../shared/shared.module";
+import {DetectPropertyChangeComponent} from "./components/detect-property-change/detect-property-change.component";
 
 @NgModule({
     imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, SharedModule],
@@ -49,7 +50,8 @@ import {SharedModule} from "../shared/shared.module";
         InnerHtmlComponent,
         ElNativeElementComponent,
         HostBindingComponent,
-        CustomDirective
+        CustomDirective,
+        DetectPropertyChangeComponent
     ],
     exports: [MFrameworkComponent],
     providers: []
