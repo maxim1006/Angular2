@@ -16,7 +16,6 @@ import {NgforExampleComponent} from "./components/ng-for-example/ng-for-example.
 import {NgforExampleWithObjectComponent} from "./components/ng-for-example-with-object/ng-for-example-with-object.component";
 import {NgSwitchExampleComponent} from "./components/ng-switch-example/ngSwitchExampleComponent";
 import {PipeExampleComponent} from "./components/pipe-example/pipeExampleComponent";
-import {TranscludeExampleComponent} from "./components/transclude-example/transcludeExampleComponent";
 import {ParentComponent} from "./components/parent-component/parentComponent";
 import {ChildComponent} from "./components/parent-component/child-component/childComponent";
 import {RxjsExampleComponent} from "./components/rxjs-example/rxjsExampleComponent";
@@ -25,6 +24,8 @@ import {ElNativeElementComponent} from "./components/el-native-element/el-native
 import {HostBindingComponent} from "./components/host-binding/host-binding.component";
 import {SharedModule} from "../shared/shared.module";
 import {DetectPropertyChangeComponent} from "./components/detect-property-change/detect-property-change.component";
+import {TranscludeExampleComponent} from "./components/transclude-example/transclude-example.component";
+import {InnerTranscludeExampleComponent} from "./components/transclude-example/inner-transclude-example.component";
 
 @NgModule({
     imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, SharedModule],
@@ -44,6 +45,7 @@ import {DetectPropertyChangeComponent} from "./components/detect-property-change
         NgSwitchExampleComponent,
         PipeExampleComponent,
         TranscludeExampleComponent,
+        InnerTranscludeExampleComponent,
         ParentComponent,
         ChildComponent,
         RxjsExampleComponent,

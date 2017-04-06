@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: "transclude-example",
-    templateUrl: "./transcludeExampleComponent.html"
+    templateUrl: "./transclude-example.component.html"
 })
 
 export class TranscludeExampleComponent {
