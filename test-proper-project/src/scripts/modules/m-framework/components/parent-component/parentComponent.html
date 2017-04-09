@@ -4,7 +4,11 @@
 
 <p *ngIf="inputValueFromInnerComponent">Current color: {{inputValueFromInnerComponent}}</p>
 
-<button (click)="child.start()">Start child component</button>
-<button (click)="child.stop()">Stop child component</button>
 
+<br /><button (click)="child.start()">Start child component</button>
+<br /><button (click)="child.stop()">Stop child component</button>
+<br /><button (click)="childStart()">Start child component via @viewChild </button>
+<br /><button (click)="childStop()">Stop child component via @viewChild</button>
+
+<!--с помощью #child могу локально вызывать в родителе методы и свойства чайлда.-->
 <child-component [inputValue]="inputValue" (onClickOutput)="inputValueFromInnerComponent=$event" #child></child-component>
