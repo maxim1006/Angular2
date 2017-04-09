@@ -17,4 +17,12 @@ export class ChildComponent {
         this.onClickOutput.emit(this.inputValue);
     }
 
+    public start() {
+        console.log("child component start");
+    }
+
+    public stop() {
+        console.log("child component stop");
+    }
+
 }

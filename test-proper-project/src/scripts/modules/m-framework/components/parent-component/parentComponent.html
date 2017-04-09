@@ -4,4 +4,7 @@
 
 <p *ngIf="inputValueFromInnerComponent">Current color: {{inputValueFromInnerComponent}}</p>
 
-<child-component [inputValue]="inputValue" (onClickOutput)="inputValueFromInnerComponent=$event"></child-component>
+<button (click)="child.start()">Start child component</button>
+<button (click)="child.stop()">Stop child component</button>
+
+<child-component [inputValue]="inputValue" (onClickOutput)="inputValueFromInnerComponent=$event" #child></child-component>
