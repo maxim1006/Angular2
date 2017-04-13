@@ -4,6 +4,7 @@ import {ClickOutsideDirective} from "./directives/click-outside/clickOutsideDire
 import {CustomPipe} from "./pipes/customPipe";
 import {objToArrPipe} from "./pipes/objToArrPipe";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
+import {ContentEditableDirective} from "./directives/content-editable/content-editable.directive";
 
 @NgModule({
     imports: [],
@@ -11,6 +12,7 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
         /*Directive*/
         SimpleLogDirective,
         ClickOutsideDirective,
+        ContentEditableDirective,
 
         /*Pipes*/
         CustomPipe,
@@ -23,6 +25,7 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
         /*Directive*/
         SimpleLogDirective,
         ClickOutsideDirective,
+        ContentEditableDirective,
 
         /*Pipes*/
         CustomPipe,

@@ -27,3 +27,13 @@ https://git.netcracker.com/DEMO.SALESINTEL/sales-intelligence-frontend
 моки запросов
 
 
+
+http://stackoverflow.com/questions/41364386/whats-the-difference-between-markforcheck-and-detectchanges
+ myFunction(){
+   someFunctionThatIsRunByAThirdPartyCode();
+
+   // Let's detect the changes that above function made to the model which Angular is not aware of.
+    this.cd.detectChanges();
+ }
+
+
