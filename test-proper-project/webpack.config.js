@@ -32,8 +32,9 @@ module.exports = function makeWebpackConfig() {
 
 
     config.output = {
-        path: path.join(__dirname, './src/'),
-        filename: isProd ? 'markup/js/[name].[hash].js' : 'markup/js/[name].js'
+        path: path.join(__dirname, './src/markup/js/'),
+        // publicPath: "/js/",
+        filename: isProd ? '[name].[hash].js' : '[name].js'
     };
 
 
@@ -82,12 +83,19 @@ module.exports = function makeWebpackConfig() {
 
     //dev server
     config.devServer = {
-        contentBase: path.join(__dirname, "./src"),
-        // staticOptions: {
-        //     redirect: true
-        // },
+        contentBase: path.join(__dirname, "./src/markup"),
+        publicPath: "/js/",
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        },
+        staticOptions: {
+            redirect: false
+        },
+        // historyApiFallback: true,
         historyApiFallback: true,
-        compress: false, // enable gzip compression
+        compress: true, // enable gzip compression
         quiet: false,
         stats: 'minimal', // none (or false), errors-only, minimal, normal (or true) and verbose
         port: 9000,

@@ -8,7 +8,7 @@ module.exports = {
     // LESS config
     less: {
         src: './src/styles/custom.less',
-        dest: './src/styles'
+        dest: './src/markup/styles'
     },
 
     // Icons config

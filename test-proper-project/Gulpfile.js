@@ -22,7 +22,7 @@ gulp.task('watch', ['bsync'], () => {
 gulp.task('bsync', ['icons', 'less'], () => {
     bsync.init(
         {
-            proxy: 'http://localhost:9000/markup/',
+            proxy: 'http://localhost:9000/',
             port:9001
         });
 });
