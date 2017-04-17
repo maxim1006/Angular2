@@ -42,7 +42,8 @@ import {RouteService} from "./route.service";
             deps: [RouteService],
             multi: true
         },
-        /**/
+        ///////////////
+
         // {provide: APP_BASE_HREF, useValue: '/'} //можно использовать вместо <base href="/">
     ],
     bootstrap: [
