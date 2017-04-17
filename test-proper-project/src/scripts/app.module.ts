@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
@@ -12,6 +12,7 @@ import {MFrameworkModule} from "./modules/m-framework/m-framework.module";
 import {AppComponent} from "./app.component";
 import {domenToken} from "./modules/shared/tokens/tokens";
 import {SharedModule} from "./modules/shared/shared.module";
+import {RouteService} from "./route.service";
 
 
 @NgModule({
@@ -32,6 +33,16 @@ import {SharedModule} from "./modules/shared/shared.module";
     ],
     providers: [
         {provide: domenToken, useValue: domenToken},
+
+        /*Эта часть нужна, чтобы загрузить какие-то данные перед всей аппликухой*/
+        RouteService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (route: RouteService) => { return () => route.init() },
+            deps: [RouteService],
+            multi: true
+        },
+        /**/
         // {provide: APP_BASE_HREF, useValue: '/'} //можно использовать вместо <base href="/">
     ],
     bootstrap: [

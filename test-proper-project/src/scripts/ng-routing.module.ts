@@ -13,6 +13,7 @@ const routes: Routes = [
     {path: 'components', component: MComponentsComponent},
     {path: 'http', component: MHttpComponent},
     {path: 'forms', component: MFormComponent},
+    {path: 'authGuarded', component: MFormComponent},
     {path: '**', component: PageNotFoundComponent},
 ];
 
