@@ -1,6 +1,7 @@
-// Helper: root() is defined at the bottom
-var path = require('path');
-var webpack = require('webpack');
+"use strict";
+
+const path = require('path');
+const webpack = require('webpack');
 
 
 
@@ -8,11 +9,11 @@ var webpack = require('webpack');
  * Env
  * Get npm lifecycle event to identify the environment
  */
-var ENV = process.env.npm_lifecycle_event;
-var isProd = ENV === 'prod';
-var isStatic = ENV === 'dev';
-var isHmr = ENV === 'hmr';
-var isTest = ENV === 'test';
+const ENV = process.env.npm_lifecycle_event;
+const isProd = ENV === 'prod';
+const isStatic = ENV === 'dev';
+const isHmr = ENV === 'hmr';
+const isTest = ENV === 'test';
 
 
 
@@ -31,7 +32,7 @@ module.exports = function makeWebpackConfig() {
 
 
 
-    config.output = {
+    config.output = isTest ? {} : {
         path: path.join(__dirname, './src/markup/js/'),
         // publicPath: "/js/",
         filename: isProd ? '[name].[hash].js' : '[name].js'
@@ -65,19 +66,33 @@ module.exports = function makeWebpackConfig() {
         }]
     };
 
+
+    if (isTest) {
+        config.module.rules.push({
+            test: /\.ts$/,
+            enforce: "post",
+            include: path.resolve("src"),
+            loader: "istanbul-instrumenter-loader",
+            exclude: [/\.spec\.ts$/, /\.e2e\.ts$/, /node_modules/]
+        });
+    }
+
+
     //let url = process.env.ENV;
-    config.plugins = [
-        new webpack.NoEmitOnErrorsPlugin(), //оптимизация при ошибках
-        new webpack.DefinePlugin({
-            'process.env': {
-                'IS_STATIC_MODE': ENV === 'devWebpack',
-                'HMR': ENV === 'hmrWebpack'
-            }
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
-        }),
-    ];
+    if (!isTest) {
+        config.plugins = [
+            new webpack.NoEmitOnErrorsPlugin(), //оптимизация при ошибках
+            new webpack.DefinePlugin({
+                'process.env': {
+                    'IS_STATIC_MODE': ENV === 'devWebpack',
+                    'HMR': ENV === 'hmrWebpack'
+                }
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: ['ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
+            }),
+        ];
+    }
 
 
 

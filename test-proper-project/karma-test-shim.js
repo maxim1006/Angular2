@@ -1,3 +1,5 @@
+"use strict";
+
 Error.stackTraceLimit = Infinity;
 
 require("core-js/es6");
@@ -13,7 +15,7 @@ require("zone.js/dist/fake-async-test");
 var testing = require("@angular/core/testing");
 var browser = require("@angular/platform-browser-dynamic/testing");
 
-var testContext = require.context("./test/unit", true, /\.spec\.ts/);
+var testContext = require.context("./test", true, /\.spec\.ts/);
 testContext.keys().forEach(testContext);
 
 testing.TestBed.initTestEnvironment(browser.BrowserDynamicTestingModule, browser.platformBrowserDynamicTesting());
