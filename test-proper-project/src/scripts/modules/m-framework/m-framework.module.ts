@@ -19,13 +19,13 @@ import {PipeExampleComponent} from "./components/pipe-example/pipeExampleCompone
 import {ParentComponent} from "./components/parent-component/parentComponent";
 import {ChildComponent} from "./components/parent-component/child-component/childComponent";
 import {RxjsExampleComponent} from "./components/rxjs-example/rxjsExampleComponent";
-import {InnerHtmlComponent} from "./components/inner-html/inner-html.component";
 import {ElNativeElementComponent} from "./components/el-native-element/el-native-element.component";
 import {HostBindingComponent} from "./components/host-binding/host-binding.component";
 import {SharedModule} from "../shared/shared.module";
 import {DetectPropertyChangeComponent} from "./components/detect-property-change/detect-property-change.component";
 import {TranscludeExampleComponent} from "./components/transclude-example/transclude-example.component";
 import {InnerTranscludeExampleComponent} from "./components/transclude-example/inner-transclude-example.component";
+import {CustomComponentCreationComponent} from "./components/custom-component-creation/custom-component-creation.component";
 
 @NgModule({
     imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, SharedModule],
@@ -49,13 +49,13 @@ import {InnerTranscludeExampleComponent} from "./components/transclude-example/i
         ParentComponent,
         ChildComponent,
         RxjsExampleComponent,
-        InnerHtmlComponent,
+        CustomComponentCreationComponent,
         ElNativeElementComponent,
         HostBindingComponent,
         CustomDirective,
         DetectPropertyChangeComponent
     ],
-    exports: [MFrameworkComponent],
+    exports: [MFrameworkComponent, ClassExampleComponent],
     providers: []
 })
 export class MFrameworkModule {
