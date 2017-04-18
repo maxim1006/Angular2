@@ -5,6 +5,8 @@ import {MComponentsComponent} from "./modules/m-components/m-components.componen
 import {MHttpComponent} from "./modules/m-http/m-http.component";
 import {MFormComponent} from "./modules/m-forms/m-form.component";
 import {PageNotFoundComponent} from "./modules/shared/components/page-not-found/page-not-found.component";
+import {MAdminComponent} from "./modules/m-admin/m-admin.component";
+import {MAdminGuardService} from "./modules/m-admin/m-admin-guard.service";
 
 
 const routes: Routes = [
@@ -13,14 +15,18 @@ const routes: Routes = [
     {path: 'components', component: MComponentsComponent},
     {path: 'http', component: MHttpComponent},
     {path: 'forms', component: MFormComponent},
-    {path: 'authGuarded', component: MFormComponent},
+    {
+        path: 'admin',
+        component: MAdminComponent,
+        canActivate: [MAdminGuardService]
+    },
     {path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes)
-        // RouterModule.forRoot(routes, {useHash: true})
+        // RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes, {useHash: true})
         // other imports here
     ],
     exports: [

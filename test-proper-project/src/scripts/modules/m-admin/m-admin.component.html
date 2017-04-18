@@ -1,0 +1,9 @@
+<h3>Admin component</h3>
+
+<p>Please insert your admin ID</p>
+<form (submit)="submit(id)" novalidate>
+    <input [(ngModel)]="id" name="id" type="number">
+    <button type="submit">Submit</button>
+</form>
+
+<router-outlet></router-outlet>

@@ -8,7 +8,7 @@ import {ContentEditableComponent} from "./components/content-editable/content-ed
 import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
-    imports: [CommonModule, HttpModule, FormsModule, SharedModule],
+    imports: [SharedModule, HttpModule, FormsModule],
     declarations: [
         MComponentsComponent,
         MAutocompleteComponent,

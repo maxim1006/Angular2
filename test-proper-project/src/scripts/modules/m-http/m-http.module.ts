@@ -1,14 +1,14 @@
 import {NgModule, OpaqueToken, Injectable} from "@angular/core";
 import {HttpModule, Http} from "@angular/http";
-import {CommonModule} from "@angular/common";
 import {MHttpComponent, httpInjectables} from "./m-http.component";
 import {MHttpService} from "./m-http.service";
 import {NewService, NewService2} from "./new.service";
+import {SharedModule} from "../shared/shared.module";
 
 
 
 @NgModule({
-    imports: [CommonModule, HttpModule],
+    imports: [SharedModule, HttpModule],
     exports: [MHttpComponent],
     declarations: [MHttpComponent],
     providers: [

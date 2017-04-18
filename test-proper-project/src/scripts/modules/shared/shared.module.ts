@@ -5,10 +5,13 @@ import {CustomPipe} from "./pipes/customPipe";
 import {objToArrPipe} from "./pipes/objToArrPipe";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {ContentEditableDirective} from "./directives/content-editable/content-editable.directive";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-    imports: [],
+    imports: [CommonModule],
     exports: [
+        CommonModule,
+
         /*Directive*/
         SimpleLogDirective,
         ClickOutsideDirective,

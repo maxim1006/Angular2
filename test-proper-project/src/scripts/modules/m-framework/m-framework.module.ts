@@ -28,7 +28,7 @@ import {TranscludeExampleComponent} from "./components/transclude-example/transc
 import {InnerTranscludeExampleComponent} from "./components/transclude-example/inner-transclude-example.component";
 
 @NgModule({
-    imports: [CommonModule, HttpModule, FormsModule, ReactiveFormsModule, SharedModule],
+    imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule],
     declarations: [
         MFrameworkComponent,
         ElementLinkComponent,
