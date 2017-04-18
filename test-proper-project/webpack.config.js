@@ -105,7 +105,6 @@ module.exports = function makeWebpackConfig() {
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
             "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
         },
-        // historyApiFallback: true,
         historyApiFallback: true,
         compress: true, // enable gzip compression
         quiet: false,
