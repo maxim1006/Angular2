@@ -30,11 +30,8 @@ module.exports = function makeWebpackConfig() {
         'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'],
     };
 
-
-
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/markup/js/'),
-        // publicPath: "/js/",
+        path: path.join(__dirname, './src/markup/'),
         filename: isProd ? '[name].[hash].js' : '[name].js'
     };
 
@@ -98,14 +95,19 @@ module.exports = function makeWebpackConfig() {
 
     //dev server
     config.devServer = {
-        contentBase: path.join(__dirname, "./src/markup"),
+        contentBase: "./src/markup",
         publicPath: "/js/",
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
             "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
         },
-        historyApiFallback: true,
+        historyApiFallback: {
+            index: 'index.html',
+            rewrites: [
+                { from: '/', to: '/index.html'}
+            ]
+        },
         compress: true, // enable gzip compression
         quiet: false,
         stats: 'minimal', // none (or false), errors-only, minimal, normal (or true) and verbose

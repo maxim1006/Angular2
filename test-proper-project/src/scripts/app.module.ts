@@ -47,7 +47,7 @@ import {APP_BASE_HREF} from "@angular/common";
         },
         ///////////////
 
-        {provide: APP_BASE_HREF, useValue: '/'} //можно использовать вместо <base href="/">
+        //{provide: APP_BASE_HREF, useValue: '/'} //можно использовать вместо <base href="/">
     ],
     bootstrap: [
         AppComponent

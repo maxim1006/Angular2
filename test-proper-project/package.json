@@ -63,6 +63,7 @@
     },
     "scripts": {
         "dev": "concurrently --kill-others \"npm run devGulp\" \"npm run devWebpack\"",
+        "wp": "npm run devWebpack",
         "hmr": "concurrently --kill-others \"npm run devGulp\" \"npm run hmrWebpack\"",
         "devWebpack": "webpack-dev-server --config ./webpack.config.js --profile --watch",
         "hmrWebpack": "webpack-dev-server --config ./webpack.config.js --profile --watch",

@@ -9,18 +9,20 @@
  an @Input() was updated (as in the ref obj changed)
  | async pipe received an event
  change detection was invoked "manually"
+
+ http://stackoverflow.com/questions/34827334/triggering-angular2-change-detection-manually
 *
 * */
 
 import {
     Component, ViewChild, ViewChildren, ElementRef, OnInit, Input, Compiler,
-    ChangeDetectionStrategy, ChangeDetectorRef
+    ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef, NgZone
 } from '@angular/core';
 
 @Component({
     selector: "custom-change-detection",
     templateUrl: "custom-change-detection.component.html",
-    //changeDetection: ChangeDetectionStrategy.OnPush //если проставить это, то не будет changeDetection, хотя а2 клик сработает, а сеттаймаут и браузер клик не сработает
+    changeDetection: ChangeDetectionStrategy.OnPush //если проставить это, то не будет changeDetection, хотя а2 клик сработает, а сеттаймаут и браузер клик не сработает
 })
 
 export class CustomChangeDetectionComponent implements OnInit {
@@ -28,7 +30,7 @@ export class CustomChangeDetectionComponent implements OnInit {
 
     @ViewChild("inner") inner;
 
-    constructor(private cdr: ChangeDetectorRef) {}
+    constructor(private cdr: ChangeDetectorRef, private appRef: ApplicationRef, private ngZone: NgZone) {}
 
      ngOnInit() {
 
@@ -48,6 +50,10 @@ export class CustomChangeDetectionComponent implements OnInit {
           document.querySelector("#customChangeDetectionComponentHeader").addEventListener('click', () => {
               this.obj.name = "browser click";
               console.log(this.inner.obj);
+              // this.appRef.tick();
+              // this.ngZone.run(() => {
+              //     this.obj.name = "browser click";
+              // });
               //this.cdr.markForCheck(); //marks the path from our component until root to be checked for the next change detection run. использую если есть onPush
               //this.cdr.detectChanges(); //после отключения детектов сделать кастомный триггер изменений, также используется если нужно победить ошибку об изменении перед инициализацией
           });
