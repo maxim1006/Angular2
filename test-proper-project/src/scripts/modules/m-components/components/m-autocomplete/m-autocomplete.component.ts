@@ -2,6 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 
 @Component({
     selector: "m-autocomplete",
+    styles: [require("./m-autocomplete.component.less")],
     templateUrl: "./m-autocomplete.component.html"
 })
 

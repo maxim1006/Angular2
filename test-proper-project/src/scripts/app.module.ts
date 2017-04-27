@@ -1,3 +1,5 @@
+require("style-loader!../assets/themes/main.less");
+
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';

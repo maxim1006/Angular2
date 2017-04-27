@@ -45,22 +45,48 @@ module.exports = function makeWebpackConfig() {
 
 
     config.module = {
-        rules: [{
-            test: /\.ts$/,
-            use: [
-                {
-                    loader: 'awesome-typescript-loader?'
-                },
-                {
-                    loader: 'angular2-template-loader',
-                }
-            ],
-            exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
-        },
-        {
-            test: /\.html$/, loader: 'raw-loader',
-            exclude: [/node_modules\/(?!(ng2-.+))/]
-        }]
+        rules: [
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader?'
+                    },
+                    {
+                        loader: 'angular2-template-loader',
+                    }
+                ],
+                exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+            },
+            {
+                test: /\.html$/, loader: 'raw-loader',
+                exclude: [/node_modules\/(?!(ng2-.+))/]
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "url-loader"
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {loader: "css-to-string-loader"},
+                    {loader: "css-loader"},
+                    {loader: "postcss-loader"},
+                    {
+                        loader: "less-loader",
+                        options: {
+                            globalVars: {
+                                theme: "base"
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
     };
 
 
@@ -87,7 +113,7 @@ module.exports = function makeWebpackConfig() {
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: ['ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
-            }),
+            })
         ];
     }
 
