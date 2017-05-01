@@ -63,10 +63,6 @@ module.exports = function makeWebpackConfig() {
                 exclude: [/node_modules\/(?!(ng2-.+))/]
             },
             {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            },
-            {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: "url-loader"
             },
