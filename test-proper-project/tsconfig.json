@@ -2,6 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         "module": "amd",
+        "declaration": true,
         "moduleResolution": "node",
         "sourceMap": true,
         "emitDecoratorMetadata": true,
@@ -34,5 +35,9 @@
         "forkChecker": true,
         "useWebpackText": true,
         "useCache": true
+    },
+    "angularCompilerOptions": {
+        "strictMetadataEmit": true,
+        "skipMetadataEmit" : true
     }
 }
