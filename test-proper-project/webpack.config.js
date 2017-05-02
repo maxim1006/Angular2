@@ -115,6 +115,14 @@ module.exports = function makeWebpackConfig() {
 
 
 
+    if (isProd) {
+        config.plugins.push(
+            new webpack.optimize.UglifyJsPlugin({mangle: true})
+        );
+    }
+
+
+
     //dev server
     config.devServer = {
         contentBase: "./src/markup",
