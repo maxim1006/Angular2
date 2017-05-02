@@ -64,7 +64,7 @@ export class AdminIdComponent implements OnInit {
         this.route.params.switchMap(
                 (params: Params) => {
                     console.log(params['id']);
-                    return this.http.get(`http://localhost:9001/mocks/family` + params['id'] + '.json')
+                    return this.http.get(`http://localhost:9000/mocks/family` + params['id'] + '.json')
                 }
             )
             .subscribe((family) => {

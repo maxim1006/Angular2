@@ -31,7 +31,7 @@ module.exports = function makeWebpackConfig() {
     };
 
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/markup/'),
+        path: path.join(__dirname, './src/markup/js'),
         filename: isProd ? '[name].[hash].js' : '[name].js'
     };
 
