@@ -5,10 +5,9 @@ import {
     ComponentRef
 } from "../../../../../../node_modules/@angular/core/src/linker/component_factory";
 import {AfterViewInit} from "../../../../../../node_modules/@angular/core/src/metadata/lifecycle_hooks";
-import {BrowserModule} from "../../../../../../node_modules/@angular/platform-browser/src/browser";
-import {NgModule} from "../../../../../../node_modules/@angular/core/src/metadata/ng_module";
-import {ViewContainerRef} from "../../../../../../node_modules/@angular/core/src/linker/view_container_ref";
+import {NgModule, ViewContainerRef} from '@angular/core';
 import {MFrameworkModule} from "../../m-framework.module";
+import {BrowserModule} from "@angular/platform-browser/";
 
 @Component({
     selector: "custom-component-creation",

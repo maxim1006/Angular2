@@ -1,15 +1,15 @@
 import {
-    Component, OnInit, HostBinding, AnimationEntryMetadata, trigger, state, style, transition, animate,
-    Inject
+    Component, OnInit, HostBinding, AnimationEntryMetadata, Inject
 } from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Http} from "@angular/http";
 import {domenToken} from "../../shared/tokens/tokens";
 import {FamilyMember} from "../../m-http/m-http.component";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 
 
-export const slideInDownAnimation: AnimationEntryMetadata =
+export const slideInDownAnimation: any =
     trigger('routeAnimation', [
         state('*',
             style({
