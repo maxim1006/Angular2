@@ -1,19 +1,10 @@
-
-
-
-
-
-contentChild/contentChildren
+Cделать пример с копированием результатов в дист.
 
 
 
 .d.ts
 https://git.netcracker.com/Personal.RND.nlab/ng-samples/tree/feature/lib/ng-lib
 
-
-
-
-ViewChildren example � ����������
 
 
 

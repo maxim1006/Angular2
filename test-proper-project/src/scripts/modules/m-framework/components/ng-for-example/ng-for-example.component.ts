@@ -11,6 +11,7 @@ import {NgForExampleService} from "./ng-for-example.service"
 
 export class NgforExampleComponent {
     public family;
+    filterValue: string;
 
     constructor(private ngForExampleService:NgForExampleService) {}
     //  constructor(
@@ -27,6 +28,21 @@ export class NgforExampleComponent {
         });
 
         //console.log(this.tokens.domenToken);
+    }
+
+    addItem() {
+        let arr = [];
+        arr = arr.concat(this.family);
+        arr.push({
+            name: this.filterValue
+        });
+
+        this.family = arr;
+    }
+
+    trackByFn(index, item) {
+        console.log(index, " trackBy");
+        return index; // or item.id
     }
 
 }

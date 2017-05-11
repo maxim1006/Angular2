@@ -2,6 +2,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const WebpackOnBuildPlugin = require('on-build-webpack');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
@@ -21,9 +23,11 @@ module.exports = function makeWebpackConfig() {
     var config = {};
 
     // config.watch = !isProd;
-    config.devtool = 'source-map';
-
-
+    if (!isProd) {
+        config.devtool = 'source-map';
+    } else {
+         config.devtool = 'source-map'; //это опционально, если надо и в проде подебажить, а так могу отключить
+    }
 
     config.entry = {
         'ng-app': './src/scripts/ng-main.ts', // our angular app
@@ -65,7 +69,7 @@ module.exports = function makeWebpackConfig() {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: "url-loader"
+                loader: "url-loader?name=[name].[ext]&limit=10000&useRelativePath=true"
             },
             {
                 test: /\.less$/,
@@ -110,6 +114,9 @@ module.exports = function makeWebpackConfig() {
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: ['ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
+            }),
+            new WebpackOnBuildPlugin(function(stats) {
+                console.log('build is done');
             })
         ];
     }
@@ -118,7 +125,31 @@ module.exports = function makeWebpackConfig() {
 
     if (isProd) {
         config.plugins.push(
-            new webpack.optimize.UglifyJsPlugin({mangle: true})
+            //https://webpack.js.org/guides/production-build/
+            //UglifyJsPlugin это делает автоматом вебпак с флагом -p
+            // new webpack.optimize.UglifyJsPlugin({
+            //     compress: {
+            //         warnings: false,
+            //         screw_ie8: true,
+            //         conditionals: true,
+            //         unused: true,
+            //         comparisons: true,
+            //         sequences: true,
+            //         dead_code: true,
+            //         evaluate: true,
+            //         if_return: true,
+            //         join_vars: true,
+            //     },
+            //     output: {
+            //         comments: false,
+            //     }
+            // }),
+            new webpack.LoaderOptionsPlugin({
+                minimize: true,
+                debug: false
+            })
+            //нужен, чтобы автоматом проставлять хеш в html
+            //new HtmlWebpackPlugin()
         );
     }
 
