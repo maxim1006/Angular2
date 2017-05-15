@@ -7,7 +7,7 @@ import {Subject} from "rxjs";
 export class ParentComponentService {
 
     private serviceProp = new Subject<string>();
-    serviceProp$ = this.serviceProp.asObservable();
+    serviceProp$:any = this.serviceProp.asObservable();
 
     public getProp() {
         this.serviceProp.next("prop from service");

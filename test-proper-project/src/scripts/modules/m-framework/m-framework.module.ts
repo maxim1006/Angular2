@@ -25,9 +25,9 @@ import {SharedModule} from "../shared/shared.module";
 import {DetectPropertyChangeComponent} from "./components/detect-property-change/detect-property-change.component";
 import {TranscludeExampleComponent} from "./components/transclude-example/transclude-example.component";
 import {InnerTranscludeExampleComponent} from "./components/transclude-example/inner-transclude-example.component";
-import {CustomComponentCreationComponent} from "./components/custom-component-creation/custom-component-creation.component";
 import {CustomChangeDetectionComponent} from "./components/custom-change-detection/custom-change-detection.component";
 import {CustomChangeDetectionComponentInner} from "./components/custom-change-detection/components/custom-change-detection-inner.component";
+import {DynamicComponent} from "./components/dynamic/dynamic.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule],
@@ -51,7 +51,7 @@ import {CustomChangeDetectionComponentInner} from "./components/custom-change-de
         ParentComponent,
         ChildComponent,
         RxjsExampleComponent,
-        CustomComponentCreationComponent,
+        DynamicComponent,
         ElNativeElementComponent,
         HostBindingComponent,
         CustomDirective,
@@ -59,7 +59,7 @@ import {CustomChangeDetectionComponentInner} from "./components/custom-change-de
         CustomChangeDetectionComponent,
         CustomChangeDetectionComponentInner
     ],
-    exports: [MFrameworkComponent, ClassExampleComponent],
+    exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
     providers: []
 })
 export class MFrameworkModule {
