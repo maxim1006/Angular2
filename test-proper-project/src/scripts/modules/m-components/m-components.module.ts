@@ -8,6 +8,7 @@ import {ContentEditableComponent} from "./components/content-editable/content-ed
 import {SharedModule} from "../shared/shared.module";
 import {MTreeComponent} from "./components/m-tree/m-tree.component";
 import {MFrameworkModule} from "../m-framework/m-framework.module";
+import {MEllipsisComponent} from "./components/m-ellipsis/m-ellipsis.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, MFrameworkModule],
@@ -15,7 +16,8 @@ import {MFrameworkModule} from "../m-framework/m-framework.module";
         MComponentsComponent,
         MAutocompleteComponent,
         MTreeComponent,
-        ContentEditableComponent
+        ContentEditableComponent,
+        MEllipsisComponent
     ],
     exports: [MComponentsComponent],
     providers: []

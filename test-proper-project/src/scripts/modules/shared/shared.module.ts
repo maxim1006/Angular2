@@ -6,6 +6,7 @@ import {objToArrPipe} from "./pipes/objToArrPipe";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {ContentEditableDirective} from "./directives/content-editable/content-editable.directive";
 import {CommonModule} from "@angular/common";
+import {EllipsisDirective} from "./directives/ellipsis/ellipsis.directive";
 
 @NgModule({
     imports: [CommonModule],
@@ -16,6 +17,7 @@ import {CommonModule} from "@angular/common";
         SimpleLogDirective,
         ClickOutsideDirective,
         ContentEditableDirective,
+        EllipsisDirective,
 
         /*Pipes*/
         CustomPipe,
@@ -29,6 +31,7 @@ import {CommonModule} from "@angular/common";
         SimpleLogDirective,
         ClickOutsideDirective,
         ContentEditableDirective,
+        EllipsisDirective,
 
         /*Pipes*/
         CustomPipe,
