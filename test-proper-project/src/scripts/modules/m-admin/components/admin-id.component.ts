@@ -1,11 +1,12 @@
 import {
-    Component, OnInit, HostBinding, AnimationEntryMetadata, Inject
+    Component, OnInit, HostBinding, ChangeDetectorRef, Inject
 } from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Http} from "@angular/http";
 import {domenToken} from "../../shared/tokens/tokens";
 import {FamilyMember} from "../../m-http/m-http.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Router, NavigationEnd} from "@angular/router/";
 
 
 
@@ -44,6 +45,7 @@ export const slideInDownAnimation: any =
     animations: [ slideInDownAnimation ]
 })
 export class AdminIdComponent implements OnInit {
+    routerSubscription: any;
     public family;
     @HostBinding('@routeAnimation') routeAnimation = true;
     @HostBinding('style.display')   display = 'block';
@@ -53,6 +55,8 @@ export class AdminIdComponent implements OnInit {
     params: Params;
     constructor(private route: ActivatedRoute,
                 private http: Http,
+                private router: Router,
+                private cdr: ChangeDetectorRef,
                 @Inject(domenToken) private _domenToken
     ) {}
 
@@ -72,5 +76,18 @@ export class AdminIdComponent implements OnInit {
             }, (err) => {
                 this.family = 'There is no data fo you';
             });
+    }
+
+    ngAfterViewInit() {
+        this.routerSubscription = this.router.events.subscribe((url:any) => {
+            if (url instanceof NavigationEnd) {
+                console.log(url.url);
+                this.cdr.detectChanges();
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.routerSubscription.unsubscribe();
     }
 }
