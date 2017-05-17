@@ -1,5 +1,5 @@
 import {
-    Directive, ElementRef, Input, OnInit, HostBinding
+    Directive, ElementRef, Input, OnInit, HostBinding, NgZone
 } from '@angular/core';
 
 @Directive({
@@ -23,7 +23,7 @@ export class EllipsisDirective implements OnInit {
     private TIMEOUT_ID: number;
     private resizeStartFlag: boolean = true;
 
-    constructor(private elRef: ElementRef) {}
+    constructor(private elRef: ElementRef, private zone: NgZone) {}
 
     ngOnChanges(value: any) {
         if (value.ellipsis && value.ellipsis.currentValue && this.viewInited) {
@@ -48,21 +48,27 @@ export class EllipsisDirective implements OnInit {
 
         this.cb = (e: Event) => {
             if (this.resizeStartFlag) {
-                this.el.style.maxHeight = this.ellipsis + 'px';
-                this.el.style.overflow = 'hidden';
-                this.resizeStartFlag = false;
+                this.zone.run(() => {
+                    this.el.style.maxHeight = this.ellipsis + 'px';
+                    this.el.style.overflow = 'hidden';
+                    this.resizeStartFlag = false;
+                });
             }
 
             clearTimeout(this.TIMEOUT_ID);
             this.TIMEOUT_ID = window.setTimeout(() => {
-                this.el.style.maxHeight = 'auto';
-                this.el.style.overflow = 'visible';
-                this.updateEllipsis();
-                this.resizeStartFlag = true;
+                this.zone.run(() => {
+                    this.el.style.maxHeight = 'auto';
+                    this.el.style.overflow = 'visible';
+                    this.updateEllipsis();
+                    this.resizeStartFlag = true;
+                });
             }, 300);
         };
 
-        window.addEventListener('resize', this.cb);
+        this.zone.runOutsideAngular(() => {
+            window.addEventListener('resize', this.cb);
+        });
     }
 
     ngOnDestroy() {

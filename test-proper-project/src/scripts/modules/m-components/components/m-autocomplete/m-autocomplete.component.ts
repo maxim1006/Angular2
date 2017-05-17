@@ -68,4 +68,7 @@ export class MAutocompleteComponent implements OnInit {
         this.currentItemChange.emit(this.currentItem);
     }
 
+    trackByFn(index: number, item: any) {
+         return index;
+    }
 }

@@ -30,7 +30,7 @@
                  [ngClass]="{
                     _selected: item === currentItem
                  }"
-                 *ngFor="let item of filteredItems">
+                 *ngFor="let item of filteredItems; trackBy: trackByFn">
                 {{item?.name || item}}
             </div>
         </div>

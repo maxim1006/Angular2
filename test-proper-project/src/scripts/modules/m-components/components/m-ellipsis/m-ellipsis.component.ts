@@ -15,4 +15,8 @@ export class MEllipsisComponent implements OnInit {
     ngOnInit() {
     }
 
+    getValue() {
+        console.log("!!!change detection update!!!");
+    }
+
 }
