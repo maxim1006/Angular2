@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "amd",
+        "module": "commonjs",
         "declaration": true,
         "moduleResolution": "node",
         "sourceMap": true,
@@ -12,6 +12,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "skipLibCheck": true,
         "lib": ["es6", "dom", "es2015.iterable"],
+        "outDir": "./dist/",
         "typeRoots": [
             "./node_modules/@types/",
             "./node_modules/@angular/"

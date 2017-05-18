@@ -16,4 +16,6 @@ export class EventExampleComponent {
     public onInput(value) {
         console.log(value);
     }
+
+    //this.dateInput.nativeElement.blur(); - кастомный эвент на элементе
 }
