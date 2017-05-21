@@ -9,6 +9,8 @@ import {Subscription} from "rxjs";
 
 export class ChildComponent implements OnInit, OnDestroy {
 
+    childComponentModel = "";
+
     @Input()
     public inputValue:string;
 
@@ -43,6 +45,10 @@ export class ChildComponent implements OnInit, OnDestroy {
 
     public stop() {
         console.log("child component stop");
+    }
+
+    valueChange(data: string) {
+        console.log(data, "data from child component input");
     }
 
 }
