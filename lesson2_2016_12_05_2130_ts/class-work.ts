@@ -242,6 +242,9 @@ interface Shaker {
 // console.log(average(1, 2, 3));
 
 
+// onModelChange: Function = () => {};
+
+
 // function f(this:void) { //так отключаю контекст
 //    this.a = 1; //ошибка
 // }
