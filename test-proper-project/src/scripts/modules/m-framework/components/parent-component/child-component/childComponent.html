@@ -3,3 +3,5 @@
 <div [ngStyle]="{color: inputValue}" (click)="onClick()">
     Type color in the parent input
 </div>
+
+<input type="text" [ngModel]="childComponentModel" (ngModelChange)="valueChange($event)">
