@@ -10,6 +10,10 @@ https://git.netcracker.com/DEMO.SALESINTEL/sales-intelligence-frontend
 моки запросов
 
 
+Просмотреть все примеры отсюда
+https://angular.io/docs/ts/latest/api/common/index/
+
+
 
 Сделать примеры с ngIf
 Syntax
