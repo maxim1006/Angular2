@@ -105,10 +105,22 @@ export class EllipsisDirective implements OnInit {
     }
 
     fitText(text: string):string {
+        let fittedTextBeforeLastWord = '';
 
-        while(this.fakeDiv.offsetHeight > this.ellipsis) {
+        while (this.fakeDiv.offsetHeight > this.ellipsis) {
+            fittedTextBeforeLastWord = text;
             text = this.removeWord(text);
             this.fakeDiv.textContent = text;
+        }
+
+        if (fittedTextBeforeLastWord) {
+            this.fakeDiv.textContent = fittedTextBeforeLastWord;
+
+            while (this.fakeDiv.offsetHeight > this.ellipsis) {
+                text = this.removeSymbol(fittedTextBeforeLastWord);
+                fittedTextBeforeLastWord = text;
+                this.fakeDiv.textContent = text;
+            }
         }
 
         return text;
@@ -118,6 +130,10 @@ export class EllipsisDirective implements OnInit {
         let arr = text.split(" ");
         arr.pop();
         return arr.join(" ");
+    }
+
+    removeSymbol(text: string):string {
+        return text.slice(0, text.length - 1);
     }
 
     addDots(text: string): string {
