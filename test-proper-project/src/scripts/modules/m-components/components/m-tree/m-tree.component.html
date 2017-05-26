@@ -16,6 +16,7 @@
                     [model]="item"
                     [rootModel]="level === 1 ? model : rootModel"
                     [level]="level"
+                    (clickOutput)="leafClickEmit()"
             ></m-tree>
         </li>
 

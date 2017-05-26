@@ -141,6 +141,10 @@ export class MTreeComponent implements OnInit {
 
         item.selected = true;
 
+        this.leafClickEmit();
+    }
+
+    leafClickEmit() {
         this.clickOutput.emit(this.currentModel);
     }
 

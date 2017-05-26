@@ -9,12 +9,14 @@ import {SharedModule} from "../shared/shared.module";
 import {MTreeComponent} from "./components/m-tree/m-tree.component";
 import {MFrameworkModule} from "../m-framework/m-framework.module";
 import {MEllipsisComponent} from "./components/m-ellipsis/m-ellipsis.component";
+import {MSelectComponent} from "./components/m-select/m-select.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, MFrameworkModule],
     declarations: [
         MComponentsComponent,
         MAutocompleteComponent,
+        MSelectComponent,
         MTreeComponent,
         ContentEditableComponent,
         MEllipsisComponent

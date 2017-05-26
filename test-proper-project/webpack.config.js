@@ -35,7 +35,7 @@ module.exports = function makeWebpackConfig() {
     };
 
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/markup/js'),
+        path: path.join(__dirname, './src/public/js'),
         filename: '[name].js'
         // filename: isProd ? '[name].[hash].js' : '[name].js'
     };
@@ -157,7 +157,7 @@ module.exports = function makeWebpackConfig() {
 
     //dev server
     config.devServer = {
-        contentBase: "./src/markup",
+        contentBase: "./src/public",
         publicPath: "/js/",
         headers: {
             "Access-Control-Allow-Origin": "*",

@@ -1,7 +1,13 @@
 <m-ellipsis></m-ellipsis>
 
+<m-select
+        [options]="['option1', 'option2', 'option3']"
+        [selectedOption]="'option2'"
+        [customStyle]="{width: '90%'}"
+></m-select>
+
 <h3>Tree</h3>
-<m-tree></m-tree>
+<m-tree (clickOutput)="treeClick($event)"></m-tree>
 
 <m-autocomplete
         [items]="autocomplete"

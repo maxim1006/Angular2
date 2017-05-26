@@ -2,13 +2,13 @@ module.exports = {
 
     js: {
         src: [],
-        dest: './src/markup'
+        dest: './src/public'
     },
 
     // LESS config
     less: {
-        src: './src/styles/custom.less',
-        dest: './src/markup/styles'
+        src: './src/assets/custom.less',
+        dest: './src/public/styles'
     },
 
     // Icons config
@@ -22,12 +22,12 @@ module.exports = {
     // Browser Sync config
     bsync: {
         base: './',
-        start: './src/markup/'
+        start: './src/public/'
     },
 
     // Watch config
     watch: {
-        less: 'src/styles/**/*.less',
+        less: 'src/**/*.less',
         html: 'src/**/*.html',
         ts:   'src/**/*.ts',
         icons: 'src/images/icons/*',
@@ -35,7 +35,7 @@ module.exports = {
     },
 
     copyNg: {
-        src: 'src/markup/js/*',
+        src: 'src/public/js/*',
         dest: ''
     },
 

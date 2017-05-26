@@ -71,4 +71,8 @@ export class MAutocompleteComponent implements OnInit {
     trackByFn(index: number, item: any) {
          return index;
     }
+
+    blur(e: any) {
+        this.opened = false;
+    }
 }

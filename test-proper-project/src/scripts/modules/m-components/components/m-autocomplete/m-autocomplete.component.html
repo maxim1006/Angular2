@@ -14,6 +14,7 @@
                    [ngModel]="currentValue"
                    (ngModelChange)="onInputChange($event)"
                    autocomplete="new password"
+                   (blur)="blur($event)"
             >
         </div>
         <div class="m-autocomplete__header-button"

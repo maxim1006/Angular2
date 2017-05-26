@@ -5,8 +5,6 @@ const config        = require('./gulp/config');
 let gulp            = require('gulp');
 let plugins         = require('gulp-load-plugins')(config.plugins);
 let bsync           = require('browser-sync').create();
-let webpackStream   = require('webpack-stream-fixed');
-let webpackConfig   = require('./webpack.config');
 let webpack         = require('webpack');
 
 
@@ -14,12 +12,12 @@ let webpack         = require('webpack');
 //Watchers
 gulp.task('watch', ['bsync'], () => {
     gulp.watch(config.watch.less, ['less']);
-    gulp.watch(config.watch.icons, ['icons']);
+    // gulp.watch(config.watch.icons, ['icons']);
 });
 
 
 
-gulp.task('bsync', ['icons', 'less'], () => {
+gulp.task('bsync', [/*'icons',*/ 'less'], () => {
     bsync.init(
         {
             proxy: 'http://localhost:9000/',

@@ -22,5 +22,9 @@ export class MComponentsComponent implements OnInit {
 
     }
 
+    treeClick(e: any) {
+        console.log('tree click ', e);
+    }
+
 
 }
