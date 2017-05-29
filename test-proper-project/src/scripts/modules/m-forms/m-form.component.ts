@@ -76,6 +76,9 @@ export class MFormComponent implements OnInit {
         //Make touched/dirty
         // this.form.controls[i].markAsTouched();
         // this.form.controls[i].markAsDirty();
+
+        // Custom value set  //https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html
+        // this.form.controls[this.formChangeControlName].setValue(nativeModel, {emitModelToViewChange: false});
     }
 
     ngOnInit() {

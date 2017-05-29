@@ -154,6 +154,7 @@ export class EllipsisDirective implements OnInit {
         this.fakeDiv.style.letterSpacing = computedStyle.letterSpacing;
         this.fakeDiv.style.fontFamily = computedStyle.fontFamily;
         this.fakeDiv.style.lineHeight = computedStyle.lineHeight;
+        this.fakeDiv.style.wordWrap = 'break-word';
         this.fakeDiv.textContent = this.initialText;
     }
 }
