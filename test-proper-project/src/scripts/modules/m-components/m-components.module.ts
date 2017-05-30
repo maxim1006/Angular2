@@ -10,6 +10,7 @@ import {MTreeComponent} from "./components/m-tree/m-tree.component";
 import {MFrameworkModule} from "../m-framework/m-framework.module";
 import {MEllipsisComponent} from "./components/m-ellipsis/m-ellipsis.component";
 import {MSelectComponent} from "./components/m-select/m-select.component";
+import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, MFrameworkModule],
@@ -19,7 +20,8 @@ import {MSelectComponent} from "./components/m-select/m-select.component";
         MSelectComponent,
         MTreeComponent,
         ContentEditableComponent,
-        MEllipsisComponent
+        MEllipsisComponent,
+        MScrollComponent
     ],
     exports: [MComponentsComponent],
     providers: []
