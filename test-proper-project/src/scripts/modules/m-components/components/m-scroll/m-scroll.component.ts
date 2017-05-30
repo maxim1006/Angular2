@@ -11,7 +11,6 @@ export class MScrollComponent implements OnInit {
     @Input() customStyle;
     @Input() minSliderSize: number;
     @Input() minSliderWidthSize: number;
-    @Input() mobile: boolean;
 
     @ViewChild('mScrollInner') mScrollInner: ElementRef;
     @ViewChild('mScroll') mScroll: ElementRef;
@@ -59,7 +58,7 @@ export class MScrollComponent implements OnInit {
     windowResizeTimeoutID: number;
     autoResizeFlag: boolean;
     timeoutID: number;
-    mobileFirst: boolean;
+    mobile: boolean;
     scrollStartBind:     ()=>void;
     mouseWheelBind:      ()=>void;
     scrollStartXBind:    ()=>void;
@@ -76,12 +75,12 @@ export class MScrollComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.mobileFirst = this.mobile && this.isMobile();
+        this.mobile = this.isMobile();
     }
 
     ngAfterViewInit() {
 
-        if (!this.mobileFirst) {
+        if (!this.mobile) {
             this.obj = this.mScroll.nativeElement;
             this.scroll = this.mScrollInner.nativeElement;
             this.ySlider = this.mScrollSlider.nativeElement;
