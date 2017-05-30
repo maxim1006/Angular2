@@ -80,22 +80,20 @@ export class MScrollComponent implements OnInit {
 
     ngAfterViewInit() {
 
-        if (!this.mobile) {
-            this.obj = this.mScroll.nativeElement;
-            this.scroll = this.mScrollInner.nativeElement;
-            this.ySlider = this.mScrollSlider.nativeElement;
-            this.ySliderWrap = this.mScrollSliderWrap.nativeElement;
-            this.ySliderHorizontal = this.mScrollSliderHorizontal.nativeElement;
-            this.ySliderHorizontalWrap = this.mScrollSliderWrapHorizontal.nativeElement;
+        this.obj = this.mScroll.nativeElement;
+        this.scroll = this.mScrollInner.nativeElement;
+        this.ySlider = this.mScrollSlider.nativeElement;
+        this.ySliderWrap = this.mScrollSliderWrap.nativeElement;
+        this.ySliderHorizontal = this.mScrollSliderHorizontal.nativeElement;
+        this.ySliderHorizontalWrap = this.mScrollSliderWrapHorizontal.nativeElement;
 
-            this.objHeight = this.obj.offsetHeight;
+        this.objHeight = this.obj.offsetHeight;
 
-            this.scrollbarWidth = this.getScrollbarWidth();
+        this.scrollbarWidth = this.getScrollbarWidth();
 
-            this.hideNativeScrolls();
-            this.updateVars();
-            this.bindEvents();
-        }
+        this.hideNativeScrolls();
+        this.updateVars();
+        this.bindEvents();
         
     }
 
