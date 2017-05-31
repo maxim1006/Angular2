@@ -341,7 +341,7 @@ export class MScrollComponent implements OnInit {
         return false;
     }
 
-    mouseMove(e) {
+    mouseMove(e: MouseEvent) {
 
         if(!this.canDrag && !this.canDragX) return;
 
@@ -421,22 +421,26 @@ export class MScrollComponent implements OnInit {
         this.autoResizeFlag = true;
         this.timeoutID = window.setTimeout(function resize() {
 
-            tempScrollHeight = self.scroll.scrollHeight;
-            tempScrollWidth = self.scroll.scrollWidth;
-            tempObjHeight = self.obj.offsetHeight;
-            tempObjWidth = self.obj.offsetWidth;
+            self.zone.run(() => {
 
-            if (self.obj && ((tempScrollHeight !== self.scrollHeight ||  tempObjHeight !== self.objHeight) ||
-                (tempScrollWidth !== self.scrollWidth ||  tempObjWidth !== self.yBarWidth))) {
+                tempScrollHeight = self.scroll.scrollHeight;
+                tempScrollWidth = self.scroll.scrollWidth;
+                tempObjHeight = self.obj.offsetHeight;
+                tempObjWidth = self.obj.offsetWidth;
 
-                self.updateVars();
-                self.objHeight = tempObjHeight;
-                self.yBarWidth = tempObjWidth;
-            }
+                if (self.obj && ((tempScrollHeight !== self.scrollHeight || tempObjHeight !== self.objHeight) ||
+                    (tempScrollWidth !== self.scrollWidth || tempObjWidth !== self.yBarWidth))) {
 
-            if (self.autoResizeFlag) window.setTimeout(resize, 1000);
+                    self.updateVars();
+                    self.objHeight = tempObjHeight;
+                    self.yBarWidth = tempObjWidth;
+                }
 
-        }, 1000);
+                if (self.autoResizeFlag) window.setTimeout(resize, 1000);
+
+            });
+
+        }, 300);
     }
 
     autoResizeEnd() {
