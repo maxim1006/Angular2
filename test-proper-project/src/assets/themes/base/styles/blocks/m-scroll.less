@@ -4,7 +4,7 @@
 
     &__inner {
         position: relative;
-        overflow: scroll;
+        overflow: scroll !important;
         height: ~'calc(100% + 50px)';
         width: ~'calc(100% + 50px)';
 
@@ -16,6 +16,10 @@
         }
     }
 
+    &__content {
+        padding-right: 10px;
+    }
+
     &__slider-wrap {
         position: absolute;
         overflow: hidden;
@@ -23,8 +27,9 @@
         top: 0;
         width: 10px;
         height: 100%;
-        border-radius: 10px;
         z-index: 10;
+        opacity: 0;
+        transition: opacity 0.2s;
     }
 
     &__slider-wrap-horizontal {
@@ -34,16 +39,22 @@
         left: 0;
         width: 100%;
         height: 10px;
-        border-radius: 10px;
         z-index: 10;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    &:hover &__slider-wrap,
+    &:hover &__slider-wrap-horizontal {
+        opacity: 0.6;
     }
 
     &__slider {
         position: absolute;
-        right: 0;
+        right: 2px;
         top: 0;
-        width: 10px;
-        background: #999;
+        width: 6px;
+        background: #bac0c8;
         border-radius: 10px;
         cursor: pointer;
     }
@@ -51,9 +62,9 @@
     &__slider-horizontal {
         position: absolute;
         left: 0;
-        bottom: 0;
-        height: 10px;
-        background: #999;
+        bottom: 2px;
+        height: 6px;
+        background: #bac0c8;
         border-radius: 10px;
         cursor: pointer;
     }
