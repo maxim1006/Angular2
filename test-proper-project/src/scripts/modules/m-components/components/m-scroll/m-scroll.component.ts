@@ -7,8 +7,9 @@ import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from "@angular/
 
 export class MScrollComponent implements OnInit {
 
-    @Input() styleClass;
-    @Input() customStyle;
+    @Input() styleClass: String;
+    @Input() customStyle: Object;
+    @Input() scrollBlockStyle: Object;
     @Input() minSliderSize: number;
     @Input() minSliderWidthSize: number;
 
@@ -167,7 +168,7 @@ export class MScrollComponent implements OnInit {
          this.deltaHorizontal = (this.scrollWidth - this.yBarWidth)/(this.yBarWidth - this.ySliderHorizontalWidthFull);
          this.ySliderHorizontalWrapVisible = (this.scrollWidth - this.yBarWidth) >= 1;
 
-        if (this.objHeight === this.scrollHeight) {
+        if (this.objHeight === this.scroll.offsetHeight) {
             this.scroll.style.marginBottom = -this.scrollbarWidth + 'px';
         }
     }
