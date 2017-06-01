@@ -54,8 +54,8 @@ export class MScrollComponent implements OnInit {
     scrollScrollTop: number = 0;
     scrollScrollLeft: number = 0;
     scrollbarWidth: number = 0;
-    ySliderWrapVisible: boolean;
-    ySliderHorizontalWrapVisible: boolean;
+    ySliderWrapVisible: boolean = false;
+    ySliderHorizontalWrapVisible: boolean = false;
     windowResizeTimeoutID: number;
     autoResizeFlag: boolean;
     timeoutID: number;
