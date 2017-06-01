@@ -11,6 +11,7 @@ import {MFrameworkModule} from "../m-framework/m-framework.module";
 import {MEllipsisComponent} from "./components/m-ellipsis/m-ellipsis.component";
 import {MSelectComponent} from "./components/m-select/m-select.component";
 import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
+import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, MFrameworkModule],
@@ -21,7 +22,8 @@ import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
         MTreeComponent,
         ContentEditableComponent,
         MEllipsisComponent,
-        MScrollComponent
+        MScrollComponent,
+        MCheckboxComponent
     ],
     exports: [MComponentsComponent],
     providers: []

@@ -6,8 +6,13 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 })
 export class MComponentsComponent implements OnInit {
 
+    @HostBinding('style.margin')  margin = '20px';
+    @HostBinding('style.display')  display = 'block';
+
     public autocomplete: any;
     public currentAutocompleteItem: any;
+
+    private _checked:boolean = true;
 
     ngOnInit() {
 
