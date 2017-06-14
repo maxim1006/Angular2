@@ -38,7 +38,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: false,
-        browsers: ["PhantomJS"],
+        browsers: ["ChromeHeadless"],
         singleRun: true,
         //the following timeouts is need because we run tests in different environments with different performance
         //(timeouts=default * 2)
