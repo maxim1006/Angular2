@@ -7,6 +7,7 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {ContentEditableDirective} from "./directives/content-editable/content-editable.directive";
 import {CommonModule} from "@angular/common";
 import {EllipsisDirective} from "./directives/ellipsis/ellipsis.directive";
+import {PageUtilsService} from "./services/page-utils.service";
 
 @NgModule({
     imports: [CommonModule],
@@ -37,7 +38,9 @@ import {EllipsisDirective} from "./directives/ellipsis/ellipsis.directive";
         CustomPipe,
         objToArrPipe
     ],
-    providers: [],
+    providers: [
+        PageUtilsService
+    ],
 })
 export class SharedModule {
 

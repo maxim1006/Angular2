@@ -1,5 +1,5 @@
 import {
-    Directive, ElementRef, Input, OnInit, HostBinding, NgZone
+    Directive, ElementRef, Input, OnInit, HostBinding, NgZone, ChangeDetectorRef
 } from '@angular/core';
 
 @Directive({
@@ -23,7 +23,7 @@ export class EllipsisDirective implements OnInit {
     private TIMEOUT_ID: number;
     private resizeStartFlag: boolean = true;
 
-    constructor(private elRef: ElementRef, private zone: NgZone) {}
+    constructor(private elRef: ElementRef, private zone: NgZone, private cdr: ChangeDetectorRef) {}
 
     ngOnChanges(value: any) {
         if (value.ellipsis && value.ellipsis.currentValue && this.viewInited) {
@@ -69,6 +69,8 @@ export class EllipsisDirective implements OnInit {
         this.zone.runOutsideAngular(() => {
             window.addEventListener('resize', this.cb);
         });
+
+        this.cdr.detectChanges();
     }
 
     ngOnDestroy() {

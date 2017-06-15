@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, Input, NgZone, OnInit, ViewChild, ChangeDetectorRef} from "@angular/core";
 
 @Component({
     selector: "m-scroll",
@@ -7,11 +7,11 @@ import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from "@angular/
 
 export class MScrollComponent implements OnInit {
 
-    @Input() styleClass: String;
-    @Input() customStyle: Object;
-    @Input() scrollBlockStyle: Object;
-    @Input() minSliderSize: number;
-    @Input() minSliderWidthSize: number;
+    @Input() public styleClass: String;
+    @Input() public customStyle: Object;
+    @Input() public scrollBlockStyle: Object;
+    @Input() public minSliderSize: number;
+    @Input() public minSliderWidthSize: number;
 
     @ViewChild('mScrollInner') mScrollInner: ElementRef;
     @ViewChild('mScroll') mScroll: ElementRef;
@@ -20,59 +20,59 @@ export class MScrollComponent implements OnInit {
     @ViewChild('mScrollSliderHorizontal') mScrollSliderHorizontal: ElementRef;
     @ViewChild('mScrollSliderWrapHorizontal') mScrollSliderWrapHorizontal: ElementRef;
 
-    obj: HTMLElement;
-    scroll: HTMLElement;
-    ySlider: HTMLElement;
-    ySliderWrap: HTMLElement;
-    ySliderHorizontal: HTMLElement;
-    ySliderHorizontalWrap: HTMLElement;
+    private obj: HTMLElement;
+    private scroll: HTMLElement;
+    private ySlider: HTMLElement;
+    private ySliderWrap: HTMLElement;
+    private ySliderHorizontal: HTMLElement;
+    private ySliderHorizontalWrap: HTMLElement;
 
-    doc: Document = document;
-    win: Window = window;
-    objHeight: number = 0;
-    yBarHeight: number = 0;
-    yBarWidth: number = 0;
-    scrollHeight: number = 0;
-    scrollWidth: number = 0;
-    ySliderHeight: number = 0;
-    ySliderHorizontalWidth: number = 0;
-    ySliderHeightFull: number = 0;
-    ySliderHorizontalWidthFull: number = 0;
-    yEdgeBtm: number = 0;
-    yEdgeRight: number = 0;
-    delta: number = 0;
-    deltaHorizontal: number = 0;
-    startPoint: number = 0;
-    startPointX: number = 0;
-    canDrag: boolean = true;
-    canDragX: boolean = true;
-    startPosition: number = 0;
-    startPositionX: number = 0;
-    direction: string;
-    SCROLL_RATIO: number = 0;
-    SCROLL_RATIO_X: number = 0;
-    scrollScrollTop: number = 0;
-    scrollScrollLeft: number = 0;
-    scrollbarWidth: number = 0;
-    ySliderWrapVisible: boolean = false;
-    ySliderHorizontalWrapVisible: boolean = false;
-    windowResizeTimeoutID: number;
-    autoResizeFlag: boolean;
-    timeoutID: number;
-    mobile: boolean;
-    scrollStartBind:     ()=>void;
-    mouseWheelBind:      ()=>void;
-    scrollStartXBind:    ()=>void;
-    mouseMoveBind:       ()=>void;
-    mouseUpBind:         ()=>void;
-    windowResizeBind:    ()=>void;
-    mouseScrollBind:     ()=>void;
-    clickBind:           ()=>void;
-    clickHorizontalBind: ()=>void;
-    autoResizeBind:      ()=>void;
-    autoResizeEndBind:   ()=>void;
+    private doc: Document = document;
+    private win: Window = window;
+    private objHeight: number = 0;
+    private yBarHeight: number = 0;
+    private yBarWidth: number = 0;
+    private scrollHeight: number = 0;
+    private scrollWidth: number = 0;
+    private ySliderHeight: number = 0;
+    private ySliderHorizontalWidth: number = 0;
+    private ySliderHeightFull: number = 0;
+    private ySliderHorizontalWidthFull: number = 0;
+    private yEdgeBtm: number = 0;
+    private yEdgeRight: number = 0;
+    private delta: number = 0;
+    private deltaHorizontal: number = 0;
+    private startPoint: number = 0;
+    private startPointX: number = 0;
+    private canDrag: boolean = true;
+    private canDragX: boolean = true;
+    private startPosition: number = 0;
+    private startPositionX: number = 0;
+    private direction: string;
+    private SCROLL_RATIO: number = 0;
+    private SCROLL_RATIO_X: number = 0;
+    private scrollScrollTop: number = 0;
+    private scrollScrollLeft: number = 0;
+    private scrollbarWidth: number = 0;
+    public ySliderWrapVisible: boolean = false;
+    public ySliderHorizontalWrapVisible: boolean = false;
+    private windowResizeTimeoutID: number;
+    private autoResizeFlag: boolean;
+    private timeoutID: number;
+    public mobile: boolean;
+    private scrollStartBind:     ()=>void;
+    private mouseWheelBind:      ()=>void;
+    private scrollStartXBind:    ()=>void;
+    private mouseMoveBind:       ()=>void;
+    private mouseUpBind:         ()=>void;
+    private windowResizeBind:    ()=>void;
+    private mouseScrollBind:     ()=>void;
+    private clickBind:           ()=>void;
+    private clickHorizontalBind: ()=>void;
+    private autoResizeBind:      ()=>void;
+    private autoResizeEndBind:   ()=>void;
 
-    constructor(private zone: NgZone) {
+    constructor(private zone: NgZone, private cdr: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -80,7 +80,6 @@ export class MScrollComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-
         this.obj = this.mScroll.nativeElement;
         this.scroll = this.mScrollInner.nativeElement;
         this.ySlider = this.mScrollSlider.nativeElement;
@@ -95,10 +94,11 @@ export class MScrollComponent implements OnInit {
         this.hideNativeScrolls();
         this.updateVars();
         this.bindEvents();
-        
+
+        this.cdr.detectChanges();
     }
 
-    getScrollbarWidth() {
+    private getScrollbarWidth() {
         let scrollDiv, scrollbarWidth;
 
         scrollDiv = document.createElement("div");
@@ -110,12 +110,12 @@ export class MScrollComponent implements OnInit {
         return scrollbarWidth;
     }
 
-    hideNativeScrolls() {
+    private hideNativeScrolls() {
         this.scroll.style.height = `calc(100% + ${this.scrollbarWidth}px)`;
         this.scroll.style.width = `calc(100% + ${this.scrollbarWidth}px)`;
     }
 
-    updateVars() {
+    private updateVars() {
         this.objHeight = this.yBarHeight = this.obj.offsetHeight;
         this.scrollHeight = this.scroll.scrollHeight;
         this.ySliderHeightFull = this.minSliderSize ? this.minSliderSize : this.yBarHeight*this.yBarHeight/this.scrollHeight;
@@ -159,21 +159,21 @@ export class MScrollComponent implements OnInit {
         }
     }
 
-    countDelta() {
+    private countDelta() {
         this.delta = (this.scrollHeight - this.yBarHeight)/(this.yBarHeight - this.ySliderHeightFull);
         this.ySliderWrapVisible = (this.scrollHeight - this.yBarHeight) >= 1;
     }
 
-    countDeltaHorizontal() {
-         this.deltaHorizontal = (this.scrollWidth - this.yBarWidth)/(this.yBarWidth - this.ySliderHorizontalWidthFull);
-         this.ySliderHorizontalWrapVisible = (this.scrollWidth - this.yBarWidth) >= 1;
+    private countDeltaHorizontal() {
+        this.deltaHorizontal = (this.scrollWidth - this.yBarWidth)/(this.yBarWidth - this.ySliderHorizontalWidthFull);
+        this.ySliderHorizontalWrapVisible = (this.scrollWidth - this.yBarWidth) >= 1;
 
         if (this.objHeight === this.scroll.offsetHeight) {
             this.scroll.style.marginBottom = -this.scrollbarWidth + 'px';
         }
     }
 
-    bindEvents() {
+    private bindEvents() {
         this.zone.runOutsideAngular(() => {
             this.scrollStartBind = this.scrollStart.bind(this);
             this.mouseWheelBind = this.mouseWheel.bind(this);
@@ -261,14 +261,14 @@ export class MScrollComponent implements OnInit {
         this.obj.removeEventListener('touchend', this.autoResizeEndBind);
     }
 
-    windowResize() {
+    private windowResize() {
         clearTimeout(this.windowResizeTimeoutID);
         this.windowResizeTimeoutID = window.setTimeout(() => {
             this.hideNativeScrolls();
         }, 300);
     }
 
-    scrollStart(e: MouseEvent) {
+    private scrollStart(e: MouseEvent) {
         e.stopPropagation();
         this.canDrag = true;
         this.startPoint = e.pageY;
@@ -277,7 +277,7 @@ export class MScrollComponent implements OnInit {
         this.turnOffSelection(this.scroll);
     }
 
-    scrollStartX(e: MouseEvent) {
+    private scrollStartX(e: MouseEvent) {
         e.stopPropagation();
 
         this.canDragX = true;
@@ -287,7 +287,7 @@ export class MScrollComponent implements OnInit {
         this.turnOffSelection(this.scroll);
     }
 
-    click(e: MouseEvent) {
+    private click(e: MouseEvent) {
         if (this.canDrag) return;
 
         let pageY = e.pageY,
@@ -297,7 +297,7 @@ export class MScrollComponent implements OnInit {
         this.scroll.scrollTop = diff*this.delta;
     }
 
-    clickHorizontal(e: MouseEvent) {
+    private clickHorizontal(e: MouseEvent) {
         if (this.canDragX) return;
 
         let pageX = e.pageX,
@@ -307,11 +307,11 @@ export class MScrollComponent implements OnInit {
         this.scroll.scrollLeft = diff*this.deltaHorizontal;
     }
 
-    isMobile() {
+    private isMobile() {
         return (/android|webos|iphone|ipad|ipod|blackberry|Windows Phone/i.test(navigator.userAgent));
     }
 
-    mouseWheel(e: any) {
+    private mouseWheel(e: any) {
         let sliderResult, blockResult,
             curY = this.ySlider.offsetTop;
 
@@ -322,26 +322,26 @@ export class MScrollComponent implements OnInit {
         }
 
         if (curY > this.yEdgeBtm - this.SCROLL_RATIO && this.direction === "down") {
-            sliderResult = this.yEdgeBtm + 'px';
+            sliderResult = this.yEdgeBtm;
             blockResult = this.scrollHeight;
         } else if (curY < 0) {
             sliderResult = 0;
             blockResult = 0;
         } else if (curY  < this.yEdgeBtm && this.direction === "down") {
-            sliderResult = curY + this.SCROLL_RATIO + 'px';
+            sliderResult = curY + this.SCROLL_RATIO;
             blockResult = (curY + this.SCROLL_RATIO) * this.delta;
         } else if (this.direction === "up" && curY > 0) {
-            sliderResult = curY - this.SCROLL_RATIO + 'px';
+            sliderResult = curY - this.SCROLL_RATIO;
             blockResult = (curY - this.SCROLL_RATIO) * this.delta;
         }
 
-        this.ySlider.style.top = sliderResult;
+        this.ySlider.style.top = sliderResult + 'px';
         this.scroll.scrollTo(blockResult);
 
         return false;
     }
 
-    mouseMove(e: MouseEvent) {
+    private mouseMove(e: MouseEvent) {
 
         if(!this.canDrag && !this.canDragX) return;
 
@@ -355,14 +355,14 @@ export class MScrollComponent implements OnInit {
                 sliderResult = 0;
                 blockResult = 0;
             } else if(diff1 > 0 && diff1 >= this.yEdgeBtm - this.startPosition) {
-                sliderResult = this.yEdgeBtm + 'px';
+                sliderResult = this.yEdgeBtm;
                 blockResult = this.scrollHeight;
             } else {
-                sliderResult = diff + 'px';
+                sliderResult = diff;
                 blockResult = diff*this.delta;
             }
 
-            this.ySlider.style.top = sliderResult;
+            this.ySlider.style.top = sliderResult + 'px';
             this.scroll.scrollTop = blockResult;
 
         } else if (this.canDragX) {
@@ -375,14 +375,14 @@ export class MScrollComponent implements OnInit {
                 sliderResultX = 0;
                 blockResultX = 0;
             } else if(diffX1 > 0 && diffX1 >= this.yEdgeRight - this.startPositionX) {
-                sliderResultX = this.yEdgeRight + 'px';
+                sliderResultX = this.yEdgeRight;
                 blockResultX = this.scrollWidth;
             } else {
-                sliderResultX = diffX + 'px';
+                sliderResultX = diffX;
                 blockResultX = diffX * this.deltaHorizontal;
             }
 
-            this.ySliderHorizontal.style.left = sliderResultX;
+            this.ySliderHorizontal.style.left = sliderResultX + 'px';
             this.scroll.scrollLeft = blockResultX;
 
         }
@@ -390,31 +390,31 @@ export class MScrollComponent implements OnInit {
         e.preventDefault();
     }
 
-    mouseUp() {
+    private mouseUp() {
         this.canDrag = false;
         this.canDragX = false;
 
         this.turnOnSelection(this.scroll);
     }
 
-    mouseScroll(e: Event) {
+    private mouseScroll(e: Event) {
         if (this.canDrag) return;
 
         this.ySlider.style.top = this.scroll.scrollTop/this.delta + 'px';
         this.ySliderHorizontal.style.left = this.scroll.scrollLeft/this.deltaHorizontal + 'px';
     }
 
-    turnOffSelection(el: HTMLElement) {
+    private turnOffSelection(el: HTMLElement) {
         el.setAttribute('unselectable','on');
         el.classList.add('_unselectable');
     }
 
-    turnOnSelection(el: HTMLElement) {
+    private turnOnSelection(el: HTMLElement) {
         el.removeAttribute('unselectable');
         el.classList.remove('_unselectable');
     }
 
-    autoResize() {
+    private autoResize() {
         let self = this,
             tempScrollHeight, tempObjHeight, tempScrollWidth, tempObjWidth;
 
@@ -422,7 +422,6 @@ export class MScrollComponent implements OnInit {
         this.timeoutID = window.setTimeout(function resize() {
 
             self.zone.run(() => {
-
                 tempScrollHeight = self.scroll.scrollHeight;
                 tempScrollWidth = self.scroll.scrollWidth;
                 tempObjHeight = self.obj.offsetHeight;
@@ -437,13 +436,12 @@ export class MScrollComponent implements OnInit {
                 }
 
                 if (self.autoResizeFlag) window.setTimeout(resize, 1000);
-
             });
 
         }, 300);
     }
 
-    autoResizeEnd() {
+    private autoResizeEnd() {
         this.autoResizeFlag = false;
         clearInterval(this.timeoutID);
     }

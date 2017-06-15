@@ -12,6 +12,7 @@ import {MEllipsisComponent} from "./components/m-ellipsis/m-ellipsis.component";
 import {MSelectComponent} from "./components/m-select/m-select.component";
 import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
 import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
+import {MediaQueryComponent} from "./components/media-query/media-query.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, MFrameworkModule],
@@ -23,7 +24,8 @@ import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
         ContentEditableComponent,
         MEllipsisComponent,
         MScrollComponent,
-        MCheckboxComponent
+        MCheckboxComponent,
+        MediaQueryComponent
     ],
     exports: [MComponentsComponent],
     providers: []
