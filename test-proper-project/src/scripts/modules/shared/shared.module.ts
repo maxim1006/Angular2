@@ -8,6 +8,7 @@ import {ContentEditableDirective} from "./directives/content-editable/content-ed
 import {CommonModule} from "@angular/common";
 import {EllipsisDirective} from "./directives/ellipsis/ellipsis.directive";
 import {PageUtilsService} from "./services/page-utils.service";
+import {MLoaderComponent} from "./components/m-loader/m-loader.component";
 
 @NgModule({
     imports: [CommonModule],
@@ -20,6 +21,9 @@ import {PageUtilsService} from "./services/page-utils.service";
         ContentEditableDirective,
         EllipsisDirective,
 
+        /*Components*/
+        MLoaderComponent,
+
         /*Pipes*/
         CustomPipe,
         objToArrPipe
@@ -27,6 +31,7 @@ import {PageUtilsService} from "./services/page-utils.service";
     declarations: [
         /*Components*/
         PageNotFoundComponent,
+        MLoaderComponent,
 
         /*Directive*/
         SimpleLogDirective,

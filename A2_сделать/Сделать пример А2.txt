@@ -1,14 +1,6 @@
 Cделать пример с копированием результатов в дист.
 
-
-
-������� ������ � ��������� � guarda��
-https://git.netcracker.com/DEMO.SALESINTEL/sales-intelligence-frontend
-
-Сделать пример с hammer и анимацией
-
 моки запросов
-
 
 Просмотреть все примеры отсюда
 https://angular.io/docs/ts/latest/api/common/index/
@@ -43,6 +35,9 @@ COPY CODE
 
 сделать пример с [(ngModule)] - у внешнего блока
 
-перенести isMobile логику с sfa
-
 доделать календарь с инпутом, на вход new Date()
+
+Сделать пример с Hammer
+Сделать HMR
+Сделать пример ngrx
+Сделать пример с маской на поле

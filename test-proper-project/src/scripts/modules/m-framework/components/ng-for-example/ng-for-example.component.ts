@@ -41,7 +41,7 @@ export class NgforExampleComponent {
     }
 
     trackByFn(index, item) {
-        console.log(index, " trackBy");
+        // console.log(index, " trackBy");
         return index; // or item.id
     }
 
