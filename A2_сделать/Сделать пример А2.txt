@@ -5,34 +5,6 @@ Cделать пример с копированием результатов в
 Просмотреть все примеры отсюда
 https://angular.io/docs/ts/latest/api/common/index/
 
-
-
-Сделать примеры с ngIf
-Syntax
-Simple form:
-
-<div *ngIf="condition">...</div>
-<div template="ngIf condition">...</div>
-<ng-template [ngIf]="condition"><div>...</div></ng-template>
-Form with an else block:
-
-COPY CODE
-<div *ngIf="condition; else elseBlock">...</div>
-<ng-template #elseBlock>...</ng-template>
-Form with a then and else block:
-
-COPY CODE
-<div *ngIf="condition; then thenBlock else elseBlock"></div>
-<ng-template #thenBlock>...</ng-template>
-<ng-template #elseBlock>...</ng-template>
-Form with storing the value locally:
-
-COPY CODE
-<div *ngIf="condition as value; else elseBlock">{{value}}</div>
-<ng-template #elseBlock>...</ng-template>
-
-
-
 сделать пример с [(ngModule)] - у внешнего блока
 
 доделать календарь с инпутом, на вход new Date()

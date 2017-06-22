@@ -1,3 +1,6 @@
+//Форм билдер не сохраняет в форме дизейблд значения
+//Встроенные валидаторы https://angular.io/api/forms/Validators
+
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators, AbstractControl, FormControl} from "@angular/forms";
 import {nameValidator} from "./validators/validators";
@@ -16,16 +19,16 @@ export class MFormComponent implements OnInit {
         this.myForm = fb.group({
             'name': new FormControl(
                 {
-                    //исходный value в input
-                    value: null,
+                    //исходный value в input, нужно еще проставить disabled иначе приходит object, либо первым аргументом передавать не объект, а значение
+                    value: "Max",
                     //disable state
-                    disabled: false
+                    // disabled: false
                 },
                 Validators.compose([Validators.required, nameValidator, Validators.maxLength(10)])
             ), //пример с кастомной валидацией
             'surname': new FormControl(
                 {
-                    value: null,
+                    value: "Maximov",
                     disabled: true
                 },
                 Validators.compose([Validators.required, nameValidator, Validators.maxLength(10)])
@@ -33,20 +36,18 @@ export class MFormComponent implements OnInit {
             'phone': new FormControl(
                 {
                     value: null,
-                    disabled: false
+                    // disabled: false
                 },
                 Validators.compose([Validators.pattern(ValidationConstants.PHONE_NUMBER)])
             ),
             'email': new FormControl(
                 {
                     value: null,
-                    disabled: false
+                    // disabled: false
                 },
                 Validators.compose([Validators.required, Validators.pattern(ValidationConstants.EMAIL)])
             )
         });
-
-        console.log(this.myForm);
 
         this.myForm.controls["name"].valueChanges.subscribe((value: string) => {
             console.log("name value changed to: ", value);
@@ -65,7 +66,7 @@ export class MFormComponent implements OnInit {
         // }, 3000)
 
         //enable/disable controls
-        // this.valuesToArray(form.controls).map((control: any) => {
+        // this.objectToArray(this.myForm.controls).map((control: any) => {
         //     if (state) {
         //         control.enable();
         //     } else {
@@ -77,8 +78,18 @@ export class MFormComponent implements OnInit {
         // this.form.controls[i].markAsTouched();
         // this.form.controls[i].markAsDirty();
 
-        // Custom value set  //https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html
-        // this.form.controls[this.formChangeControlName].setValue(nativeModel, {emitModelToViewChange: false});
+        // Default values  //https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html
+        // this.myForm.controls['name'].setValue('max', {});
+        // this.myForm.controls['name'].markAsDirty();
+
+        console.log(this.myForm.controls['name']);
+
+        //set values via form
+        // this.myForm.setValue({
+        //     name:    this.hero.name,
+        //     address: this.hero.addresses[0] || new Address()
+        // });
+
     }
 
     ngOnInit() {

@@ -28,6 +28,7 @@ import {InnerTranscludeExampleComponent} from "./components/transclude-example/i
 import {CustomChangeDetectionComponent} from "./components/custom-change-detection/custom-change-detection.component";
 import {CustomChangeDetectionComponentInner} from "./components/custom-change-detection/components/custom-change-detection-inner.component";
 import {DynamicComponent} from "./components/dynamic/dynamic.component";
+import {NgIfExampleComponent} from "./components/ng-if-example/ng-if-example.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule],
@@ -57,7 +58,8 @@ import {DynamicComponent} from "./components/dynamic/dynamic.component";
         CustomDirective,
         DetectPropertyChangeComponent,
         CustomChangeDetectionComponent,
-        CustomChangeDetectionComponentInner
+        CustomChangeDetectionComponentInner,
+        NgIfExampleComponent
     ],
     exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
     providers: []

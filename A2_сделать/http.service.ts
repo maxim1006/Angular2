@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/Observable';
 import {URLSearchParams} from "@angular/http";
 
 @Injectable()
-export class TelenetHttpService {
+export class HttpService {
     private _portletName: string;
 
     constructor(private _http: Http, private _restService: RestService) {}

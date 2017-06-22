@@ -14,8 +14,9 @@
            (ngModelChange)="controlChange($event)"
            [formControlName]="controlName"
            autocomplete="{{autoComplete}}"
-           [disabled]="disabled"
     >
+
+    <!--В инпуте можно не использовать [disabled]="disabled" ангулар форм сам проставит-->
 
     <div class="t-field__errors" *ngIf="control?.errors">
         <div
