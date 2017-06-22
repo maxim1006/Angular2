@@ -22,7 +22,7 @@ export class MFormComponent implements OnInit {
                     //исходный value в input, нужно еще проставить disabled иначе приходит object, либо первым аргументом передавать не объект, а значение
                     value: "Max",
                     //disable state
-                    // disabled: false
+                    disabled: false
                 },
                 Validators.compose([Validators.required, nameValidator, Validators.maxLength(10)])
             ), //пример с кастомной валидацией
