@@ -13,14 +13,14 @@ const WebpackOnBuildPlugin = require('on-build-webpack');
  */
 const ENV = process.env.npm_lifecycle_event;
 const isProd = ENV === 'prod';
-const isStatic = ENV === 'dev';
-const isHmr = ENV === 'hmr';
+const isStatic = ENV === 'devWebpack';
+const isHmr = ENV === 'hmrWebpack';
 const isTest = ENV === 'test';
 
 
 
-module.exports = function makeWebpackConfig() {
-    var config = {};
+module.exports = function makeWebpackConfig(options = {}) {
+    let config = {};
 
     // config.watch = !isProd;
     if (!isProd) {
@@ -35,10 +35,17 @@ module.exports = function makeWebpackConfig() {
     };
 
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/public/js'),
+        path: path.join(__dirname, './src/public/js'), //в проде сюда будет падать бандл
         filename: '[name].js'
-        // filename: isProd ? '[name].[hash].js' : '[name].js'
+        // filename: isProd ? '[hash].js' : '[name].js'
     };
+
+    if (isHmr) {
+        config.output['path'] =  path.join(__dirname, './src/public'); //need to be the same as in server
+        config.output['publicPath'] =  "/js/"; //need to be the same as in server
+        config.output.filename = '[name].[chunkhash].js';
+        config.output.chunkFilename = '[name].[chunkhash].js';
+    }
 
 
 
@@ -46,6 +53,13 @@ module.exports = function makeWebpackConfig() {
         // only discover files that have those extensions
         extensions: ['.ts', '.js', '.json', '.html'],
     };
+
+
+
+    //посмотреть размер созданных файлов, можно использовать stats параметр в devServer
+    // config.performance = {
+    //     hints: "warning"
+    // };
 
 
 
@@ -60,7 +74,7 @@ module.exports = function makeWebpackConfig() {
                     {
                         loader: 'angular2-template-loader',
                     }
-                ],
+                ].concat(isHmr ? '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd : []),
                 exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
             },
             {
@@ -108,8 +122,9 @@ module.exports = function makeWebpackConfig() {
             new webpack.NoEmitOnErrorsPlugin(), //оптимизация при ошибках
             new webpack.DefinePlugin({
                 'process.env': {
-                    'IS_STATIC_MODE': ENV === 'devWebpack',
-                    'HMR': ENV === 'hmrWebpack'
+                    'STATIC': isStatic,
+                    'HMR': isHmr,
+                    'PROD': isProd
                 }
             }),
             new webpack.optimize.CommonsChunkPlugin({
@@ -118,8 +133,25 @@ module.exports = function makeWebpackConfig() {
             new WebpackOnBuildPlugin(function(stats) {
                 console.log('build is done');
             })
-        ];
+        ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : []);
     }
+
+
+
+
+    // if (isHmr) {
+    //     config.plugins.push(
+    //         new DllReferencePlugin({
+    //             context: '.',
+    //             manifest: require(`./dll/ng-manifest.json`)
+    //         }),
+    //         new HtmlWebpackPlugin({
+    //             template: 'src/public/index.html',
+    //             inject: false
+    //         })
+    //     );
+    // }
+
 
 
 
@@ -153,8 +185,6 @@ module.exports = function makeWebpackConfig() {
         );
     }
 
-
-
     //dev server
     config.devServer = {
         contentBase: "./src/public",
@@ -172,11 +202,19 @@ module.exports = function makeWebpackConfig() {
         },
         compress: true, // enable gzip compression
         quiet: false,
-        stats: 'minimal', // none (or false), errors-only, minimal, normal (or true) and verbose
+        inline: isHmr || isStatic,
+        hot: isHmr,
+        stats: {
+            assets: true,
+            cached: true,
+            timings: true,
+            performance: true,
+        }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
         port: 9000,
         watchOptions: {
-            aggregateTimeout: 100, //по умолчанию 300
+            aggregateTimeout: 50, //по умолчанию 300
             //poll: 1000
+            ignored: /node_modules/
         }
     };
 
@@ -184,3 +222,9 @@ module.exports = function makeWebpackConfig() {
 
     return config;
 }();
+
+
+
+function root(__path = '.') {
+    return path.join(__dirname, __path);
+}

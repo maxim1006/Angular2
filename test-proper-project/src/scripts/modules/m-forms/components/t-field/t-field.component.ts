@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
-import {FormGroup, AbstractControl} from "@angular/forms";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {AbstractControl, FormGroup} from "@angular/forms";
 
 @Component({
         selector: "t-field",

@@ -1,8 +1,7 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-
+import {BrowserModule} from "@angular/platform-browser";
+import {APP_INITIALIZER, ApplicationRef, NgModule} from "@angular/core";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 /*Components*/
 import {NgRoutingModule} from "./ng-routing.module";
 import {MFormsModule} from "./modules/m-forms/m-forms.module";
@@ -14,7 +13,7 @@ import {domenToken} from "./modules/shared/tokens/tokens";
 import {SharedModule} from "./modules/shared/shared.module";
 import {RouteService} from "./route.service";
 import {MAdminModule} from "./modules/m-admin/m-admin.module";
-import {APP_BASE_HREF} from "@angular/common";
+import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass/hmr";
 
 
 @NgModule({
@@ -55,4 +54,38 @@ import {APP_BASE_HREF} from "@angular/common";
 })
 
 export class AppModule {
+    constructor(public appRef: ApplicationRef) {}
+    hmrOnInit(store) {
+        if (!store || !store.state) return;
+        console.log('HMR store', store);
+        console.log('store.state.data:', store.state.data);
+        // inject AppStore here and update it
+        // this.AppStore.update(store.state)
+        if ('restoreInputValues' in store) {
+            store.restoreInputValues();
+        }
+        // change detection
+        this.appRef.tick();
+        delete store.state;
+        delete store.restoreInputValues;
+    }
+    hmrOnDestroy(store) {
+        let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+        // recreate elements
+        store.disposeOldHosts = createNewHosts(cmpLocation);
+        // inject your AppStore and grab state then set it on store
+        // var appState = this.AppStore.get()
+        store.state = {data: 'yolo'};
+        // store.state = Object.assign({}, appState)
+        // save input values
+        store.restoreInputValues  = createInputTransfer();
+        // remove styles
+        removeNgStyles();
+    }
+    hmrAfterDestroy(store) {
+        // display new elements
+        store.disposeOldHosts();
+        delete store.disposeOldHosts;
+        // anything you need done the component is removed
+    }
 }
