@@ -43,8 +43,6 @@ module.exports = function makeWebpackConfig(options = {}) {
     if (isHmr) {
         config.output['path'] =  path.join(__dirname, './src/public'); //need to be the same as in server
         config.output['publicPath'] =  "/js/"; //need to be the same as in server
-        config.output.filename = '[name].[chunkhash].js';
-        config.output.chunkFilename = '[name].[chunkhash].js';
     }
 
 
