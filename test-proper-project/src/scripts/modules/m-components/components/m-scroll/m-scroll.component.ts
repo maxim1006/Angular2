@@ -111,8 +111,11 @@ export class MScrollComponent implements OnInit {
     }
 
     private hideNativeScrolls() {
-        this.scroll.style.height = `calc(100% + ${this.scrollbarWidth}px)`;
-        this.scroll.style.width = `calc(100% + ${this.scrollbarWidth}px)`;
+        this.scrollbarWidth = this.getScrollbarWidth();
+        this.scroll.style.marginBottom = this.scroll.style.marginBottom ? -this.scrollbarWidth + 'px' : '';
+
+        this.scroll.style.height = `calc(100% + ${this.scrollbarWidth + 1}px)`; //because of fractional numbers in screen
+        this.scroll.style.width = `calc(100% + ${this.scrollbarWidth + 1}px)`;  //because of fractional numbers in screen
     }
 
     private updateVars() {
@@ -161,15 +164,15 @@ export class MScrollComponent implements OnInit {
 
     private countDelta() {
         this.delta = (this.scrollHeight - this.yBarHeight)/(this.yBarHeight - this.ySliderHeightFull);
-        this.ySliderWrapVisible = (this.scrollHeight - this.yBarHeight) >= 1;
+        this.ySliderWrapVisible = (this.scrollHeight - this.yBarHeight) > 1; //because of fractional numbers in high resolution screens
     }
 
     private countDeltaHorizontal() {
         this.deltaHorizontal = (this.scrollWidth - this.yBarWidth)/(this.yBarWidth - this.ySliderHorizontalWidthFull);
-        this.ySliderHorizontalWrapVisible = (this.scrollWidth - this.yBarWidth) >= 1;
+        this.ySliderHorizontalWrapVisible = (this.scrollWidth - this.yBarWidth) > 1; //because of fractional numbers in high resolution screens
 
         if (this.objHeight === this.scroll.offsetHeight) {
-            this.scroll.style.marginBottom = -this.scrollbarWidth + 'px';
+            this.scroll.style.marginBottom = -this.scrollbarWidth + 'px'; //because of fractional numbers in high resolution screens
         }
     }
 
@@ -265,7 +268,7 @@ export class MScrollComponent implements OnInit {
         clearTimeout(this.windowResizeTimeoutID);
         this.windowResizeTimeoutID = window.setTimeout(() => {
             this.hideNativeScrolls();
-        }, 300);
+        }, 500);
     }
 
     private scrollStart(e: MouseEvent) {
