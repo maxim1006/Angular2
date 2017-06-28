@@ -315,7 +315,7 @@ export class MScrollComponent implements OnInit {
     }
 
     private mouseWheel(e: any) {
-        let sliderResult, blockResult,
+        let sliderResult,
             curY = this.ySlider.offsetTop;
 
         if (e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0) {
@@ -326,20 +326,15 @@ export class MScrollComponent implements OnInit {
 
         if (curY > this.yEdgeBtm - this.SCROLL_RATIO && this.direction === "down") {
             sliderResult = this.yEdgeBtm;
-            blockResult = this.scrollHeight;
         } else if (curY < 0) {
             sliderResult = 0;
-            blockResult = 0;
         } else if (curY  < this.yEdgeBtm && this.direction === "down") {
             sliderResult = curY + this.SCROLL_RATIO;
-            blockResult = (curY + this.SCROLL_RATIO) * this.delta;
         } else if (this.direction === "up" && curY > 0) {
             sliderResult = curY - this.SCROLL_RATIO;
-            blockResult = (curY - this.SCROLL_RATIO) * this.delta;
         }
 
         this.ySlider.style.top = sliderResult + 'px';
-        this.scroll.scrollTo(blockResult);
 
         return false;
     }
