@@ -6,7 +6,7 @@ import {Media} from "../models/media";
 export class PageUtilsService {
     documentWidth: number = document.documentElement.clientWidth;
     TABLET_VIEW_WIDTH: number = 768;
-    MOBILE_VIEW_WIDTH: number = 420;
+    MOBILE_VIEW_WIDTH: number = 480;
     mediaObserver:Observable<Media>;
     mediaSubscriber:Subscriber<Media>;
     mediaData:Media = {
