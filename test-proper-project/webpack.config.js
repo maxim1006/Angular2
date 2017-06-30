@@ -30,9 +30,9 @@ module.exports = function makeWebpackConfig(options = {}) {
     }
 
     config.entry = {
-        // 'ng-app': './src/scripts/ng-main.ts', // our angular app
-        // 'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'],
-        'result': './example.ts'
+        'ng-app': './src/scripts/ng-main.ts', // our angular app
+        'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'],
+        // 'result': './example.ts'  //just for check treeshaking (если заэкспортить, то попадет в бандл, если нет, то нет)
     };
 
     config.output = isTest ? {} : {
