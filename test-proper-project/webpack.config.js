@@ -30,19 +30,22 @@ module.exports = function makeWebpackConfig(options = {}) {
     }
 
     config.entry = {
-        'ng-app': './src/scripts/ng-main.ts', // our angular app
-        'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'],
+        // 'ng-app': './src/scripts/ng-main.ts', // our angular app
+        // 'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'],
+        'result': './example.ts'
     };
 
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/public/js'), //в проде сюда будет падать бандл
-        filename: '[name].js'
+        path: path.join(__dirname, './src/public'), //в проде сюда будет падать бандл
+        publicPath: '/js/', //need to be the same as in server
+        filename: '[name].js',
+        chunkFilename: '[name].chunk.js',
         // filename: isProd ? '[hash].js' : '[name].js'
     };
 
-    if (isHmr) {
-        config.output['path'] =  path.join(__dirname, './src/public'); //need to be the same as in server
-        config.output['publicPath'] =  "/js/"; //need to be the same as in server
+    if (isProd) {
+        config.output['path'] =  path.join(__dirname, './src/public/js'); //need to be the same as in server
+        config.output['publicPath'] =  "/js/";
     }
 
 
@@ -71,6 +74,9 @@ module.exports = function makeWebpackConfig(options = {}) {
                     },
                     {
                         loader: 'angular2-template-loader',
+                    },
+                    {
+                        loader: 'angular-router-loader',
                     }
                 ].concat(isHmr ? '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd : []),
                 exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
@@ -126,7 +132,7 @@ module.exports = function makeWebpackConfig(options = {}) {
                 }
             }),
             new webpack.optimize.CommonsChunkPlugin({
-                name: ['ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
+                name: ['ng-app', 'ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
             }),
             new WebpackOnBuildPlugin(function(stats) {
                 console.log('build is done');
@@ -156,7 +162,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     if (isProd) {
         config.plugins.push(
             //https://webpack.js.org/guides/production-build/
-            //UglifyJsPlugin это делает автоматом вебпак с флагом -p
+            //UglifyJsPlugin это делает автоматом вебпак с флагом -p, так что просто оставлю его, если включить плагин будет ошибка, так как он 2 раза подключится
             // new webpack.optimize.UglifyJsPlugin({
             //     compress: {
             //         warnings: false,
@@ -172,7 +178,8 @@ module.exports = function makeWebpackConfig(options = {}) {
             //     },
             //     output: {
             //         comments: false,
-            //     }
+            //     },
+            //     sourceMap: false
             // }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
@@ -192,12 +199,14 @@ module.exports = function makeWebpackConfig(options = {}) {
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
             "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
         },
-        historyApiFallback: {
-            index: 'index.html',
-            rewrites: [
-                { from: '/', to: '/index.html'}
-            ]
-        },
+        // historyApiFallback: {
+        //     index: 'index.html',
+        //     rewrites: [
+        //         { from: '/.*\.chunk.js', to: '/js/.*\.chunk.js'},
+        //         { from: '/', to: '/index.html'}
+        //     ]
+        // },
+        historyApiFallback: true,
         compress: true, // enable gzip compression
         quiet: false,
         inline: isHmr || isStatic,

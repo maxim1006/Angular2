@@ -13,3 +13,5 @@ https://angular.io/docs/ts/latest/api/common/index/
 Сделать HMR
 Сделать пример ngrx
 Сделать пример с маской на поле
+Сделать пример с lazy & Webpack
+Сделать пример с импортом компонент

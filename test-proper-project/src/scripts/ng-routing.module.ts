@@ -7,6 +7,7 @@ import {MFormComponent} from "./modules/m-forms/m-form.component";
 import {PageNotFoundComponent} from "./modules/shared/components/page-not-found/page-not-found.component";
 import {MAdminComponent} from "./modules/m-admin/m-admin.component";
 import {MAdminGuardService} from "./modules/m-admin/m-admin-guard.service";
+import {MLazyComponent} from "./modules/m-lazy/m-lazy.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     {path: 'components', component: MComponentsComponent},
     {path: 'http', component: MHttpComponent},
     {path: 'forms', component: MFormComponent},
+    {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule'},
     {
         path: 'admin',
         component: MAdminComponent,

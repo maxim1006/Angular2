@@ -29,6 +29,7 @@
         "@types/es6-shim": "^0.31.32",
         "@types/jquery": "^2.0.40",
         "@types/node": "^7.0.5",
+        "angular-router-loader": "^0.6.0",
         "angular2-template-loader": "^0.6.2",
         "autoprefixer": "^6.3.7",
         "awesome-typescript-loader": "^3.0.0-beta.18",
@@ -75,7 +76,7 @@
         "serve": "concurrently --kill-others \"npm run devGulp\" \"npm run devWebpack\"",
         "prod": "webpack -p",
         "hmr": "concurrently --kill-others \"npm run devGulp\" \"npm run hmrWebpack\"",
-        "devWebpack": "webpack-dev-server --config ./webpack.config.js --profile --watch",
+        "devWebpack": "webpack-dev-server --config ./webpack.config.js --profile --watch --progress",
         "hmrWebpack": "webpack-dev-server --config ./webpack.config.js",
         "devGulp": "gulp",
         "test": "karma start"
