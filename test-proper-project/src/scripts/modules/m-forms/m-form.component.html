@@ -19,7 +19,7 @@
             [controlName]="'surname'"
             [form]="myForm"
             [isRequired]="true"
-            [model]="myForm.controls['surname'].value"
+            [model]="myForm.get('surname').value"
             (onControlChange)="formModel.surname = $event"
     ></t-field>
 
@@ -45,6 +45,6 @@
 
     <button type="submit" class="m-form__submit" [disabled]="!myForm.valid">Submit</button>
 
-    <p>formModel: {{formModel | json}}</p>
+    <!--<p>formModel: {{formModel | json}}</p>-->
 
 </form>
