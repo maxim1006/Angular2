@@ -10,4 +10,11 @@ export class AppComponent implements OnInit {
     ngOnInit() {
     }
 
+    activateEvent(event) {
+        console.log(event, ' activated component');
+    }
+
+    deactivateEvent(event) {
+        console.log(event, ' deactivated component');
+    }
 }

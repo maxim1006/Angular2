@@ -9,6 +9,7 @@
  Inputs, Outputs, View or Content Child(ren), Hostbindings, and any field you use from the template or annotate for Angular should be public
 * */
 
+import './ng-polyfills';
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {AppModule} from "./app.module";
 import {enableProdMode} from "@angular/core";

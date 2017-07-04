@@ -73,6 +73,8 @@
         "webpack-dev-server": "^2.4.1"
     },
     "scripts": {
+        "postinstall": "npm run dll",
+        "dll": "webpack",
         "serve": "concurrently --kill-others \"npm run devGulp\" \"npm run devWebpack\"",
         "prod": "webpack -p",
         "hmr": "concurrently --kill-others \"npm run devGulp\" \"npm run hmrWebpack\"",

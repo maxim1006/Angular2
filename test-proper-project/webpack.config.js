@@ -16,6 +16,7 @@ const isProd = ENV === 'prod';
 const isStatic = ENV === 'devWebpack';
 const isHmr = ENV === 'hmrWebpack';
 const isTest = ENV === 'test';
+const isDll = ENV === 'dll';
 
 
 
@@ -131,30 +132,56 @@ module.exports = function makeWebpackConfig(options = {}) {
                     'PROD': isProd
                 }
             }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: ['ng-app', 'ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
-            }),
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     name: ['ng-app', 'ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
+            // }),
             new WebpackOnBuildPlugin(function(stats) {
                 console.log('build is done');
             })
-        ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : []);
+        ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : [])
+         .concat(isProd || isDll ? [] : new webpack.DllReferencePlugin({
+             context: '.',
+             manifest: require(`./src/public/js/dll/ng-manifest.json`)
+         }));
     }
 
 
 
+    if (isDll) {
+        config.plugins.push(
+            new webpack.DllPlugin({
+                name: '[name]',
+                path: root('./src/public/js/dll/[name]-manifest.json'),
+            })
+        );
 
-    // if (isHmr) {
-    //     config.plugins.push(
-    //         new DllReferencePlugin({
-    //             context: '.',
-    //             manifest: require(`./dll/ng-manifest.json`)
-    //         }),
-    //         new HtmlWebpackPlugin({
-    //             template: 'src/public/index.html',
-    //             inject: false
-    //         })
-    //     );
-    // }
+        config.entry = {
+            ng: [
+                "core-js/es6",
+                'zone.js',
+                'core-js/client/shim.js',
+                'core-js/es6/reflect.js',
+                'core-js/es7/reflect.js',
+                "@angular/common",
+                "@angular/compiler",
+                "@angular/core",
+                "@angular/forms",
+                "@angular/http",
+                "@angular/platform-browser",
+                "@angular/platform-browser-dynamic",
+                "@angular/router",
+                "rxjs",
+            ]
+        };
+
+        config.output = {
+            path: root('./src/public/js/dll/'),
+            filename: '[name].dll.js',
+            library: '[name]'
+        };
+    }
+
+
 
 
 
