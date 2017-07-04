@@ -1,9 +1,10 @@
 "use strict";
 
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackOnBuildPlugin = require('on-build-webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
@@ -17,11 +18,20 @@ const isStatic = ENV === 'devWebpack';
 const isHmr = ENV === 'hmrWebpack';
 const isTest = ENV === 'test';
 const isDll = ENV === 'dll';
+const isDev = isStatic || isHmr;
 
 
 
 module.exports = function makeWebpackConfig(options = {}) {
+    console.log(`You are in ${ENV} mode`);
+
     let config = {};
+
+    if (isDev) {
+        if (!fs.existsSync('./src/public/js/dll/ng.dll.js')) {
+            throw "Can't find DLL, please use 'npm run dll' to get it.";
+        }
+    }
 
     // config.watch = !isProd;
     if (!isProd) {
@@ -32,7 +42,7 @@ module.exports = function makeWebpackConfig(options = {}) {
 
     config.entry = {
         'ng-app': './src/scripts/ng-main.ts', // our angular app
-        'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'],
+        // 'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], //так как использую DLL нет смысла использовать чанки
         // 'result': './example.ts'  //just for check treeshaking (если заэкспортить, то попадет в бандл, если нет, то нет)
     };
 
@@ -40,10 +50,12 @@ module.exports = function makeWebpackConfig(options = {}) {
         path: path.join(__dirname, './src/public'), //в проде сюда будет падать бандл
         publicPath: '/js/', //need to be the same as in server
         filename: '[name].js',
-        chunkFilename: '[name].chunk.js',
+        // chunkFilename: '[name].chunk.js',
         // filename: isProd ? '[hash].js' : '[name].js'
     };
 
+
+    //чтобы при проде положить нужные файлы в js папку
     if (isProd) {
         config.output['path'] =  path.join(__dirname, './src/public/js'); //need to be the same as in server
         config.output['publicPath'] =  "/js/";
@@ -133,16 +145,21 @@ module.exports = function makeWebpackConfig(options = {}) {
                 }
             }),
             // new webpack.optimize.CommonsChunkPlugin({
-            //     name: ['ng-app', 'ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба.
+            //     name: ['ng-app', 'ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба. Потерял актульность с DLL
             // }),
             new WebpackOnBuildPlugin(function(stats) {
                 console.log('build is done');
             })
         ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : [])
-         .concat(isProd || isDll ? [] : new webpack.DllReferencePlugin({
+         .concat(isDev ? new HtmlWebpackPlugin({
+             template: 'src/public/index.html',
+             inject: false,
+             // ngScript: '123' - могу тут написать опцию, а в html написать <%= htmlWebpackPlugin.options.ngScript %>
+         }) : [])
+         .concat(isDev ? new webpack.DllReferencePlugin({
              context: '.',
              manifest: require(`./src/public/js/dll/ng-manifest.json`)
-         }));
+         }) : []);
     }
 
 
@@ -212,8 +229,6 @@ module.exports = function makeWebpackConfig(options = {}) {
                 minimize: true,
                 debug: false
             })
-            //нужен, чтобы автоматом проставлять хеш в html
-            //new HtmlWebpackPlugin()
         );
     }
 
@@ -238,12 +253,13 @@ module.exports = function makeWebpackConfig(options = {}) {
         quiet: false,
         inline: isHmr || isStatic,
         hot: isHmr,
-        stats: {
-            assets: true,
-            cached: true,
-            timings: true,
-            performance: true,
-        }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
+        stats: "minimal",
+        // stats: {
+        //     assets: true,
+        //     cached: true,
+        //     timings: true,
+        //     performance: true,
+        // }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
         port: 9000,
         watchOptions: {
             aggregateTimeout: 50, //по умолчанию 300
