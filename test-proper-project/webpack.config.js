@@ -3,8 +3,8 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackOnBuildPlugin = require('on-build-webpack');
+const InjectHtmlPlugin = require('inject-html-webpack-plugin');
 
 
 
@@ -151,10 +151,13 @@ module.exports = function makeWebpackConfig(options = {}) {
                 console.log('build is done');
             })
         ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : [])
-         .concat(isDev ? new HtmlWebpackPlugin({
-             template: 'src/public/index.html',
-             inject: false,
-             // ngScript: '123' - могу тут написать опцию, а в html написать <%= htmlWebpackPlugin.options.ngScript %>
+         .concat(isDev ? new InjectHtmlPlugin({
+             filename:'./src/public/index.html',
+             customInject:[{
+                 start:'<!-- start:dll -->',
+                 end:'<!-- end:dll -->',
+                 content: '<script type="text/javascript" src="js/dll/ng.dll.js"></script>'
+             }]
          }) : [])
          .concat(isDev ? new webpack.DllReferencePlugin({
              context: '.',
