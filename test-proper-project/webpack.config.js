@@ -3,8 +3,9 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackOnBuildPlugin = require('on-build-webpack');
-const InjectHtmlPlugin = require('inject-html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 
@@ -28,7 +29,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     let config = {};
 
     if (isDev) {
-        if (!fs.existsSync('./src/public/js/dll/ng.dll.js')) {
+        if (!fs.existsSync('./dll/ng.dll.js')) {
             throw "Can't find DLL, please use 'npm run dll' to get it.";
         }
     }
@@ -37,7 +38,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     if (!isProd) {
         config.devtool = 'source-map';
     } else {
-         config.devtool = 'source-map'; //это опционально, если надо и в проде подебажить, а так могу отключить
+        config.devtool = 'source-map'; //это опционально, если надо и в проде подебажить, а так могу отключить
     }
 
     config.entry = {
@@ -47,19 +48,14 @@ module.exports = function makeWebpackConfig(options = {}) {
     };
 
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/public'), //в проде сюда будет падать бандл
-        publicPath: '/js/', //need to be the same as in server
+        path: path.join(__dirname, './src/public/'), //в проде сюда будет падать бандл
+        //закомментил, так как не получается сделать и publicPath и настроить работу htmlWebpackPlugin, а для
+        //HMR нужно чтобы publicPath в оутпуте совпадал с сервером
+        // publicPath: '/js/', //need to be the same as in server,
         filename: '[name].js',
         // chunkFilename: '[name].chunk.js',
         // filename: isProd ? '[hash].js' : '[name].js'
     };
-
-
-    //чтобы при проде положить нужные файлы в js папку
-    if (isProd) {
-        config.output['path'] =  path.join(__dirname, './src/public/js'); //need to be the same as in server
-        config.output['publicPath'] =  "/js/";
-    }
 
 
 
@@ -96,7 +92,7 @@ module.exports = function makeWebpackConfig(options = {}) {
             },
             {
                 test: /\.html$/, loader: 'raw-loader',
-                exclude: [/node_modules\/(?!(ng2-.+))/]
+                exclude: [/node_modules\/(?!(ng2-.+))/, root('src/public/index.html')]
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -151,18 +147,17 @@ module.exports = function makeWebpackConfig(options = {}) {
                 console.log('build is done');
             })
         ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : [])
-         .concat(isDev ? new InjectHtmlPlugin({
-             filename:'./src/public/index.html',
-             customInject:[{
-                 start:'<!-- start:dll -->',
-                 end:'<!-- end:dll -->',
-                 content: '<script type="text/javascript" src="js/dll/ng.dll.js"></script>'
-             }]
-         }) : [])
-         .concat(isDev ? new webpack.DllReferencePlugin({
-             context: '.',
-             manifest: require(`./src/public/js/dll/ng-manifest.json`)
-         }) : []);
+            .concat(isDev ? [
+                new HtmlWebpackPlugin({
+                    template: root('src/public/index.html'),
+                    inject: false,
+                }),
+                new webpack.DllReferencePlugin({
+                    context: '.',
+                    manifest: require(`./dll/ng-manifest.json`)
+                }),
+                new CopyWebpackPlugin([{ from: './dll'}])
+            ] : []);
     }
 
 
@@ -171,7 +166,7 @@ module.exports = function makeWebpackConfig(options = {}) {
         config.plugins.push(
             new webpack.DllPlugin({
                 name: '[name]',
-                path: root('./src/public/js/dll/[name]-manifest.json'),
+                path: root('./dll/[name]-manifest.json'),
             })
         );
 
@@ -195,7 +190,7 @@ module.exports = function makeWebpackConfig(options = {}) {
         };
 
         config.output = {
-            path: root('./src/public/js/dll/'),
+            path: root('./dll/'),
             filename: '[name].dll.js',
             library: '[name]'
         };
@@ -238,7 +233,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     //dev server
     config.devServer = {
         contentBase: "./src/public",
-        publicPath: "/js/",
+        // publicPath: "/js/",
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -256,13 +251,13 @@ module.exports = function makeWebpackConfig(options = {}) {
         quiet: false,
         inline: isHmr || isStatic,
         hot: isHmr,
-        stats: "minimal",
-        // stats: {
-        //     assets: true,
-        //     cached: true,
-        //     timings: true,
-        //     performance: true,
-        // }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
+        // stats: "minimal",
+        stats: {
+            assets: true,
+            cached: true,
+            timings: true,
+            performance: true,
+        }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
         port: 9000,
         watchOptions: {
             aggregateTimeout: 50, //по умолчанию 300
