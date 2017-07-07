@@ -10,7 +10,7 @@ export class MLoaderComponent implements OnInit {
 
     private _timeout: number;
 
-    private _isLoading:boolean = false;
+    public _isLoading:boolean = false;
 
     @Input()
     public delay: number = 300;

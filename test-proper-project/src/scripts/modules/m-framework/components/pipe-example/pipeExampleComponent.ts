@@ -6,6 +6,7 @@ import { Component } from "@angular/core";
 })
 
 export class PipeExampleComponent {
+    public filterString:string;
     public time:string = new Date().toString();
 
     family = [

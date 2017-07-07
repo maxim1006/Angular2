@@ -45,7 +45,7 @@ export class TField implements OnInit {
     @Input()
     public form: FormGroup;
 
-    private control: AbstractControl;
+    public control: AbstractControl;
 
     constructor() {}
 

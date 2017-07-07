@@ -7,7 +7,7 @@ import {Component, OnInit} from "@angular/core";
 
 export class ContentEditableComponent implements OnInit {
 
-    private text: string;
+    public text: string;
 
     constructor() {
         this.text = "Content editable text"

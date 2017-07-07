@@ -9,7 +9,7 @@ export class MFrameworkComponent implements OnInit {
 
     @HostBinding('class.framework-component')
     addClass: boolean = true;
-    private detectVisiblePropertyChange: boolean;
+    public detectVisiblePropertyChange: boolean;
 
     public constructor() {
         console.log("start");
@@ -25,7 +25,7 @@ export class MFrameworkComponent implements OnInit {
         name: "Max"
     };
 
-    public getValue(e): number {
+    public getValue(): number {
         return 12;
     }
 

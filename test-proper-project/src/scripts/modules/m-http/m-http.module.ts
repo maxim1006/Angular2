@@ -6,6 +6,10 @@ import {NewService, NewService2} from "./new.service";
 import {SharedModule} from "../shared/shared.module";
 
 
+export function httpModuleFactory(newService2: NewService2) {
+    return new NewService(newService2);
+}
+
 
 @NgModule({
     imports: [SharedModule, HttpModule],
@@ -18,9 +22,7 @@ import {SharedModule} from "../shared/shared.module";
         {provide: MHttpService, useClass: MHttpService},
         {
             provide: NewService,
-            useFactory: (newService2: NewService2) => {
-                return new NewService(newService2);
-            },
+            useFactory: httpModuleFactory,
             deps: [NewService2]}
     ],
 })

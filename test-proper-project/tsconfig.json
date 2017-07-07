@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "commonjs",
+        "module": "es2015",
         "declaration": true,
         "moduleResolution": "node",
         "sourceMap": true,
@@ -14,11 +14,11 @@
         "lib": ["es6", "dom", "es2015.iterable"],
         "outDir": "./dist/",
         "typeRoots": [
-            "./node_modules/@types/",
-            "./node_modules/@angular/"
+            "./node_modules/@types/"
         ]
     },
     "compileOnSave": false,
+    "buildOnSave": false,
     "include": [
         "./src/**/*"
     ],
@@ -38,7 +38,7 @@
         "useCache": true
     },
     "angularCompilerOptions": {
-        "strictMetadataEmit": true,
+        "genDir": ".",
         "skipMetadataEmit" : true
     }
 }

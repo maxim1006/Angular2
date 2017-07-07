@@ -10,6 +10,9 @@ import {ParentComponentService} from "./parent-component.service";
 
 export class ParentComponent implements OnInit {
 
+    public inputValue: string;
+    public inputValueFromInnerComponent: string;
+
     constructor() {}
 
     ngOnInit() {}

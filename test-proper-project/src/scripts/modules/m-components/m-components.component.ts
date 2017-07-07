@@ -12,7 +12,7 @@ export class MComponentsComponent implements OnInit {
     public autocomplete: any;
     public currentAutocompleteItem: any;
 
-    private _checked:boolean = true;
+    public _checked:boolean = true;
 
     ngOnInit() {
 

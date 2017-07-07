@@ -10,18 +10,18 @@ import {Router} from "@angular/router";
 export class MAdminComponent {
     private _id: number = 0;
 
-    private get id():number {
+    public get id():number {
         return this._id;
     }
 
-    private set id(value) {
+    public set id(value) {
         this._id = value;
         console.log("id is changed to: ", value);
     }
 
     constructor(private router: Router) {}
 
-    submit(id: string) {
+    submit(id: number) {
         console.log(id);
         this.router.navigate(['/admin', id, {param: 1}]);
     }

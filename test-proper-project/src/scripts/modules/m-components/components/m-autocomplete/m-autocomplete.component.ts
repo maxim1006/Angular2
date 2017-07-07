@@ -20,9 +20,9 @@ export class MAutocompleteComponent implements OnInit {
     @Output()
     currentItemChange = new EventEmitter();
 
-    private opened: boolean;
-    private currentValue: string;
-    private filteredItems: any = [];
+    public opened: boolean;
+    public currentValue: string;
+    public filteredItems: any = [];
 
     constructor() {
     }

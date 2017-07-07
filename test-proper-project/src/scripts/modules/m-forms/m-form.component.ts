@@ -12,8 +12,8 @@ import {ValidationConstants} from "../shared/constants/validation.constant";
 })
 
 export class MFormComponent implements OnInit {
-    private myForm: FormGroup;
-    private formModel: any = {};
+    public myForm: FormGroup;
+    public formModel: any = {};
 
     constructor(fb: FormBuilder) {
         this.myForm = fb.group({

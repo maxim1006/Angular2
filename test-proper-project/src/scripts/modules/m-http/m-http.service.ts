@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {domenToken} from "../shared/tokens/tokens";
 import {Observer} from "rxjs/Observer";
@@ -7,7 +7,7 @@ import {Subscriber} from "rxjs/Subscriber";
 
 @Injectable()
 export class MHttpService {
-    private _data: any;
+    public _data: any;
     constructor(private _http: Http) {}
 
     getData():Observable<any> {

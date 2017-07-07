@@ -7,6 +7,8 @@ import {NgForExampleService} from "../ng-for-example/ng-for-example.service";
 })
 export class NgIfExampleComponent {
 
+    public displayValue: string;
+
     condition: boolean = false;
     thenCondition: boolean = true;
 

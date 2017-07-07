@@ -25,7 +25,7 @@ export class MHttpComponent implements OnInit {
     progress: string;
     isLoading: boolean;
     uploadedFiles: UploadedFile[] = [];
-    private family: FamilyMember[];
+    public family: FamilyMember[];
 
     constructor(
         @Inject('KEY1') private key1: string,

@@ -9,6 +9,7 @@ import {Observer} from "rxjs";
 })
 
 export class RxjsExampleComponent implements OnInit {
+    public inputValue: string;
     public arr:string[] = ['Hi', 'rxjs', '!!!'];
     //создаю observable array
     public sequence:Observable<string> = Observable.from(this.arr);

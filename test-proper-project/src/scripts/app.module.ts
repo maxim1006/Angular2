@@ -16,6 +16,11 @@ import {MAdminModule} from "./modules/m-admin/m-admin.module";
 import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass/hmr";
 
 
+export function routeServiceFactory (route: RouteService):()=>{} {
+    return () => route.init()
+}
+
+
 @NgModule({
     declarations: [
         /*Components*/
@@ -40,7 +45,7 @@ import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass
         RouteService,
         {
             provide: APP_INITIALIZER,
-            useFactory: (route: RouteService) => { return () => route.init() },
+            useFactory: routeServiceFactory,
             deps: [RouteService],
             multi: true
         },

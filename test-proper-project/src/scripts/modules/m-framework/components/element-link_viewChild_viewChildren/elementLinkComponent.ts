@@ -6,6 +6,8 @@ import {Component, ViewChild, ViewChildren, ElementRef} from '@angular/core';
 })
 
 export class ElementLinkComponent {
+    public inputValue: string = '';
+
     public constructor() {
     }
 

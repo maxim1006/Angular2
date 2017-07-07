@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackOnBuildPlugin = require('on-build-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const AotPlugin = require('@ngtools/webpack').AotPlugin;
 
 
 
@@ -19,6 +20,7 @@ const isStatic = ENV === 'devWebpack';
 const isHmr = ENV === 'hmrWebpack';
 const isTest = ENV === 'test';
 const isDll = ENV === 'dll';
+const isAot = ENV.includes('aot');
 const isDev = isStatic || isHmr;
 
 
@@ -46,6 +48,12 @@ module.exports = function makeWebpackConfig(options = {}) {
         // 'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], //так как использую DLL нет смысла использовать чанки
         // 'result': './example.ts'  //just for check treeshaking (если заэкспортить, то попадет в бандл, если нет, то нет)
     };
+
+    if (isAot) {
+        config.entry = {
+            'ng-app': './src/scripts/ng-main-aot.ts', // our angular app
+        };
+    }
 
     config.output = isTest ? {} : {
         path: path.join(__dirname, './src/public/'), //в проде сюда будет падать бандл
@@ -77,7 +85,7 @@ module.exports = function makeWebpackConfig(options = {}) {
         rules: [
             {
                 test: /\.ts$/,
-                use: [
+                use: isAot ? [{loader: '@ngtools/webpack'}] : [
                     {
                         loader: 'awesome-typescript-loader?'
                     },
@@ -88,7 +96,7 @@ module.exports = function makeWebpackConfig(options = {}) {
                         loader: 'angular-router-loader',
                     }
                 ].concat(isHmr ? '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd : []),
-                exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+                exclude: [/\.(spec|e2e|d)\.ts$/]
             },
             {
                 test: /\.html$/, loader: 'raw-loader',
@@ -129,6 +137,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     }
 
 
+
     //let url = process.env.ENV;
     if (!isTest) {
         config.plugins = [
@@ -137,7 +146,8 @@ module.exports = function makeWebpackConfig(options = {}) {
                 'process.env': {
                     'STATIC': isStatic,
                     'HMR': isHmr,
-                    'PROD': isProd
+                    'PROD': isProd,
+                    'AOT': isAot
                 }
             }),
             // new webpack.optimize.CommonsChunkPlugin({
@@ -146,7 +156,8 @@ module.exports = function makeWebpackConfig(options = {}) {
             new WebpackOnBuildPlugin(function(stats) {
                 console.log('build is done');
             })
-        ].concat(isHmr ? new webpack.HotModuleReplacementPlugin() : [])
+        ]
+            .concat(isHmr ? new webpack.HotModuleReplacementPlugin() : [])
             .concat(isDev ? [
                 new HtmlWebpackPlugin({
                     template: root('src/public/index.html'),
@@ -198,11 +209,8 @@ module.exports = function makeWebpackConfig(options = {}) {
 
 
 
-
-
-
     if (isProd) {
-        config.plugins.push(
+        config.plugins.concat([
             //https://webpack.js.org/guides/production-build/
             //UglifyJsPlugin это делает автоматом вебпак с флагом -p, так что просто оставлю его, если включить плагин будет ошибка, так как он 2 раза подключится
             // new webpack.optimize.UglifyJsPlugin({
@@ -221,13 +229,40 @@ module.exports = function makeWebpackConfig(options = {}) {
             //     output: {
             //         comments: false,
             //     },
-            //     sourceMap: false
+            //     sourceMap: true
             // }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
                 debug: false
+            }),
+        ]);
+    }
+
+    if (isAot) {
+        config.plugins = [
+            new AotPlugin({
+                tsConfigPath: './tsconfig.json',
+                entryModule: root('src/scripts/app.module.ts#AppModule')
+            }),
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false,
+                    screw_ie8: true,
+                    conditionals: true,
+                    unused: true,
+                    comparisons: true,
+                    sequences: true,
+                    dead_code: true,
+                    evaluate: true,
+                    if_return: true,
+                    join_vars: true,
+                },
+                output: {
+                    comments: false
+                },
+                sourceMap: true
             })
-        );
+        ]
     }
 
     //dev server

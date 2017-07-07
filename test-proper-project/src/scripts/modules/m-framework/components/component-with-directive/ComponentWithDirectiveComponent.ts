@@ -19,8 +19,9 @@ export class CustomDirective implements OnInit {
     selector: "component-with-directive",
     templateUrl: "./ComponentWithDirectiveComponent.html"
 })
-
 export class ComponentWithDirectiveComponent implements OnInit {
+
+    public value: string = '';
 
     public options: any;
 
