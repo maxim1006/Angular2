@@ -21,6 +21,7 @@ const isHmr = ENV === 'hmrWebpack';
 const isTest = ENV === 'test';
 const isDll = ENV === 'dll';
 const isAot = ENV.includes('aot');
+const isAotServer = ENV.includes('aotServer');
 const isDev = isStatic || isHmr;
 
 
@@ -65,8 +66,15 @@ module.exports = function makeWebpackConfig(options = {}) {
         // filename: isProd ? '[hash].js' : '[name].js'
     };
 
+    if (isAotServer) {
+        config.entry = {
+            'server': './webpack-server.js'
+        };
+        config.output = {};
+    }
 
 
+    //files to resolve
     config.resolve = {
         // only discover files that have those extensions
         extensions: ['.ts', '.js', '.json', '.html'],
@@ -80,7 +88,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     // };
 
 
-
+    //loaders
     config.module = {
         rules: [
             {
@@ -124,6 +132,7 @@ module.exports = function makeWebpackConfig(options = {}) {
             }
         ]
     };
+
 
 
     if (isTest) {
@@ -238,6 +247,8 @@ module.exports = function makeWebpackConfig(options = {}) {
         ]);
     }
 
+
+
     if (isAot) {
         config.plugins = [
             new AotPlugin({
@@ -265,6 +276,8 @@ module.exports = function makeWebpackConfig(options = {}) {
         ]
     }
 
+
+
     //dev server
     config.devServer = {
         contentBase: "./src/public",
@@ -284,15 +297,15 @@ module.exports = function makeWebpackConfig(options = {}) {
         historyApiFallback: true,
         compress: true, // enable gzip compression
         quiet: false,
-        inline: isHmr || isStatic,
+        inline: isHmr || isStatic || isAotServer,
         hot: isHmr,
-        // stats: "minimal",
-        stats: {
-            assets: true,
-            cached: true,
-            timings: true,
-            performance: true,
-        }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
+        stats: "minimal",
+        // stats: {
+        //     assets: true,
+        //     cached: true,
+        //     timings: true,
+        //     performance: true,
+        // }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
         port: 9000,
         watchOptions: {
             aggregateTimeout: 50, //по умолчанию 300
