@@ -2,16 +2,15 @@ Cделать пример с копированием результатов в
 
 моки запросов
 
+Починить динамический компонент в аот
+https://stackoverflow.com/questions/38888008/how-can-i-use-create-dynamic-template-to-compile-dynamic-component-with-angular
+
 Просмотреть все примеры отсюда
 https://angular.io/docs/ts/latest/api/common/index/
-
-сделать пример с [(ngModule)] - у внешнего блока
 
 доделать календарь с инпутом, на вход new Date()
 
 Сделать пример с Hammer
-Сделать HMR
 Сделать пример ngrx
 Сделать пример с маской на поле
-Сделать пример с lazy & Webpack
-Сделать пример с импортом компонент
+Доделать tree shaking

@@ -13,6 +13,7 @@ import {MSelectComponent} from "./components/m-select/m-select.component";
 import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
 import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 import {MediaQueryComponent} from "./components/media-query/media-query.component";
+import {HammerExampleComponent} from "./components/hammer-example/hammer-example.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, MFrameworkModule],
@@ -25,7 +26,8 @@ import {MediaQueryComponent} from "./components/media-query/media-query.componen
         MEllipsisComponent,
         MScrollComponent,
         MCheckboxComponent,
-        MediaQueryComponent
+        MediaQueryComponent,
+        HammerExampleComponent
     ],
     exports: [MComponentsComponent],
     providers: []

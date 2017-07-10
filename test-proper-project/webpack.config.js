@@ -47,7 +47,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     config.entry = {
         'ng-app': './src/scripts/ng-main.ts', // our angular app
         // 'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], //так как использую DLL нет смысла использовать чанки
-        // 'result': './example.ts'  //just for check treeshaking (если заэкспортить, то попадет в бандл, если нет, то нет)
+        // 'result': './example.ts'  //just for check treeshaking - "module": "es2015", in tsconfig
     };
 
     if (isAot) {
@@ -197,6 +197,7 @@ module.exports = function makeWebpackConfig(options = {}) {
                 'core-js/client/shim.js',
                 'core-js/es6/reflect.js',
                 'core-js/es7/reflect.js',
+                'hammerjs/hammer',
                 "@angular/common",
                 "@angular/compiler",
                 "@angular/core",

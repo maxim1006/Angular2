@@ -1,0 +1,11 @@
+<h3>Hammer example</h3>
+<div class="hammer-example__pan" (tap)="onTap($event)" style="margin-bottom: 20px;">
+    <h4>Tap example (tap it)</h4>
+    <p>{{panString}}</p>
+</div>
+
+<div class="hammer-example__pan" (swipe)="onSwipe($event)">
+    <h4>Swipe example (swipe it)</h4>
+    <p>Swiped {{isSwiped}}</p>
+</div>
+

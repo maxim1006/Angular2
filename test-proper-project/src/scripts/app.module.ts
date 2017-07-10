@@ -1,4 +1,4 @@
-import {BrowserModule} from "@angular/platform-browser";
+import {BrowserModule, HammerGestureConfig} from "@angular/platform-browser";
 import {APP_INITIALIZER, ApplicationRef, NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
@@ -15,6 +15,13 @@ import {RouteService} from "./route.service";
 import {MAdminModule} from "./modules/m-admin/m-admin.module";
 import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass/hmr";
 
+
+
+export class MyHammerConfig extends HammerGestureConfig  {
+    overrides = <any>{
+        'swipe': {velocity: 0.4, threshold: 20} // override default settings
+    }
+}
 
 export function routeServiceFactory (route: RouteService):()=>{} {
     return () => route.init()

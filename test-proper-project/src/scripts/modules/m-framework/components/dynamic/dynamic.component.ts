@@ -14,7 +14,7 @@ import {MComponentsModule} from "../../../m-components/m-components.module";
 
 @Component({
     selector: 'dynamic-component',
-    template: `<template #wrapper></template>`
+    template: `<ng-template #wrapper></ng-template>`
 })
 export class DynamicComponent {
     public static templateFactoryCache: {[key: string]: ComponentFactory<any>} = {};
