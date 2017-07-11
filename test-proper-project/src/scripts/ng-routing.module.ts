@@ -12,8 +12,8 @@ import {MHomeComponent} from "./modules/m-home/m-home.component";
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '/component', pathMatch: 'full'},
-    {path: 'component', component: MHomeComponent},
+    {path: '', redirectTo: '/home', pathMatch: 'full'},
+    {path: 'home', component: MHomeComponent},
     // {path: '', redirectTo: '/framework', pathMatch: 'full'}, //redirect example
     // {path: 'framework', component: MFrameworkComponent}, //simple module loading
     // {path: 'components', component: MComponentsComponent},
