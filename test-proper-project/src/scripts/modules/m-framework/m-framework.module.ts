@@ -29,9 +29,10 @@ import {CustomChangeDetectionComponent} from "./components/custom-change-detecti
 import {CustomChangeDetectionComponentInner} from "./components/custom-change-detection/components/custom-change-detection-inner.component";
 import {DynamicComponent} from "./components/dynamic/dynamic.component";
 import {NgIfExampleComponent} from "./components/ng-if-example/ng-if-example.component";
+import {MFrameworkRoutingModule} from "./m-framework.routing";
 
 @NgModule({
-    imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule],
+    imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule, MFrameworkRoutingModule],
     declarations: [
         MFrameworkComponent,
         ElementLinkComponent,

@@ -16,7 +16,7 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
-    "@angularclass/hmr": "^1.2.2",
+    "@angularclass/hmr": "^2.1.1",
     "@angularclass/hmr-loader": "^3.0.2",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",

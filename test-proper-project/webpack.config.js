@@ -62,7 +62,7 @@ module.exports = function makeWebpackConfig(options = {}) {
         //HMR нужно чтобы publicPath в оутпуте совпадал с сервером
         // publicPath: '/js/', //need to be the same as in server,
         filename: '[name].js',
-        // chunkFilename: '[name].chunk.js',
+        // chunkFilename: '[name].js',
         // filename: isProd ? '[hash].js' : '[name].js'
     };
 

@@ -8,14 +8,18 @@ import {PageNotFoundComponent} from "./modules/shared/components/page-not-found/
 import {MAdminComponent} from "./modules/m-admin/m-admin.component";
 import {MAdminGuardService} from "./modules/m-admin/m-admin-guard.service";
 import {MLazyComponent} from "./modules/m-lazy/m-lazy.component";
+import {MHomeComponent} from "./modules/m-home/m-home.component";
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '/framework', pathMatch: 'full'},
-    {path: 'framework', component: MFrameworkComponent},
+    {path: '', redirectTo: '/component', pathMatch: 'full'},
+    {path: 'component', component: MHomeComponent},
+    // {path: '', redirectTo: '/framework', pathMatch: 'full'}, //redirect example
+    // {path: 'framework', component: MFrameworkComponent}, //simple module loading
     {path: 'components', component: MComponentsComponent},
     {path: 'http', component: MHttpComponent},
     {path: 'forms', component: MFormComponent},
+    {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule'},
     {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule'},
     {
         path: 'admin',

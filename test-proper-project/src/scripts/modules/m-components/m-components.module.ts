@@ -7,7 +7,6 @@ import {MAutocompleteComponent} from "./components/m-autocomplete/m-autocomplete
 import {ContentEditableComponent} from "./components/content-editable/content-editable.component";
 import {SharedModule} from "../shared/shared.module";
 import {MTreeComponent} from "./components/m-tree/m-tree.component";
-import {MFrameworkModule} from "../m-framework/m-framework.module";
 import {MEllipsisComponent} from "./components/m-ellipsis/m-ellipsis.component";
 import {MSelectComponent} from "./components/m-select/m-select.component";
 import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
@@ -16,7 +15,7 @@ import {MediaQueryComponent} from "./components/media-query/media-query.componen
 import {HammerExampleComponent} from "./components/hammer-example/hammer-example.component";
 
 @NgModule({
-    imports: [SharedModule, HttpModule, FormsModule, MFrameworkModule],
+    imports: [SharedModule, HttpModule, FormsModule],
     declarations: [
         MComponentsComponent,
         MAutocompleteComponent,

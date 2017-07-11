@@ -1,10 +1,11 @@
 <nav class="nav">
-    <a class="nav__link" routerLink="/framework" routerLinkActive="active">Angular framework</a>
-    <a class="nav__link" routerLink="/components" routerLinkActive="active">Components</a>
-    <a class="nav__link" routerLink="/http" routerLinkActive="active">Http</a>
-    <a class="nav__link" routerLink="/forms" routerLinkActive="active">Forms</a>
-    <a class="nav__link" routerLink="/admin" routerLinkActive="active">Admin</a>
-    <a class="nav__link" routerLink="/lazy" routerLinkActive="active">Lazy</a>
+    <a class="nav__link" routerLink="/" routerLinkActive="_active">Home</a>
+    <a class="nav__link" routerLink="/framework" routerLinkActive="_active">Angular framework</a>
+    <a class="nav__link" routerLink="/components" routerLinkActive="_active">Components</a>
+    <a class="nav__link" routerLink="/http" routerLinkActive="_active">Http</a>
+    <a class="nav__link" routerLink="/forms" routerLinkActive="_active">Forms</a>
+    <a class="nav__link" routerLink="/admin" routerLinkActive="_active">Admin</a>
+    <a class="nav__link" routerLink="/lazy" routerLinkActive="_active">Lazy</a>
 </nav>
 
 <router-outlet (activate)="activateEvent($event)" (deactivate)="deactivateEvent($event)"></router-outlet>
