@@ -13,9 +13,10 @@ import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
 import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 import {MediaQueryComponent} from "./components/media-query/media-query.component";
 import {HammerExampleComponent} from "./components/hammer-example/hammer-example.component";
+import {MComponentsRoutingModule} from "./m-components.routing";
 
 @NgModule({
-    imports: [SharedModule, HttpModule, FormsModule],
+    imports: [SharedModule, HttpModule, FormsModule, MComponentsRoutingModule],
     declarations: [
         MComponentsComponent,
         MAutocompleteComponent,

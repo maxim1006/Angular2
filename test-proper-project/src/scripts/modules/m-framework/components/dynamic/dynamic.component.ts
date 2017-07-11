@@ -9,7 +9,6 @@ import {
     NgModule
 } from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {MComponentsModule} from "../../../m-components/m-components.module";
 
 @Component({
     selector: 'dynamic-component',
@@ -85,7 +84,7 @@ export class DynamicComponent {
             }
 
             @NgModule({
-                imports: [BrowserModule, MComponentsModule],
+                imports: [BrowserModule],
                 declarations: [MDynamicComponent]
             })
             class DynamicModule {

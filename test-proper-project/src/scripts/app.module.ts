@@ -6,7 +6,6 @@ import {HttpModule} from "@angular/http";
 import {NgRoutingModule} from "./ng-routing.module";
 import {MFormsModule} from "./modules/m-forms/m-forms.module";
 import {MHttpModule} from "./modules/m-http/m-http.module";
-import {MComponentsModule} from "./modules/m-components/m-components.module";
 import {AppComponent} from "./app.component";
 import {domenToken} from "./modules/shared/tokens/tokens";
 import {SharedModule} from "./modules/shared/shared.module";
@@ -38,7 +37,6 @@ export function routeServiceFactory (route: RouteService):()=>{} {
         FormsModule, //подключает ngModel модуль
         HttpModule,
         MHomeModule,
-        MComponentsModule,
         MFormsModule,
         MHttpModule,
         SharedModule,

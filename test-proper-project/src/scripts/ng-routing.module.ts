@@ -16,7 +16,8 @@ const routes: Routes = [
     {path: 'component', component: MHomeComponent},
     // {path: '', redirectTo: '/framework', pathMatch: 'full'}, //redirect example
     // {path: 'framework', component: MFrameworkComponent}, //simple module loading
-    {path: 'components', component: MComponentsComponent},
+    // {path: 'components', component: MComponentsComponent},
+    {path: 'components', loadChildren: './modules/m-components/m-components.module#MComponentsModule'},
     {path: 'http', component: MHttpComponent},
     {path: 'forms', component: MFormComponent},
     {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule'},
