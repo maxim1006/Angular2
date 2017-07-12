@@ -13,6 +13,7 @@ import {RouteService} from "./route.service";
 import {MAdminModule} from "./modules/m-admin/m-admin.module";
 import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass/hmr";
 import {MHomeModule} from "./modules/m-home/m-home.module";
+import {MNgrxModule} from "./modules/m-ngrx/m-ngrx.module";
 
 
 
@@ -41,6 +42,7 @@ export function routeServiceFactory (route: RouteService):()=>{} {
         MHttpModule,
         SharedModule,
         MAdminModule,
+        MNgrxModule,
         NgRoutingModule //этот модуль, в котором все руты приложения должен идти в самом конце, после всех модулей с RouterModule.forChild(routes), это из-за wildCard модуля
     ],
     providers: [

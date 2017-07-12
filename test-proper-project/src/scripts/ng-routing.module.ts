@@ -1,14 +1,12 @@
 import {RouterModule, Routes} from "@angular/router";
-import {NgModule} from '@angular/core';
-import {MFrameworkComponent} from "./modules/m-framework/m-framework.component";
-import {MComponentsComponent} from "./modules/m-components/m-components.component";
+import {NgModule} from "@angular/core";
 import {MHttpComponent} from "./modules/m-http/m-http.component";
 import {MFormComponent} from "./modules/m-forms/m-form.component";
 import {PageNotFoundComponent} from "./modules/shared/components/page-not-found/page-not-found.component";
 import {MAdminComponent} from "./modules/m-admin/m-admin.component";
 import {MAdminGuardService} from "./modules/m-admin/m-admin-guard.service";
-import {MLazyComponent} from "./modules/m-lazy/m-lazy.component";
 import {MHomeComponent} from "./modules/m-home/m-home.component";
+import {MNgrxComponent} from "./modules/m-ngrx/m-ngrx.component";
 
 
 const routes: Routes = [
@@ -20,6 +18,7 @@ const routes: Routes = [
     {path: 'components', loadChildren: './modules/m-components/m-components.module#MComponentsModule'},
     {path: 'http', component: MHttpComponent},
     {path: 'forms', component: MFormComponent},
+    {path: 'ngrx', component: MNgrxComponent},
     {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule'},
     {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule'},
     {
