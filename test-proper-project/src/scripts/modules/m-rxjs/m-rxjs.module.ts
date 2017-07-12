@@ -1,7 +1,7 @@
 import {StoreModule} from "@ngrx/store";
 import {SharedModule} from "../shared/shared.module";
 import {NgModule} from "@angular/core";
-import {MNgrxComponent} from "./m-ngrx.component";
+import {MRxjsComponent} from "./m-rxjs.component";
 import {events} from "./reducers/reducers";
 import {NgrxDispatchComponent} from "./components/ngrx-dispatch/ngrx-dispatch.component";
 import {NgrxSubscribeComponent} from "./components/ngrx-subscribe/ngrx-subscribe.component";
@@ -11,14 +11,14 @@ import {NgrxSubscribeComponent} from "./components/ngrx-subscribe/ngrx-subscribe
         SharedModule,
         StoreModule.provideStore({ events })
     ],
-    exports: [MNgrxComponent],
+    exports: [MRxjsComponent],
     declarations: [
-        MNgrxComponent,
+        MRxjsComponent,
         NgrxDispatchComponent,
         NgrxSubscribeComponent
     ],
     providers: []
 })
-export class MNgrxModule {}
+export class MRxjsModule {}
 
 

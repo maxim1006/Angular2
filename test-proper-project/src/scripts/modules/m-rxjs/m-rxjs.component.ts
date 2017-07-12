@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-    selector: 'm-ngrx',
-    templateUrl: 'm-ngrx.component.html'
+    selector: 'm-rxjs',
+    templateUrl: 'm-rxjs.component.html'
 })
 
-export class MNgrxComponent implements OnInit {
+export class MRxjsComponent implements OnInit {
     constructor() {
     }
 

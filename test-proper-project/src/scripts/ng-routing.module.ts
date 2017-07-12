@@ -6,7 +6,7 @@ import {PageNotFoundComponent} from "./modules/shared/components/page-not-found/
 import {MAdminComponent} from "./modules/m-admin/m-admin.component";
 import {MAdminGuardService} from "./modules/m-admin/m-admin-guard.service";
 import {MHomeComponent} from "./modules/m-home/m-home.component";
-import {MNgrxComponent} from "./modules/m-ngrx/m-ngrx.component";
+import {MRxjsComponent} from "./modules/m-rxjs/m-rxjs.component";
 
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
     {path: 'components', loadChildren: './modules/m-components/m-components.module#MComponentsModule'},
     {path: 'http', component: MHttpComponent},
     {path: 'forms', component: MFormComponent},
-    {path: 'ngrx', component: MNgrxComponent},
+    {path: 'rxjs', component: MRxjsComponent},
     {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule'},
     {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule'},
     {
