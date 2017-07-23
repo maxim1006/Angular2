@@ -1,5 +1,5 @@
 import {BrowserModule, HammerGestureConfig} from "@angular/platform-browser";
-import {APP_INITIALIZER, ApplicationRef, NgModule} from "@angular/core";
+import {APP_INITIALIZER, ApplicationRef, NgModule, NgZone} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 /*Components*/
@@ -66,7 +66,10 @@ export function routeServiceFactory (route: RouteService):()=>{} {
 })
 
 export class AppModule {
-    constructor(public appRef: ApplicationRef) {}
+    // ngDoBootstrap() {} //чтобы забутстрапить без app компонента
+    constructor(public appRef: ApplicationRef) {
+        //window['zoneImpl'] = _zone; //for zone().run(()=>{}) для апдейта извне.
+    }
     hmrOnInit(store) {
         if (!store || !store.state) return;
         console.log('HMR store', store);

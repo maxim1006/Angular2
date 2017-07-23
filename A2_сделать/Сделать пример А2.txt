@@ -10,7 +10,4 @@ https://angular.io/docs/ts/latest/api/common/index/
 
 доделать календарь с инпутом, на вход new Date()
 
-Сделать пример с Hammer
-Сделать пример ngrx
 Сделать пример с маской на поле
-Доделать tree shaking
