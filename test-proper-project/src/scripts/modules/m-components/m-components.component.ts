@@ -1,10 +1,13 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
+import {MDynamicComponentConstructor} from "./components/m-dynamic/m-dynamic.component";
+import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 
 @Component({
     selector: 'm-components',
     templateUrl: './m-components.component.html',
 })
 export class MComponentsComponent implements OnInit {
+    dynamicModel: MDynamicComponentConstructor;
 
     @HostBinding('style.margin')  margin = '20px';
     @HostBinding('style.display')  display = 'block';
@@ -24,6 +27,11 @@ export class MComponentsComponent implements OnInit {
         // setInterval(() => {
         //     console.log(this.currentAutocompleteItem);
         // }, 1000)
+
+        this.dynamicModel = new MDynamicComponentConstructor(MCheckboxComponent, {
+            text: 'dynamic checkbox',
+            checked: true
+        });
 
     }
 

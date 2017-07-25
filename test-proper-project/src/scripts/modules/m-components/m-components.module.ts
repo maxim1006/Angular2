@@ -14,22 +14,38 @@ import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 import {MediaQueryComponent} from "./components/media-query/media-query.component";
 import {HammerExampleComponent} from "./components/hammer-example/hammer-example.component";
 import {MComponentsRoutingModule} from "./m-components.routing";
+import {MDynamicDirective} from "./components/m-dynamic/m-dynamic.directive";
+import {MDynamicComponent} from "./components/m-dynamic/m-dynamic.component";
+
+
+
+let components = [
+    MDynamicComponent,
+    MComponentsComponent,
+    MAutocompleteComponent,
+    MSelectComponent,
+    MTreeComponent,
+    ContentEditableComponent,
+    MEllipsisComponent,
+    MScrollComponent,
+    MCheckboxComponent,
+    MediaQueryComponent,
+    HammerExampleComponent
+];
+
+let directives = [
+    MDynamicDirective
+];
+
+
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, MComponentsRoutingModule],
     declarations: [
-        MComponentsComponent,
-        MAutocompleteComponent,
-        MSelectComponent,
-        MTreeComponent,
-        ContentEditableComponent,
-        MEllipsisComponent,
-        MScrollComponent,
-        MCheckboxComponent,
-        MediaQueryComponent,
-        HammerExampleComponent
+        ...components, ...directives
     ],
     exports: [MComponentsComponent],
+    entryComponents: [...components],
     providers: []
 })
 
