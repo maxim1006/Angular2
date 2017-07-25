@@ -220,9 +220,9 @@ module.exports = function makeWebpackConfig(options = {}) {
 
 
     if (isProd) {
-        config.plugins.concat([
-            //https://webpack.js.org/guides/production-build/
-            //UglifyJsPlugin это делает автоматом вебпак с флагом -p, так что просто оставлю его, если включить плагин будет ошибка, так как он 2 раза подключится
+        config.plugins = [
+            // https://webpack.js.org/guides/production-build/
+            // UglifyJsPlugin это делает автоматом вебпак с флагом -p, так что просто оставлю его, если включить плагин будет ошибка, так как он 2 раза подключится
             // new webpack.optimize.UglifyJsPlugin({
             //     compress: {
             //         warnings: false,
@@ -237,15 +237,15 @@ module.exports = function makeWebpackConfig(options = {}) {
             //         join_vars: true,
             //     },
             //     output: {
-            //         comments: false,
+            //         comments: false
             //     },
             //     sourceMap: true
             // }),
-            new webpack.LoaderOptionsPlugin({
-                minimize: true,
-                debug: false
-            }),
-        ]);
+            // new webpack.LoaderOptionsPlugin({
+            //     minimize: true,
+            //     debug: false
+            // }),
+        ];
     }
 
 
@@ -274,7 +274,17 @@ module.exports = function makeWebpackConfig(options = {}) {
                 },
                 sourceMap: true
             })
-        ]
+        ];
+
+        config.stats = {
+            assets: true,
+            chunks: false,
+            children: false,
+            errors: true,
+            errorDetails: true,
+            timings: true,
+            warnings: true
+        };
     }
 
 
