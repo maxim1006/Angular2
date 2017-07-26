@@ -162,14 +162,23 @@ export class MScrollComponent implements OnInit {
         }
     }
 
+    private isHighResolutionScreen():boolean {
+        let windowMatchMedia = window.matchMedia("(min-resolution: 2dppx)");
+        return windowMatchMedia && windowMatchMedia.matches;
+    }
+
+    private getHighResolutionOffset():number {
+        return this.isHighResolutionScreen() ? 2 : 1; //because of fractional numbers in high resolution screens
+    }
+
     private countDelta() {
         this.delta = (this.scrollHeight - this.yBarHeight)/(this.yBarHeight - this.ySliderHeightFull);
-        this.ySliderWrapVisible = (this.scrollHeight - this.yBarHeight) > 1; //because of fractional numbers in high resolution screens
+        this.ySliderWrapVisible = (this.scrollHeight - this.yBarHeight) > this.getHighResolutionOffset();
     }
 
     private countDeltaHorizontal() {
         this.deltaHorizontal = (this.scrollWidth - this.yBarWidth)/(this.yBarWidth - this.ySliderHorizontalWidthFull);
-        this.ySliderHorizontalWrapVisible = (this.scrollWidth - this.yBarWidth) > 1; //because of fractional numbers in high resolution screens
+        this.ySliderHorizontalWrapVisible = (this.scrollWidth - this.yBarWidth) > this.getHighResolutionOffset();
 
         if (this.objHeight === this.scroll.offsetHeight) {
             this.scroll.style.marginBottom = -this.scrollbarWidth + 'px'; //because of fractional numbers in high resolution screens
