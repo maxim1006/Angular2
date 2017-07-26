@@ -314,7 +314,11 @@ export class MScrollComponent implements OnInit {
         return (/android|webos|iphone|ipad|ipod|blackberry|Windows Phone/i.test(navigator.userAgent));
     }
 
-    private mouseWheel(e: any) {
+    private mouseWheel(e: any = {}) {
+        if (!e.originalEvent) {
+            return;
+        }
+
         let sliderResult,
             curY = this.ySlider.offsetTop;
 
