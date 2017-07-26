@@ -1,9 +1,4 @@
-Cделать пример с копированием результатов в дист.
-
 моки запросов
-
-Починить динамический компонент в аот
-https://stackoverflow.com/questions/38888008/how-can-i-use-create-dynamic-template-to-compile-dynamic-component-with-angular
 
 Просмотреть все примеры отсюда
 https://angular.io/docs/ts/latest/api/common/index/

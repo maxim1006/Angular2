@@ -198,6 +198,7 @@ module.exports = function makeWebpackConfig(options = {}) {
                 'core-js/es6/reflect.js',
                 'core-js/es7/reflect.js',
                 'hammerjs/hammer',
+                '@angularclass/hmr',
                 "@angular/common",
                 "@angular/compiler",
                 "@angular/core",
@@ -273,6 +274,9 @@ module.exports = function makeWebpackConfig(options = {}) {
                     comments: false
                 },
                 sourceMap: true
+            }),
+            new WebpackOnBuildPlugin(function(stats) {
+                console.log('build in aot is done');
             })
         ];
 

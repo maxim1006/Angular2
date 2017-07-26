@@ -8,7 +8,9 @@ export class CustomPipe implements PipeTransform {
 
     public transform(value: any[] = [], name=''):any {
         console.log(value, ' filtered ng-for');
-        return value.filter(member => member.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
+        return value.filter((member) => {
+            return member.name.toLowerCase().indexOf(name.toLowerCase()) !== -1;
+        });
     }
 
 }
