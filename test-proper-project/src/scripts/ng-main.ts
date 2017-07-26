@@ -35,7 +35,7 @@ export function main() {
     return platformBrowserDynamic()
         .bootstrapModule(AppModule)
         .then((modRef: any) => {
-            console.log(modRef, ' modRef11111');   //moderef = AppModuleInjector
+            console.log(modRef, ' moderef');   //moderef = AppModuleInjector
             return modRef
         })
         .catch(err => console.error(err));

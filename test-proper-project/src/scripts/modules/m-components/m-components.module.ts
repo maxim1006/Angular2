@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {HttpModule} from "@angular/http";
-import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {MComponentsComponent} from "./m-components.component";
 import {MAutocompleteComponent} from "./components/m-autocomplete/m-autocomplete.component";
@@ -14,9 +13,7 @@ import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 import {MediaQueryComponent} from "./components/media-query/media-query.component";
 import {HammerExampleComponent} from "./components/hammer-example/hammer-example.component";
 import {MComponentsRoutingModule} from "./m-components.routing";
-import {MDynamicDirective} from "./components/m-dynamic/m-dynamic.directive";
 import {MDynamicComponent} from "./components/m-dynamic/m-dynamic.component";
-
 
 
 let components = [
@@ -34,7 +31,6 @@ let components = [
 ];
 
 let directives = [
-    MDynamicDirective
 ];
 
 

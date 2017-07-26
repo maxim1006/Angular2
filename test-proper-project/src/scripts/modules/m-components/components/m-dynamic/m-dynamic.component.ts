@@ -1,9 +1,13 @@
-import {Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, Type, ViewChild} from "@angular/core";
-import {MDynamicDirective} from "./m-dynamic.directive";
+import {
+    Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, Type, ViewChild,
+    ViewContainerRef
+} from "@angular/core";
+
+
 
 @Component({
     selector: 'm-dynamic',
-    template: `<ng-template m-dynamic></ng-template>`
+    template: `<ng-template #mDynamic></ng-template>`
 })
 export class MDynamicComponent implements OnDestroy {
     _model: MDynamicComponentConstructor;
@@ -19,7 +23,23 @@ export class MDynamicComponent implements OnDestroy {
 
     private _componentRef: ComponentRef<any>;
 
-    @ViewChild(MDynamicDirective) mDynamic: MDynamicDirective;
+    /**
+     * пример использование директивы, которая на элементе будет <ng-template m-dynamic></ng-template>, и тут используется
+     * import { Directive, ViewContainerRef } from '@angular/core';
+
+     @Directive({
+        selector: '[m-dynamic]',
+    })
+         export class MDynamicDirective {
+        constructor(public viewContainerRef: ViewContainerRef) { }
+    }
+
+     * @param _componentFactoryResolver
+     */
+    //а в компоненте:
+    // @ViewChild(MDynamicDirective) mDynamic: MDynamicDirective;
+
+    @ViewChild('mDynamic', {read: ViewContainerRef}) mDynamic: ViewContainerRef;
 
     constructor(private _componentFactoryResolver: ComponentFactoryResolver) {}
 
@@ -33,7 +53,7 @@ export class MDynamicComponent implements OnDestroy {
         }
 
         let componentFactory = this._componentFactoryResolver.resolveComponentFactory(model.component),
-            viewContainerRef = this.mDynamic.viewContainerRef;
+            viewContainerRef = this.mDynamic;
         
         viewContainerRef.clear();
 
