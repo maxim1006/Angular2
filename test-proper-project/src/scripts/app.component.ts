@@ -7,8 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     activateEvent(event) {
         console.log(event, ' activated component');

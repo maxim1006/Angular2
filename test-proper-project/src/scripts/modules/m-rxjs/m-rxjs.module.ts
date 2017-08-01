@@ -2,7 +2,8 @@ import {StoreModule} from "@ngrx/store";
 import {SharedModule} from "../shared/shared.module";
 import {NgModule} from "@angular/core";
 import {MRxjsComponent} from "./m-rxjs.component";
-import {events} from "./reducers/reducers";
+// import {events} from "./reducers/reducers";
+import {RxjsExampleComponent} from "./components/rxjs-example/rxjs-example.component";
 // import {NgrxDispatchComponent} from "./components/ngrx-dispatch/ngrx-dispatch.component";
 // import {NgrxSubscribeComponent} from "./components/ngrx-subscribe/ngrx-subscribe.component";
 
@@ -14,6 +15,7 @@ import {events} from "./reducers/reducers";
     exports: [MRxjsComponent],
     declarations: [
         MRxjsComponent,
+        RxjsExampleComponent,
         // NgrxDispatchComponent,
         // NgrxSubscribeComponent
     ],
