@@ -1,0 +1,15 @@
+<h3>ng-template example</h3>
+
+<ng-template #example let-from="from">
+    <p>&laquo;ng-template&raquo; content from {{from}}</p>
+</ng-template>
+
+<ng-container
+        [ngTemplateOutlet]="example"
+        [ngOutletContext]="{from: 'ng-container'}"
+></ng-container>
+
+<ng-template
+        [ngTemplateOutlet]="example"
+        [ngOutletContext]="{from: 'ng-template'}"
+></ng-template>

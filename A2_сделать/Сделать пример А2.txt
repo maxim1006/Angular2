@@ -6,5 +6,3 @@ https://angular.io/docs/ts/latest/api/common/index/
 доделать календарь с инпутом, на вход new Date()
 
 Сделать пример с маской на поле
-
-Сделать пример с повторением в ng-templates
