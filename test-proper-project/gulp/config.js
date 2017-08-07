@@ -14,6 +14,11 @@ module.exports = {
         concat: 'icons.less'
     },
 
+    svg: {
+        src: './src/assets/themes/base/images/svg-icons/*.svg',
+        htmlSrc: 'src/index.html'
+    },
+
     // Browser Sync config
     bsync: {
         base: './',
@@ -26,6 +31,7 @@ module.exports = {
         html: 'src/**/*.html',
         ts:   'src/**/*.ts',
         icons: 'src/assets/themes/base/images/icons/*',
+        svg: 'src/assets/themes/base/images/svg-icons/*',
         mocks: 'src/**/*.js'
     },
 
@@ -58,6 +64,10 @@ module.exports = {
             'gulp-ignore': 'ignore',
             'webpack-stream': 'plugins.webpackStream',
             'gulp-clean': 'clean',
+            'gulp-svgstore': 'svgstore',
+            'gulp-svgmin': 'svgmin',
+            'gulp-inject': 'inject',
+            'gulp-rename': 'rename',
         }
     }
 };

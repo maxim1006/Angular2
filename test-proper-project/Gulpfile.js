@@ -6,13 +6,15 @@ let gulp            = require('gulp');
 let plugins         = require('gulp-load-plugins')(config.plugins);
 let bsync           = require('browser-sync').create();
 let webpack         = require('webpack');
+let path            = require('path');
 
 
 
 //Watchers
 gulp.task('watch', ['bsync'], () => {
     gulp.watch(config.watch.less, ['less']);
-    // gulp.watch(config.watch.icons, ['icons']);
+    gulp.watch(config.watch.icons, ['icons']);
+    gulp.watch(config.watch.svg, ['svgstore']);
 });
 
 
@@ -35,7 +37,7 @@ gulp.task('html:watch', () => {
 
 
 /*Less tasks*/
-gulp.task('less', ['icons'], () =>
+gulp.task('less', ['icons', 'svgstore'], () =>
     gulp.src(config.less.src)
         .pipe(plugins.plumber({
             errorHandler: onPlumberError
@@ -98,6 +100,49 @@ gulp.task('copyProd', ['less'], () => {
         .pipe(gulp.dest(config.copyProd.dest));
 });
 
+
+
+gulp.task('svgstore', function () {
+    var svgs = gulp
+        .src(config.svg.src)
+        .pipe(plugins.svgmin(function (file) {
+            var prefix = path.basename(file.relative, path.extname(file.relative));
+
+            return {
+                plugins: [
+                    {
+                        removeTitle: true
+                    },
+                    {
+                        removeAttrs: {
+                            attrs: '(fill|stroke)'
+                        }
+                    },
+                    {
+                        removeStyleElement: true
+                    },
+                    {
+                        cleanupIDs: {
+                            prefix: prefix + '-',
+                            minify: true
+                        }
+                    }
+                ]
+            }
+        }))
+        .pipe(plugins.rename({prefix: 'icon-'}))
+        .pipe(plugins.svgstore({ inlineSvg: true }));
+
+    function fileContents (filePath, file) {
+        return file.contents.toString();
+    }
+
+    return gulp
+        .src(config.svg.htmlSrc)
+        .pipe(plugins.inject(svgs, { transform: fileContents }))
+        .pipe(gulp.dest('src'));
+    
+});
 
 
 
