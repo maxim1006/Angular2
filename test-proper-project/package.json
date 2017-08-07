@@ -45,7 +45,9 @@
     "file-loader": "^0.11.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
+    "gulp-image-data-uri": "^1.2.2",
     "gulp-less": "^3.3.0",
     "gulp-load-plugins": "^1.5.0",
     "gulp-plumber": "^1.1.0",
@@ -80,13 +82,17 @@
     "postinstall": "npm run dll",
     "dll": "webpack",
     "serve": "concurrently --kill-others \"npm run devGulp\" \"npm run devWebpack\"",
-    "prod": "webpack -p",
+    "prodWebpack": "webpack -p",
     "aot": "webpack",
     "aotServer": "webpack-dev-server --config ./webpack.config.js --open",
+    "prod": "npm run cleanGulp && npm run aot && npm run prodGulp",
+    "prodServer": "webpack-dev-server --config ./webpack.config.js --open",
     "hmr": "concurrently --kill-others \"npm run devGulp\" \"npm run hmrWebpack\"",
     "devWebpack": "webpack-dev-server --config ./webpack.config.js --profile --watch --progress",
     "hmrWebpack": "webpack-dev-server --config ./webpack.config.js",
     "devGulp": "gulp",
+    "prodGulp": "gulp prod",
+    "cleanGulp": "gulp clean",
     "test": "karma start"
   }
 }

@@ -35,7 +35,7 @@ gulp.task('html:watch', () => {
 
 
 /*Less tasks*/
-gulp.task('less', () =>
+gulp.task('less', ['icons'], () =>
     gulp.src(config.less.src)
         .pipe(plugins.plumber({
             errorHandler: onPlumberError
@@ -90,19 +90,31 @@ gulp.task('icons', () =>
 
 
 //Copy ng resources
-gulp.task('copyNgResources', ['js:prod'], function () {
-    return gulp.src(config.copyNg.src)
+gulp.task('copyProd', ['less'], () => {
+    return gulp.src(config.copyProd.src, { base: './src' })
         .pipe(plugins.plumber({
             errorHandler: onPlumberError
         }))
-        .pipe(gulp.dest(config.copyNg.dest));
+        .pipe(gulp.dest(config.copyProd.dest));
+});
+
+
+
+
+//Clean
+gulp.task('clean', () => {
+    return gulp.src(config.clean.src, {read: false})
+        .pipe(plugins.plumber({
+            errorHandler: onPlumberError
+        }))
+        .pipe(plugins.clean());
 });
 
 
 
 //General tasks
 gulp.task('default', ['watch']);
-gulp.task('prod', ['icons', 'less', 'copyNgResources']);
+gulp.task('prod', ['copyProd']);
 
 
 

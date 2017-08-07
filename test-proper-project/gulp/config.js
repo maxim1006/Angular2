@@ -1,20 +1,15 @@
 module.exports = {
 
-    js: {
-        src: [],
-        dest: './src/public'
-    },
-
     // LESS config
     less: {
         src: './src/assets/custom.less',
-        dest: './src/public/styles'
+        dest: './src/assets'
     },
 
     // Icons config
     icons: {
-        src: './src/images/icons/*',
-        dest: './src/styles/common',
+        src: './src/assets/themes/base/images/icons/*',
+        dest: './src/assets/themes/base/styles/common',
         template: './gulp/icons-template',
         concat: 'icons.less'
     },
@@ -22,7 +17,7 @@ module.exports = {
     // Browser Sync config
     bsync: {
         base: './',
-        start: './src/public/'
+        start: './src/'
     },
 
     // Watch config
@@ -30,13 +25,23 @@ module.exports = {
         less: 'src/**/*.less',
         html: 'src/**/*.html',
         ts:   'src/**/*.ts',
-        icons: 'src/images/icons/*',
+        icons: 'src/assets/themes/base/images/icons/*',
         mocks: 'src/**/*.js'
     },
 
-    copyNg: {
-        src: 'src/public/js/*',
-        dest: ''
+    clean: {
+        src: ['./dist', './src/*.js*']
+    },
+
+    copyProd: {
+        src: [
+            'src/index.html',
+            'src/*.js',
+            'src/mocks//*',
+            'src/assets/custom.css',
+            'src/assets/themes/base/fonts/**', 'src/assets/themes/base/images/other-images/**'
+        ],
+        dest: './dist'
     },
 
     // Plugins config
@@ -51,7 +56,8 @@ module.exports = {
             'gulp-image-data-uri': 'uri',
             'gulp-concat': 'concat',
             'gulp-ignore': 'ignore',
-            'webpack-stream': 'plugins.webpackStream'
+            'webpack-stream': 'plugins.webpackStream',
+            'gulp-clean': 'clean',
         }
     }
 };

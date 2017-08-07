@@ -22,6 +22,7 @@ const isTest = ENV === 'test';
 const isDll = ENV === 'dll';
 const isAot = ENV.includes('aot');
 const isAotServer = ENV.includes('aotServer');
+const isProdServer = ENV.includes('prodServer');
 const isDev = isStatic || isHmr;
 
 
@@ -37,6 +38,12 @@ module.exports = function makeWebpackConfig(options = {}) {
         }
     }
 
+    if (isProdServer) {
+        if (!fs.existsSync('./dist')) {
+            throw "Can't find ./dist, please use 'npm run prod' to get it.";
+        }
+    }
+
     // config.watch = !isProd;
     if (!isProd) {
         config.devtool = 'source-map';
@@ -45,19 +52,19 @@ module.exports = function makeWebpackConfig(options = {}) {
     }
 
     config.entry = {
-        'ng-app': './src/scripts/ng-main.ts', // our angular app
-        // 'ng': ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], //так как использую DLL нет смысла использовать чанки
+        'ng-app': './src/app/ng-main.ts', // our angular app
+        // 'ng': ['./src/app/ng-polyfills.ts', './src/app/ng.ts'], //так как использую DLL нет смысла использовать чанки
         // 'result': './example.ts'  //just for check treeshaking - "module": "es2015", in tsconfig
     };
 
     if (isAot) {
         config.entry = {
-            'ng-app': './src/scripts/ng-main-aot.ts', // our angular app
+            'ng-app': './src/app/ng-main-aot.ts', // our angular app
         };
     }
 
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/public/'), //в проде сюда будет падать бандл
+        path: path.join(__dirname, './src/'), //в проде сюда будет падать бандл
         //закомментил, так как не получается сделать и publicPath и настроить работу htmlWebpackPlugin, а для
         //HMR нужно чтобы publicPath в оутпуте совпадал с сервером
         // publicPath: '/js/', //need to be the same as in server,
@@ -66,7 +73,7 @@ module.exports = function makeWebpackConfig(options = {}) {
         // filename: isProd ? '[hash].js' : '[name].js'
     };
 
-    if (isAotServer) {
+    if (isAotServer || isProdServer) {
         config.entry = {
             'server': './webpack-server.js'
         };
@@ -108,7 +115,7 @@ module.exports = function makeWebpackConfig(options = {}) {
             },
             {
                 test: /\.html$/, loader: 'raw-loader',
-                exclude: [/node_modules\/(?!(ng2-.+))/, root('src/public/index.html')]
+                exclude: [/node_modules\/(?!(ng2-.+))/, root('src/index.html')]
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -160,7 +167,7 @@ module.exports = function makeWebpackConfig(options = {}) {
                 }
             }),
             // new webpack.optimize.CommonsChunkPlugin({
-            //     name: ['ng-app', 'ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/scripts/ng-polyfills.ts', './src/scripts/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба. Потерял актульность с DLL
+            //     name: ['ng-app', 'ng']  //создать и запомнить в памяти ng.js, который является общей частью, состоящей из ['./src/app/ng-polyfills.ts', './src/app/ng.ts'], при этом заэкспортиться модуль ng.ts, но выполнятся оба. Потерял актульность с DLL
             // }),
             new WebpackOnBuildPlugin(function(stats) {
                 console.log('build is done');
@@ -169,7 +176,7 @@ module.exports = function makeWebpackConfig(options = {}) {
             .concat(isHmr ? new webpack.HotModuleReplacementPlugin() : [])
             .concat(isDev ? [
                 new HtmlWebpackPlugin({
-                    template: root('src/public/index.html'),
+                    template: root('src/index.html'),
                     inject: false,
                 }),
                 new webpack.DllReferencePlugin({
@@ -255,7 +262,7 @@ module.exports = function makeWebpackConfig(options = {}) {
         config.plugins = [
             new AotPlugin({
                 tsConfigPath: './tsconfig.json',
-                entryModule: root('src/scripts/app.module.ts#AppModule')
+                entryModule: root('src/app/app.module.ts#AppModule')
             }),
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
@@ -295,7 +302,7 @@ module.exports = function makeWebpackConfig(options = {}) {
 
     //dev server
     config.devServer = {
-        contentBase: "./src/public",
+        contentBase: isProdServer ? "./dist" : "./src",
         // publicPath: "/js/",
         headers: {
             "Access-Control-Allow-Origin": "*",
@@ -312,7 +319,7 @@ module.exports = function makeWebpackConfig(options = {}) {
         historyApiFallback: true,
         compress: true, // enable gzip compression
         quiet: false,
-        inline: isHmr || isStatic || isAotServer,
+        inline: isHmr || isStatic || isAotServer || isProdServer,
         hot: isHmr,
         stats: "minimal",
         // stats: {
