@@ -128,22 +128,22 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: "url-loader?name=[name].[ext]&limit=10000&useRelativePath=true"
             },
-            {
-                test: /\.less$/,
-                use: [
-                    {loader: "css-to-string-loader"},
-                    {loader: "css-loader"},
-                    {loader: "postcss-loader"},
-                    {
-                        loader: "less-loader",
-                        options: {
-                            globalVars: {
-                                theme: "base"
-                            }
-                        }
-                    }
-                ]
-            }
+            // {
+            //     test: /\.less$/,
+            //     use: [
+            //         {loader: "css-to-string-loader"},
+            //         {loader: "css-loader"},
+            //         {loader: "postcss-loader"},
+            //         {
+            //             loader: "less-loader",
+            //             options: {
+            //                 globalVars: {
+            //                     theme: "base"
+            //                 }
+            //             }
+            //         }
+            //     ]
+            // }
         ]
     };
 
