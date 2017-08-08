@@ -28,12 +28,12 @@ const isDev = isStatic || isHmr;
 
 /**
  * Function with webpack config
- * @param webpackEnv - с помощью команды webpack --webpackEnv.entry=./example.ts -p, можно сделать так, чтобы прокинуть webpackEnv внутрь вебпак
+ * @param webpackEnv - с помощью команды webpack --env.entry=./example.ts -p, можно сделать так, чтобы прокинуть webpackEnv внутрь вебпак
  * @param argv - An options map (argv) as the second parameter. This describes the options passed to webpack, with keys such as output-filename and optimize-minimize.
  * @returns {{}}
  */
 module.exports = function makeWebpackConfig(webpackEnv, argv) {
-    let isWebpackEnvEntry = webpackEnv && webpackEnv.entry;
+    let webpackEnvEntry = webpackEnv && webpackEnv.entry;
 
     console.log(`You are in ${ENV} mode`);
 
@@ -58,14 +58,14 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         config.devtool = 'source-map'; //это опционально, если надо и в проде подебажить, а так могу отключить
     }
 
-    config.entry = isWebpackEnvEntry ? isWebpackEnvEntry : {
+    config.entry = webpackEnvEntry ? webpackEnvEntry : {
         'ng-app': './src/app/ng-main.ts', // our angular app
         // 'ng': ['./src/app/ng-polyfills.ts', './src/app/ng.ts'], //так как использую DLL нет смысла использовать чанки
         // 'result': './example.ts'  //just for check treeshaking - "module": "es2015", in tsconfig
     };
 
     if (isAot) {
-        config.entry = isWebpackEnvEntry ? isWebpackEnvEntry : {
+        config.entry = webpackEnvEntry ? webpackEnvEntry : {
             'ng-app': './src/app/ng-main-aot.ts', // our angular app
         };
     }
@@ -81,7 +81,7 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
     };
 
     if (isAotServer || isProdServer) {
-        config.entry = isWebpackEnvEntry ? isWebpackEnvEntry : {
+        config.entry = webpackEnvEntry ? webpackEnvEntry : {
             'server': './webpack-server.js'
         };
         config.output = {};

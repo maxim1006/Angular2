@@ -18,7 +18,7 @@ export class ParentComponent implements OnInit {
     ngOnInit() {}
 
     //так могу находить любой компонент в темплейте и дергать его апи, тоже самое, что и с #child, только с локальной переменной я могу это сделать только в шаблоне, а так могу и в контроллере
-    @ViewChild(ChildComponent)
+    @ViewChild('child')
     private childComponent: ChildComponent;
 
     public childStart() {

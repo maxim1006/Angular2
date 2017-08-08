@@ -6,20 +6,23 @@ import {Component, ViewChild, ViewChildren, ElementRef} from '@angular/core';
 })
 
 export class ElementLinkComponent {
-    public inputValue: string = '';
-
-    public constructor() {
-    }
-
-    public onButtonClick(element, value): void {
-        console.log(element);
-    }
-
     @ViewChild("myInput")
     input:ElementRef; //nativeElement - cвойство объекта ElementRef - который вернет декоратор
 
     @ViewChildren("inputItem")
     inputs;
+
+    public inputValue: string = '';
+
+    public constructor() {
+    }
+
+    ngOnInit() {
+    }
+
+    public onButtonClick(element, value): void {
+        console.log(element);
+    }
 
     public getInput(): ElementRef {
         console.log(this.input.nativeElement);
