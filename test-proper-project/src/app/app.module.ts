@@ -14,7 +14,8 @@ import {MAdminModule} from "./modules/m-admin/m-admin.module";
 import {createInputTransfer, createNewHosts, removeNgStyles} from "@angularclass/hmr";
 import {MHomeModule} from "./modules/m-home/m-home.module";
 import {MRxjsModule} from "./modules/m-rxjs/m-rxjs.module";
-
+import {PageUtilsService} from "./common/services/page-utils.service";
+import {PageLoaderService} from "./common/services/page-loader.service";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -46,6 +47,8 @@ export function routeServiceFactory (route: RouteService):()=>{} {
         NgRoutingModule //этот модуль, в котором все руты приложения должен идти в самом конце, после всех модулей с RouterModule.forChild(routes), это из-за wildCard модуля
     ],
     providers: [
+        PageUtilsService,
+        PageLoaderService,
         {provide: domenToken, useValue: domenToken},
 
         /*Эта часть нужна, чтобы загрузить какие-то данные перед всей аппликухой*/

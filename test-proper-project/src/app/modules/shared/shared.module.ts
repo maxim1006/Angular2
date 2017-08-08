@@ -7,7 +7,6 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {ContentEditableDirective} from "./directives/content-editable/content-editable.directive";
 import {CommonModule} from "@angular/common";
 import {EllipsisDirective} from "./directives/ellipsis/ellipsis.directive";
-import {PageUtilsService} from "./services/page-utils.service";
 import {MLoaderComponent} from "./components/m-loader/m-loader.component";
 
 @NgModule({
@@ -42,11 +41,6 @@ import {MLoaderComponent} from "./components/m-loader/m-loader.component";
         /*Pipes*/
         CustomPipe,
         objToArrPipe
-    ],
-    providers: [
-        PageUtilsService
-    ],
+    ]
 })
-export class SharedModule {
-
-}
+export class SharedModule {}

@@ -678,6 +678,37 @@ input[type="text"] {
 .nav__link.active {
   color: #f8bf4c;
 }
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  z-index: 100000;
+  opacity: 0;
+  background: linear-gradient(to right, rgba(113, 186, 248, 0.25), #71baf8);
+  transition: opacity 0s ease 0.6s, -webkit-transform 0.5s ease 0s;
+  transition: transform 0.5s ease 0s, opacity 0s ease 0.6s;
+  transition: transform 0.5s ease 0s, opacity 0s ease 0.6s, -webkit-transform 0.5s ease 0s;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+.page-loader._loading-start {
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  opacity: 1;
+  transition: none;
+}
+.page-loader._loading {
+  transition: -webkit-transform 20s cubic-bezier(0, 1, 0.3, 0.87) 0s;
+  transition: transform 20s cubic-bezier(0, 1, 0.3, 0.87) 0s;
+  transition: transform 20s cubic-bezier(0, 1, 0.3, 0.87) 0s, -webkit-transform 20s cubic-bezier(0, 1, 0.3, 0.87) 0s;
+  -webkit-transform: scaleX(0.9);
+          transform: scaleX(0.9);
+  opacity: 1;
+}
 .t-field__label {
   margin-bottom: 10px;
   font-size: 18px;

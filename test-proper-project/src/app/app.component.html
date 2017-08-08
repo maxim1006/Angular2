@@ -1,3 +1,8 @@
+<div class="page-loader"
+     [class._loading]="pageLoaderService.pageLoading"
+     [class._loading-start]="pageLoaderService.pageLoadingStart"
+></div>
+
 <nav class="nav">
     <a class="nav__link" routerLink="/home" routerLinkActive="_active">Home</a>
     <a class="nav__link" routerLink="/framework" routerLinkActive="_active">Angular framework</a>

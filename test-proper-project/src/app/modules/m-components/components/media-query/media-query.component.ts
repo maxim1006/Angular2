@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {PageUtils} from "../../../shared/utils/page-utils";
-import {PageUtilsService} from "../../../shared/services/page-utils.service";
+import {PageUtilsService} from "../../../../common/services/page-utils.service";
 
 @Component({
     selector: "media-query",

@@ -52,8 +52,8 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
     }
 
     // config.watch = !isProd;
-    if (!isProd) {
-        config.devtool = 'source-map';
+    if (isHmr || isStatic) {
+        config.devtool = 'inline-source-map';
     } else {
         config.devtool = 'source-map'; //это опционально, если надо и в проде подебажить, а так могу отключить
     }

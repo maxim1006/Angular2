@@ -14,11 +14,11 @@ export class PageUtilsService {
         tablet: false,
         desktop: false
     };
-
+                                           
     constructor() {
         this.mediaObserver = Observable.create((subscriber: Subscriber<Media>) => {
             this.mediaSubscriber = subscriber;
-            this.updateMediaData();
+            this.updateMediaData();                                
             this.mediaSubscriber.next(this.mediaData);
         })
             .share(); //share result to all subscriber, if delete only the last one will get it
