@@ -14,7 +14,7 @@ const AotPlugin = require('@ngtools/webpack').AotPlugin;
  * Env
  * Get npm lifecycle event to identify the environment
  */
-const ENV = process.env.npm_lifecycle_event;
+const ENV = process.env.npm_lifecycle_event ? process.env.npm_lifecycle_event : '';
 const isProd = ENV === 'prod';
 const isStatic = ENV === 'devWebpack';
 const isHmr = ENV === 'hmrWebpack';
@@ -26,8 +26,15 @@ const isProdServer = ENV.includes('prodServer');
 const isDev = isStatic || isHmr;
 
 
+/**
+ * Function with webpack config
+ * @param webpackEnv - с помощью команды webpack --webpackEnv.entry=./example.ts -p, можно сделать так, чтобы прокинуть webpackEnv внутрь вебпак
+ * @param argv - An options map (argv) as the second parameter. This describes the options passed to webpack, with keys such as output-filename and optimize-minimize.
+ * @returns {{}}
+ */
+module.exports = function makeWebpackConfig(webpackEnv, argv) {
+    let isWebpackEnvEntry = webpackEnv && webpackEnv.entry;
 
-module.exports = function makeWebpackConfig(options = {}) {
     console.log(`You are in ${ENV} mode`);
 
     let config = {};
@@ -51,14 +58,14 @@ module.exports = function makeWebpackConfig(options = {}) {
         config.devtool = 'source-map'; //это опционально, если надо и в проде подебажить, а так могу отключить
     }
 
-    config.entry = {
+    config.entry = isWebpackEnvEntry ? isWebpackEnvEntry : {
         'ng-app': './src/app/ng-main.ts', // our angular app
         // 'ng': ['./src/app/ng-polyfills.ts', './src/app/ng.ts'], //так как использую DLL нет смысла использовать чанки
         // 'result': './example.ts'  //just for check treeshaking - "module": "es2015", in tsconfig
     };
 
     if (isAot) {
-        config.entry = {
+        config.entry = isWebpackEnvEntry ? isWebpackEnvEntry : {
             'ng-app': './src/app/ng-main-aot.ts', // our angular app
         };
     }
@@ -74,7 +81,7 @@ module.exports = function makeWebpackConfig(options = {}) {
     };
 
     if (isAotServer || isProdServer) {
-        config.entry = {
+        config.entry = isWebpackEnvEntry ? isWebpackEnvEntry : {
             'server': './webpack-server.js'
         };
         config.output = {};
@@ -336,10 +343,8 @@ module.exports = function makeWebpackConfig(options = {}) {
         }
     };
 
-
-
     return config;
-}();
+};
 
 
 
