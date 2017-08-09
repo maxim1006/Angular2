@@ -6,3 +6,7 @@ https://angular.io/docs/ts/latest/api/common/index/
 доделать календарь с инпутом, на вход new Date()
 
 Сделать пример с маской на поле
+
+Сделать пример с декораторами
+
+Сделать пример с https://git.netcracker.com/DEMO.SALESINTEL/sales-intelligence-frontend/blob/5fc6fe9845837d41831d1c5cf56a2808d5425c86/src/sales-intelligence/components/virtual-scroll/virtual-scroll.ts

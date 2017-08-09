@@ -31,6 +31,7 @@ import {DynamicComponent} from "./components/dynamic/dynamic.component";
 import {NgIfExampleComponent} from "./components/ng-if-example/ng-if-example.component";
 import {MFrameworkRoutingModule} from "./m-framework.routing";
 import {NgTemplateExampleComponent} from "./components/ng-template-example/ngTemplateExampleComponent";
+import {MDecoratorsComponent} from "./components/m-decorators/m-decorators.component";
 
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule, MFrameworkRoutingModule],
@@ -62,7 +63,8 @@ import {NgTemplateExampleComponent} from "./components/ng-template-example/ngTem
         CustomChangeDetectionComponent,
         CustomChangeDetectionComponentInner,
         NgIfExampleComponent,
-        NgTemplateExampleComponent
+        NgTemplateExampleComponent,
+        MDecoratorsComponent
     ],
     exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
     providers: []

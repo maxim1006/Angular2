@@ -673,9 +673,9 @@ input[type="text"] {
   line-height: 50px;
   background-color: aliceblue;
   border-radius: 20px;
-  background-image: url('/images/panda-splash.png');
+  background-image: url('themes/base/images/other-images/panda-splash.png');
 }
-.nav__link.active {
+.nav__link._active {
   color: #f8bf4c;
 }
 .page-loader {
