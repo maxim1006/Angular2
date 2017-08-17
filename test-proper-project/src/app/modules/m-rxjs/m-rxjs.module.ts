@@ -4,6 +4,7 @@ import {NgModule} from "@angular/core";
 import {MRxjsComponent} from "./m-rxjs.component";
 // import {events} from "./reducers/reducers";
 import {RxjsExampleComponent} from "./components/rxjs-example/rxjs-example.component";
+import {RxJsComponent} from "./components/rx-js/rx-js.component";
 // import {NgrxDispatchComponent} from "./components/ngrx-dispatch/ngrx-dispatch.component";
 // import {NgrxSubscribeComponent} from "./components/ngrx-subscribe/ngrx-subscribe.component";
 
@@ -16,6 +17,7 @@ import {RxjsExampleComponent} from "./components/rxjs-example/rxjs-example.compo
     declarations: [
         MRxjsComponent,
         RxjsExampleComponent,
+        RxJsComponent
         // NgrxDispatchComponent,
         // NgrxSubscribeComponent
     ],
