@@ -336,6 +336,10 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         //     performance: true,
         // }, // none (or false), errors-only, minimal, normal (or true), detailed and verbose
         port: 9000,
+        // overlay: {
+        //     warnings: true,
+        //     errors: true
+        // },
         watchOptions: {
             aggregateTimeout: 50, //по умолчанию 300
             //poll: 1000

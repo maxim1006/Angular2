@@ -14,6 +14,7 @@ import {MediaQueryComponent} from "./components/media-query/media-query.componen
 import {HammerExampleComponent} from "./components/hammer-example/hammer-example.component";
 import {MComponentsRoutingModule} from "./m-components.routing";
 import {MDynamicComponent} from "./components/m-dynamic/m-dynamic.component";
+import {MButtonComponent} from "./components/m-button/m-button.component";
 
 
 let components = [
@@ -27,7 +28,8 @@ let components = [
     MScrollComponent,
     MCheckboxComponent,
     MediaQueryComponent,
-    HammerExampleComponent
+    HammerExampleComponent,
+    MButtonComponent
 ];
 
 let directives = [
