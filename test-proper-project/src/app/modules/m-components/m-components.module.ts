@@ -12,10 +12,13 @@ import {MScrollComponent} from "./components/m-scroll/m-scroll.component";
 import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 import {MediaQueryComponent} from "./components/media-query/media-query.component";
 import {HammerExampleComponent} from "./components/hammer-example/hammer-example.component";
-import {MComponentsRoutingModule} from "./m-components.routing";
 import {MDynamicComponent} from "./components/m-dynamic/m-dynamic.component";
 import {MButtonComponent} from "./components/m-button/m-button.component";
+import {RouterModule, Routes} from "@angular/router";
 
+const routes: Routes = [
+    {path: '', component: MComponentsComponent},
+];
 
 let components = [
     MDynamicComponent,
@@ -38,7 +41,7 @@ let directives = [
 
 
 @NgModule({
-    imports: [SharedModule, HttpModule, FormsModule, MComponentsRoutingModule],
+    imports: [SharedModule, HttpModule, FormsModule, RouterModule.forChild(routes)],
     declarations: [
         ...components, ...directives
     ],

@@ -51,6 +51,7 @@ export class TField implements OnInit {
 
     ngOnInit() {
         this.control = this.form.get(this.controlName);
+        console.log(this.control);
     }
 
     controlChange(value:any) {

@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {HttpModule} from "@angular/http";
-import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MFrameworkComponent} from "./m-framework.component";
 import {ElementLinkComponent} from "./components/element-link_viewChild_viewChildren/elementLinkComponent";
@@ -29,12 +28,16 @@ import {CustomChangeDetectionComponent} from "./components/custom-change-detecti
 import {CustomChangeDetectionComponentInner} from "./components/custom-change-detection/components/custom-change-detection-inner.component";
 import {DynamicComponent} from "./components/dynamic/dynamic.component";
 import {NgIfExampleComponent} from "./components/ng-if-example/ng-if-example.component";
-import {MFrameworkRoutingModule} from "./m-framework.routing";
 import {NgTemplateExampleComponent} from "./components/ng-template-example/ngTemplateExampleComponent";
 import {MDecoratorsComponent} from "./components/m-decorators/m-decorators.component";
+import {RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [
+    {path: '', component: MFrameworkComponent},
+];
 
 @NgModule({
-    imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule, MFrameworkRoutingModule],
+    imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)],
     declarations: [
         MFrameworkComponent,
         ElementLinkComponent,
