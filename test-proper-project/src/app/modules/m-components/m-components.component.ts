@@ -9,7 +9,7 @@ import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
 export class MComponentsComponent implements OnInit {
     dynamicModel: MDynamicComponentConstructor;
 
-    @HostBinding('style.margin')  margin = '20px';
+    @HostBinding('style.padding')  margin = '20px';
     @HostBinding('style.display')  display = 'block';
 
     public autocomplete: any;

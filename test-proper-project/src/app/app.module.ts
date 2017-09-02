@@ -16,6 +16,7 @@ import {MHomeModule} from "./modules/m-home/m-home.module";
 import {MRxjsModule} from "./modules/m-rxjs/m-rxjs.module";
 import {PageUtilsService} from "./common/services/page-utils.service";
 import {PageLoaderService} from "./common/services/page-loader.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -37,6 +38,7 @@ export function routeServiceFactory (route: RouteService):()=>{} {
     imports: [
         BrowserModule, //подключает коммон модуль, директивы, пайпы
         FormsModule, //подключает ngModel модуль
+        BrowserAnimationsModule, //модуль для анимаций
         HttpModule,
         MHomeModule,
         MFormsModule,

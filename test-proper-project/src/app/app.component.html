@@ -14,5 +14,7 @@
     <a class="nav__link" routerLink="/rxjs" routerLinkActive="_active">Rxjs</a>
 </nav>
 
-<router-outlet (activate)="activateEvent($event)" (deactivate)="deactivateEvent($event)"></router-outlet>
+<main class="main" [@routerTransition]="getState(o)">
+    <router-outlet #o="outlet" (activate)="activateEvent($event)" (deactivate)="deactivateEvent($event)"></router-outlet>
+</main>
 

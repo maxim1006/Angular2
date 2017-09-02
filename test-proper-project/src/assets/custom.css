@@ -428,7 +428,7 @@ button {
 }
 h3,
 h1 {
-  margin: 40px 0 20px;
+  padding: 40px 0 20px;
 }
 input[type="text"] {
   border: 1px solid #ccc;

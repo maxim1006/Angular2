@@ -11,16 +11,16 @@ import {MRxjsComponent} from "./modules/m-rxjs/m-rxjs.component";
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: 'home', component: MHomeComponent},
+    {path: 'home', component: MHomeComponent, data: { state: 'home' }},
     // {path: '', redirectTo: '/framework', pathMatch: 'full'}, //redirect example
     // {path: 'framework', component: MFrameworkComponent}, //simple module loading
     // {path: 'components', component: MComponentsComponent},
-    {path: 'components', loadChildren: './modules/m-components/m-components.module#MComponentsModule'},
-    {path: 'http', component: MHttpComponent},
-    {path: 'forms', component: MFormComponent},
-    {path: 'rxjs', component: MRxjsComponent},
-    {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule'},
-    {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule'},
+    {path: 'components', loadChildren: './modules/m-components/m-components.module#MComponentsModule', data: { state: 'components' }},
+    {path: 'http', component: MHttpComponent, data: { state: 'http' }},
+    {path: 'forms', component: MFormComponent, data: { state: 'forms' }},
+    {path: 'rxjs', component: MRxjsComponent, data: { state: 'rxjs' }},
+    {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule', data: { state: 'framework' }},
+    {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule', data: { state: 'lazy' }},
     {
         path: 'admin',
         component: MAdminComponent,
