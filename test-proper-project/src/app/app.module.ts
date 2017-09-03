@@ -29,6 +29,10 @@ export function routeServiceFactory (route: RouteService):()=>{} {
     return () => route.init()
 }
 
+/*
+подключать лесс через вебпак
+require("style-loader!../assets/base.less");
+*/
 
 @NgModule({
     declarations: [
