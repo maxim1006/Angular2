@@ -12,3 +12,5 @@ https://angular.io/docs/ts/latest/api/common/index/
 Сделать пример с https://git.netcracker.com/DEMO.SALESINTEL/sales-intelligence-frontend/blob/5fc6fe9845837d41831d1c5cf56a2808d5425c86/src/sales-intelligence/components/virtual-scroll/virtual-scroll.ts
 
 сделать пример с подключением нескольких компонент как на портале
+
+Сделать пример с динамическим прокидыванием в темплейт ng-template извне
