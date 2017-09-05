@@ -1,4 +1,4 @@
-// холодные обзервеблы, все подписавшиеся до первого next вызовутся по умолчанию, но не будут обновляться при изменении, будет обновляться только o3, а горячие вызовутся все, только подписавшиеся после 1го next и пошарят 1 данные, также горячие сабскрайберы сработают только на то что произошло после сабскрипшина, а холодные на то что произошло до сабскрипшена тоже сработают
+// холодные обзервеблы, все подписавшиеся до первого next вызовутся по умолчанию, но не будут обновляться при изменении, будет обновляться только o3, а горячие вызовутся все, только подписавшиеся после 1го next и пошарят 1 данные, также горячие сабскрайберы сработают только на то что произошло после сабскрипшина, а холодные на то что произошло до сабскрипшена тоже сработают. Каждый сабскайб обновляет функцию в  Observable.create(вот эта функция триггерится каждый раз))
 
 import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs/Observable";
@@ -20,9 +20,16 @@ export class RxJsComponent implements OnInit {
 
     ngOnInit() {
 
-        this.numberObservable = Observable.create((subscriber: Subscriber<any>) => {
+        this.numberObservable = Observable.create((subscriber: Subscriber<any>) => { //эта функция будет отрабатывать каждый раз когда происходит subscription, поэтому останется только последний (в холодных обзервеблах)
             this.subscriber = subscriber;
             this.subscriber.next(this.number);
+
+            //this.subscriber.complete(); //после этого те кто подписался не отработают
+
+            //это для примера работы с холодным обзервеблом, через замыкание выведутся все сабскрипшены
+            // setTimeout(() => {
+            //     subscriber.next(this.number);
+            // }, 3000);
         }).share();
 
         //если не будет хоть 1 сабскайбера, то this.subscriber.next(number) не сработает, | async - это тоже что и subscribe, только автоматом через view
@@ -43,9 +50,16 @@ export class RxJsComponent implements OnInit {
         this.numberObservable.subscribe((data) => {
             console.log(data, ' o3');
         });
+
+        setTimeout(() => {
+            this.numberObservable.subscribe((data) => {
+                console.log(data, ' o4');
+            });
+        }, 2000);
     }
 
     onClick() {
+        //в горячих обзервеблах this.subscriber - один на все сабскрипшены, а в холодных 1 сабскайбер на 1 сабскрипшен
         this.subscriber.next(++this.number);
     }
 }
