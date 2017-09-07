@@ -1,7 +1,4 @@
-import {
-    Component, ViewChild, ViewChildren, ElementRef, OnInit, Input, Compiler,
-    ChangeDetectionStrategy
-} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
     selector: "custom-change-detection-inner",

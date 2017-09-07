@@ -20,6 +20,10 @@ export class ElementLinkComponent {
     ngOnInit() {
     }
 
+    ngAfterViewInit() {
+        this.getInputs();
+    }
+
     public onButtonClick(element, value): void {
         console.log(element);
     }
@@ -30,7 +34,12 @@ export class ElementLinkComponent {
     }
 
     public getInputs() {
+        //так получаю каждого чайлда
+        this.inputs.forEach((element: ElementRef) => {
+            console.log(element);
+        });
         console.log(this.inputs._results);
         return this.inputs;
     }
+
 }

@@ -15,8 +15,13 @@
 * */
 
 import {
-    Component, ViewChild, ViewChildren, ElementRef, OnInit, Input, Compiler,
-    ChangeDetectionStrategy, ChangeDetectorRef, ApplicationRef, NgZone
+    ApplicationRef,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    NgZone,
+    OnInit,
+    ViewChild
 } from '@angular/core';
 
 @Component({

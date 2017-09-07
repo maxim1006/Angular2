@@ -31,6 +31,7 @@ import {NgIfExampleComponent} from "./components/ng-if-example/ng-if-example.com
 import {NgTemplateExampleComponent} from "./components/ng-template-example/ngTemplateExampleComponent";
 import {MDecoratorsComponent} from "./components/m-decorators/m-decorators.component";
 import {RouterModule, Routes} from "@angular/router";
+import {OutsideDynamicTemplateComponent} from "./components/outside-dynamic-template/outside-dynamic-template";
 
 const routes: Routes = [
     {path: '', component: MFrameworkComponent},
@@ -67,7 +68,8 @@ const routes: Routes = [
         CustomChangeDetectionComponentInner,
         NgIfExampleComponent,
         NgTemplateExampleComponent,
-        MDecoratorsComponent
+        MDecoratorsComponent,
+        OutsideDynamicTemplateComponent
     ],
     exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
     providers: []
