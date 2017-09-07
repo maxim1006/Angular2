@@ -15,6 +15,14 @@ export class HostBindingComponent implements OnInit {
     @HostBinding('attr.id') id: string = 'hostBinding';
     @HostBinding('class') classes = 'class1 class2 class3';
 
+    @HostListener('document:click') onDocumentClick = () => {
+        console.log("document clicked");
+    };
+
+    @HostListener('window:click') onWindowClick = () => {
+        console.log("window clicked");
+    };
+
     @HostListener('click', ['$event'])
     onClick(event: MouseEvent) {
         console.log(event, " clicked with host listener");
