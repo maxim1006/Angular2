@@ -44,4 +44,9 @@ export class InnerDataBindingComponent {
         //this.onSelectItem.emit(item);
         this.twoWayPropChange.emit(item);
     }
+
+    /** @internal */
+    public onInnerComponentNgModelChange(event) {
+        this.twoWayPropChange.emit(event);
+    }
 }

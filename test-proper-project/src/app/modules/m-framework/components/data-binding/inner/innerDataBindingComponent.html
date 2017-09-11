@@ -6,7 +6,7 @@
 
 <p>One-way alias prop: {{aliasPropInner}}</p>
 
-<p>Two-way (type in input): {{twoWayProp}}</p>
+<p>Two-way (type in input): {{twoWayProp}} <input type="text" [(ngModel)]="twoWayProp" (ngModelChange)="onInnerComponentNgModelChange($event)"></p>
 
 <p (click)="twoWayClick('argument from inner directive', '');">Two-way function (click me)</p>
 
