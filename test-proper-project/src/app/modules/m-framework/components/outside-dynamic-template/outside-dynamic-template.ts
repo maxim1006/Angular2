@@ -16,4 +16,8 @@ export class OutsideDynamicTemplateComponent implements OnInit {
 
     ngOnInit() {
     }
+
+    ngAfterViewInit() {
+        console.log("this.inputTemplate ", this.inputTemplate);
+    }
 }

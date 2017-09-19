@@ -2,7 +2,9 @@
         #dynamicTemplate
     let-prop="prop"
 >
+    <div>
    insert here dynamic content {{prop}}
+    </div>
 </ng-template>
 
 <outside-dynamic-template [inputTemplate]="dynamicTemplate"></outside-dynamic-template>

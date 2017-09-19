@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import {transition, trigger, style, animate, query} from "@angular/animations";
 
 
@@ -12,7 +12,7 @@ export const routerTransition: any = trigger('routerTransition', [
         // /* 2 */ group([  // block executes in parallel
         query(':leave', [
             style({ transform: 'scale(1)' }),
-            animate('0.5s ease-out', style({ transform: 'scale(0)', opacity: 0, "transform-origin": "-20% 0" }))
+            animate('0.3s ease-out', style({ transform: 'scale(0)', opacity: 0, "transform-origin": "10% 0" }))
         ], { optional: true }),
         query(':enter', [
             style({ transform: 'scale(0)' , opacity: 0}),
@@ -31,13 +31,18 @@ export const routerTransition: any = trigger('routerTransition', [
 })
 
 export class MRxjsComponent implements OnInit {
-    constructor() {
+    constructor(private _el: ElementRef) {
     }
 
     ngOnInit() {
     }
 
     getState(outlet) {
+        //router fix, otherwise display: none on m-rxjs component
+        if (outlet.activatedRouteData && outlet.activatedRouteData.state) {
+            this._el.nativeElement.style.display = 'block';
+        }
+
         return outlet.activatedRouteData.state;
     }
 }
