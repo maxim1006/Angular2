@@ -346,7 +346,7 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         watchOptions: {
             aggregateTimeout: 50, //по умолчанию 300
             //poll: 1000
-            ignored: /node_modules/
+            ignored: [/node_modules/ /* ,/\.less/, /\.css/ */]
         }
     };
 
