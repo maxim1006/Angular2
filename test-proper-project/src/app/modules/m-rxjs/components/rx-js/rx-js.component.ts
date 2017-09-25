@@ -30,6 +30,11 @@ export class RxJsComponent implements OnInit {
             // setTimeout(() => {
             //     subscriber.next(this.number);
             // }, 3000);
+
+            return () => {
+                console.log("rx-js unsubscribed in cold observable");
+            };
+
         }).share();
 
         //если не будет хоть 1 сабскайбера, то this.subscriber.next(number) не сработает, | async - это тоже что и subscribe, только автоматом через view

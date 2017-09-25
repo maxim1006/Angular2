@@ -5,19 +5,30 @@ import {Component, HostBinding} from "@angular/core";
     templateUrl: "./hammer-example.component.html"
 })
 export class HammerExampleComponent {
+    panString: string = '';
     isSwiped: boolean;
 
-    @HostBinding('class') componentClass: string = 'hammer-example';
+    private _styleClass: string = '';
 
-    panString: string = '';
+    @HostBinding('class')
+    get styleClass() {
+        return this._styleClass || 'hammer-example';
+    }
+
+    set styleClass(value: string) {
+         this._styleClass = 'hammer-example' + value;
+    }
 
     onTap(event: any) {
-        console.log(event, ' tap event');
         this.panString += ' taped!';
+        this.styleClass = this.panString;
     }
 
     onSwipe(event: any) {
         console.log(event, ' swipe event');
         this.isSwiped = !this.isSwiped;
+    }
+
+    ngOnInit() {
     }
 }

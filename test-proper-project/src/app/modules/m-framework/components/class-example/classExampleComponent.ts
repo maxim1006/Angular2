@@ -15,4 +15,14 @@ export class ClassExampleComponent {
             _next: true
         };
     }
+
+    //так задаю класс
+    // @HostBinding('class')
+    // get styleClass() {
+    //     return this._styleClass || 'hammer-example';
+    // }
+    //
+    // set styleClass(value: string) {
+    //     this._styleClass = 'hammer-example' + value;
+    // }
 }
