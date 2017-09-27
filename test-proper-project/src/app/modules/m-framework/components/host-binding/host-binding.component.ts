@@ -6,7 +6,11 @@ import {Component, OnInit, HostBinding, HostListener} from "@angular/core";
         template: `
             <h3>This is @HostBindling example</h3>
             <p> &laquo;hostBinding&raquo; has id hostBinding</p>
-        `
+        `,
+        // host: {
+        //     '(document:click)': 'onClickOut($event)',
+        // "[class.ux-context-panel]": "true"
+        // }
     }
 )
 

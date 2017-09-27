@@ -580,6 +580,7 @@ input[type="text"] {
   }
 }
 .m-scroll {
+  min-height: 0;
   position: relative;
   overflow: hidden;
 }

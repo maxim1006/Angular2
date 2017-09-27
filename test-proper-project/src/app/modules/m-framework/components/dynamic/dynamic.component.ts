@@ -10,6 +10,8 @@ import {
 } from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 
+
+
 @Component({
     selector: 'dynamic-component',
     template: `<ng-template #wrapper></ng-template>`
@@ -61,7 +63,7 @@ export class DynamicComponent {
         let self = this;
         if (self.componentRef) {
             self.componentRef.destroy();
-            self.componentRef = undefined;
+            self.componentRef = null;
         }
         self.isViewInitialized = false;
     }
