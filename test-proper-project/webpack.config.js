@@ -45,6 +45,9 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         }
     }
 
+    //external dependencies
+    //config.externals = [...];
+
     if (isProdServer) {
         if (!fs.existsSync('./dist')) {
             throw "Can't find ./dist, please use 'npm run prod' to get it.";
