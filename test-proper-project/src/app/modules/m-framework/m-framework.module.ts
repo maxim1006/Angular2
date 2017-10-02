@@ -32,6 +32,7 @@ import {NgTemplateExampleComponent} from "./components/ng-template-example/ngTem
 import {MDecoratorsComponent} from "./components/m-decorators/m-decorators.component";
 import {RouterModule, Routes} from "@angular/router";
 import {OutsideDynamicTemplateComponent} from "./components/outside-dynamic-template/outside-dynamic-template";
+import {RendererExampleComponent} from "./components/renderer-example/renderer-example.component";
 
 const routes: Routes = [
     {path: '', component: MFrameworkComponent},
@@ -69,7 +70,8 @@ const routes: Routes = [
         NgIfExampleComponent,
         NgTemplateExampleComponent,
         MDecoratorsComponent,
-        OutsideDynamicTemplateComponent
+        OutsideDynamicTemplateComponent,
+        RendererExampleComponent
     ],
     exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
     providers: []
