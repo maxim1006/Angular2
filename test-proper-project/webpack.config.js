@@ -67,20 +67,20 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         // 'result': './example.ts'  //just for check treeshaking - "module": "es2015", in tsconfig
     };
 
-    //don't use because of the AotPlugin
-    // if (isAot) {
-    //     config.entry = webpackEnvEntry ? webpackEnvEntry : {
-    //         'ng-app': './src/app/ng-main-aot.ts', // our angular app
-    //     };
-    // }
+    if (isAot) {
+        config.entry = webpackEnvEntry ? webpackEnvEntry : {
+            'ng-app': './src/app/ng-main-aot.ts', // our angular app
+        };
+    }
 
     config.output = isTest ? {} : {
-        path: path.join(__dirname, './src/'), //в проде сюда будет падать бандл
+        path: path.join(__dirname, './dist'), //в проде сюда будет падать бандл
         //закомментил, так как не получается сделать и publicPath и настроить работу htmlWebpackPlugin, а для
         //HMR нужно чтобы publicPath в оутпуте совпадал с сервером
         // publicPath: '/js/', //need to be the same as in server,
         filename: '[name].js',
         // chunkFilename: '[name].js',
+        // chunkFilename: 'js/[id].-[hash:8].chunk.js',
         // filename: isProd ? '[hash].js' : '[name].js'
     };
 
