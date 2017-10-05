@@ -67,11 +67,12 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         // 'result': './example.ts'  //just for check treeshaking - "module": "es2015", in tsconfig
     };
 
-    if (isAot) {
-        config.entry = webpackEnvEntry ? webpackEnvEntry : {
-            'ng-app': './src/app/ng-main-aot.ts', // our angular app
-        };
-    }
+    //don't use because of the AotPlugin
+    // if (isAot) {
+    //     config.entry = webpackEnvEntry ? webpackEnvEntry : {
+    //         'ng-app': './src/app/ng-main-aot.ts', // our angular app
+    //     };
+    // }
 
     config.output = isTest ? {} : {
         path: path.join(__dirname, './src/'), //в проде сюда будет падать бандл
