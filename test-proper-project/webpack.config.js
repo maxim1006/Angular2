@@ -14,6 +14,7 @@ const AotPlugin = require('@ngtools/webpack').AotPlugin;
  * Env
  * Get npm lifecycle event to identify the environment
  */
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ENV = process.env.npm_lifecycle_event ? process.env.npm_lifecycle_event : '';
 const isProd = ENV === 'prod';
 const isStatic = ENV === 'devWebpack';
@@ -79,7 +80,7 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         //HMR нужно чтобы publicPath в оутпуте совпадал с сервером
         // publicPath: '/js/', //need to be the same as in server,
         filename: '[name].js',
-        // chunkFilename: '[name].js',
+        // chunkFilename: '[name].js',     //нужно, чтобы сформировались чанки
         // chunkFilename: 'js/[id].-[hash:8].chunk.js',
         // filename: isProd ? '[hash].js' : '[name].js'
     };
@@ -296,7 +297,19 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
             new WebpackOnBuildPlugin(function(stats) {
                 console.log('build in aot is done');
             })
+
+            //настройки для формирования денамически подгружаемого чанка, как только будет отложенно загружен чанк, так и этот чанк 1 раз будет подгружен
+            // new webpack.optimize.CommonsChunkPlugin({
+            //     async: "chunk",
+            //     children: true,
+            //     minChunks: 2
+            // }),
         ];
+
+        //репорт, запускать как _npm-command__ --report
+        config.plugins.push(
+            new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: !!process.env.npm_config_report })
+        );
 
         config.stats = {
             assets: true,

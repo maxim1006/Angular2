@@ -42,10 +42,10 @@ module.exports = {
     copyProd: {
         src: [
             'src/index.html',
-            'src/*.js',
             'src/mocks/*',
             'src/assets/custom.css',
-            'src/assets/themes/base/fonts/**', 'src/assets/themes/base/images/other-images/**'
+            'src/assets/themes/base/fonts/**',
+            'src/assets/themes/base/images/other-images/**'
         ],
         dest: './dist'
     },
