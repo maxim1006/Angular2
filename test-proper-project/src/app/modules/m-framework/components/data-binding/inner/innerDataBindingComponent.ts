@@ -11,6 +11,9 @@ export class InnerDataBindingComponent {
     public constructor() {
     }
 
+    ngOnInit() {
+    }
+
     @Input() oneTimeStringBinding:string;
 
     @Input()
