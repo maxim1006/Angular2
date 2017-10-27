@@ -5,3 +5,6 @@
 </div>
 
 <input type="text" [ngModel]="childComponentModel" (ngModelChange)="valueChange($event)">
+
+
+<input type="checkbox" [checked]="valueFromParent.arr[0].checked" (change)="onCheckboxValueChange($event)">

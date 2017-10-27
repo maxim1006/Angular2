@@ -12,6 +12,12 @@ export class ChildComponent implements OnInit, OnDestroy {
     childComponentModel = "";
 
     @Input()
+    valueFromParent: any;
+
+    @Output()
+    valueFromParentChange: EventEmitter<any> = new EventEmitter();
+
+    @Input()
     public inputValue:string;
 
     @Output()
@@ -47,8 +53,16 @@ export class ChildComponent implements OnInit, OnDestroy {
         console.log("child component stop");
     }
 
-    valueChange(data: string) {
+    public valueChange(data: string) {
         console.log(data, "data from child component input");
     }
+
+    public onCheckboxValueChange(event: Event) {
+        // console.dir(event);
+        this.valueFromParent.arr[0].checked = event.srcElement["checked"];
+        // console.dir(this.valueFromParent);
+        this.valueFromParentChange.emit(this.valueFromParent);
+    }
+
 
 }
