@@ -1,0 +1,19 @@
+variables:
+  DOCKER_REPOSITORY: ""
+
+stages:
+  - build
+
+Build:
+  image: $DOCKER_REPOSITORY/node:7.7.1
+  stage: build
+  script:
+    - chmod 777 ./build.sh
+    - ./.gitlab-ci/build.sh
+  artifacts:
+    paths:
+      - ./nginx.conf
+      - ./dist/.
+      - ./resources/.
+      - ./lib
+    expire_in: 1h
