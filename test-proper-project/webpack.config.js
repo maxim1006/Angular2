@@ -189,13 +189,18 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
             .concat(isDev ? [
                 new HtmlWebpackPlugin({
                     template: root('src/index.html'),
+                    filename: root('dist/index.html'),
                     inject: false,
                 }),
                 new webpack.DllReferencePlugin({
                     context: '.',
                     manifest: require(`./dll/ng-manifest.json`)
                 }),
-                new CopyWebpackPlugin([{ from: './dll'}])
+                new CopyWebpackPlugin([
+                    { from: './dll'},
+                    { from: './src/mocks', to: './mocks'},
+                    { from: './src/assets/custom.css', to: './assets/custom.css'}
+                    ])
             ] : []);
     }
 
@@ -326,7 +331,7 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
 
     //dev server
     config.devServer = {
-        contentBase: isProdServer ? "./dist" : "./src",
+        contentBase: "./dist",
         // publicPath: "/js/",
         headers: {
             "Access-Control-Allow-Origin": "*",
