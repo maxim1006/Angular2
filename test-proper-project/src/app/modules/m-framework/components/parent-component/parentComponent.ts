@@ -1,4 +1,4 @@
-import {Component, ViewChild, OnInit} from "@angular/core";
+import {Component, ViewChild, OnInit, ElementRef} from "@angular/core";
 import {ChildComponent} from "./child-component/childComponent";
 import {ParentComponentService} from "./parent-component.service";
 
@@ -32,10 +32,13 @@ export class ParentComponent implements OnInit {
                     checked: true
                 }
             ]
-        }
+        };
+
+        console.log(this.childComponent, ' this.childComponent');
     }
 
     //так могу находить любой компонент в темплейте и дергать его апи, тоже самое, что и с #child, только с локальной переменной я могу это сделать только в шаблоне, а так могу и в контроллере
+    //@ViewChild('child', {read: ElementRef}) //если кастомный элемент, то пишу так, чтобы получить его дом элемент, даже п
     @ViewChild('child')
     private childComponent: ChildComponent;
 
