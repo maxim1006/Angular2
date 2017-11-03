@@ -17,6 +17,7 @@ import {MRxjsModule} from "./modules/m-rxjs/m-rxjs.module";
 import {PageUtilsService} from "./common/services/page-utils.service";
 import {PageLoaderService} from "./common/services/page-loader.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AppService} from "./modules/app.service";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -56,6 +57,7 @@ require("style-loader!../assets/base.less");
         PageUtilsService,
         PageLoaderService,
         {provide: domenToken, useValue: domenToken},
+        {provide: "NamedService", useClass: AppService, multi: true},
 
         /*Эта часть нужна, чтобы загрузить какие-то данные перед всей аппликухой*/
         RouteService,
