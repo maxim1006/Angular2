@@ -15,6 +15,9 @@ import {HammerExampleComponent} from "./components/hammer-example/hammer-example
 import {MDynamicComponent} from "./components/m-dynamic/m-dynamic.component";
 import {MButtonComponent} from "./components/m-button/m-button.component";
 import {RouterModule, Routes} from "@angular/router";
+import {MGraphComponent} from "./components/m-graph/m-graph.component";
+import {MGraphWrapperComponent} from "./components/m-graph/wrapper/m-graph-wrapper.component";
+import {MSparklineGraphComponent} from "./components/m-graph/sparkline/m-sparkline-graph.component";
 
 const routes: Routes = [
     {path: '', component: MComponentsComponent},
@@ -32,7 +35,10 @@ let components = [
     MCheckboxComponent,
     MediaQueryComponent,
     HammerExampleComponent,
-    MButtonComponent
+    MButtonComponent,
+    MGraphComponent,
+    MSparklineGraphComponent,
+    MGraphWrapperComponent,
 ];
 
 let directives = [

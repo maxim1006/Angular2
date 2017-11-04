@@ -464,6 +464,43 @@ input[type="text"] {
 .m-form__submit:disabled {
   opacity: 0.4;
 }
+.m-graph {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 25%;
+          flex: 0 1 25%;
+  min-width: 250px;
+  height: 300px;
+}
+.m-graph-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.m-sparkline-graph {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 600px;
+          flex: 0 1 600px;
+  min-width: 600px;
+  height: 340px;
+  min-height: 340px;
+}
+.m-sparkline-graph__table {
+  font-size: 11px;
+}
+.m-sparkline-graph__table thead th {
+  height: 20px;
+  padding: 5px;
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+}
+.m-sparkline-graph__table td,
+.m-sparkline-graph__table tbody th {
+  height: 20px;
+  padding: 5px;
+  border-bottom: 1px solid silver;
+}
 .m-loader {
   width: 60px;
   height: 60px;
