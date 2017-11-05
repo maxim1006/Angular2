@@ -374,7 +374,7 @@ export const InboundActivityGraphModel = {
     },
 
     tooltip: {
-        pointFormat: '{point.x}%, {point.y}, {point.z}'
+        pointFormat: '{point.x}, {point.y}%, {point.z}'
     },
 
     series: [
