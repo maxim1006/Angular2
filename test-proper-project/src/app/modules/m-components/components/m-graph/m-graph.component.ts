@@ -24,7 +24,7 @@ export class MGraphComponent implements OnInit, AfterViewInit {
 
     public el: HTMLElement;
 
-    @HostBinding('class') classes = 'm-graph';
+    @HostBinding('class.m-graph') classes = true;
 
     constructor(private _elRef: ElementRef, private _zone: NgZone) {}
 

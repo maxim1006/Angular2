@@ -260,6 +260,10 @@ export const JourneysStatsGraphModel = {
 
     series: [{
         type: 'area',
+        lineWidth: 0,
+        marker: {
+            enabled: false,
+        },
         name: '',
         data: createRandomDateGraphArray(190, 200, 50)
     }]

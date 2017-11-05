@@ -23,7 +23,7 @@ export class MSparklineGraphComponent implements OnInit, AfterViewInit {
 
     public el: HTMLElement;
 
-    @HostBinding('class') classes = 'm-graph';
+    @HostBinding('class.m-sparkline-graph') classes = true;
 
     constructor(private _elRef: ElementRef, private _zone: NgZone) {}
 
