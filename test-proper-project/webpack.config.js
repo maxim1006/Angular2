@@ -81,8 +81,8 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         // publicPath: '/js/', //need to be the same as in server,
         filename: '[name].js',
         // chunkFilename: '[name].js',     //нужно, чтобы сформировались чанки
-        // chunkFilename: 'js/[id].-[hash:8].chunk.js',
-        // filename: isProd ? '[hash].js' : '[name].js'
+        // chunkFilename: 'js/[id].-[chunkhash:8].chunk.js', //https://github.com/webpack/webpack/tree/master/examples/chunkhash
+        // filename: isProd ? '[chunkhash].js' : '[name].js'
     };
 
     if (isAotServer || isProdServer) {
