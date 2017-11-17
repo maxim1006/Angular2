@@ -18,6 +18,7 @@ import {PageUtilsService} from "./common/services/page-utils.service";
 import {PageLoaderService} from "./common/services/page-loader.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppService} from "./modules/app.service";
+import {MForRootModule} from "./modules/m-for-root/m-for-root.module";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -51,6 +52,7 @@ require("style-loader!../assets/base.less");
         SharedModule,
         MAdminModule,
         MRxjsModule,
+        MForRootModule.forRoot({data: 1}), //так могу в модуль прокинуть инфу
         NgRoutingModule //этот модуль, в котором все руты приложения должен идти в самом конце, после всех модулей с RouterModule.forChild(routes), это из-за wildCard модуля
     ],
     providers: [
