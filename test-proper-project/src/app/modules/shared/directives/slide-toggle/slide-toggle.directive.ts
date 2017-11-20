@@ -54,7 +54,15 @@ export class SlideToggleDirective implements AfterViewInit {
         let self = this;
 
         self.element = self._elementRef.nativeElement;
-        self._initOverflowStyle = getComputedStyle(self.element).overflow;
+
+        let initStyles = getComputedStyle(self.element);
+        self._initOverflowStyle = initStyles.overflow;
+
+        if (!self._toggled) {
+           self.element.style.height = "0px";
+           self.element.style.overflow = "hidden";
+           self._setElHeight();
+        }
     }
 
     private _runAnimation() {
