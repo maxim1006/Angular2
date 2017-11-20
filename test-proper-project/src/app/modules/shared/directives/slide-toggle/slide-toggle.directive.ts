@@ -4,7 +4,7 @@ import {AfterViewInit, Directive, ElementRef, EventEmitter, Input, NgZone, Outpu
 export interface SlideToggleEvent {
     element: HTMLElement;
     timePassedPercentage?: number;
-    heightPercentage?: number;
+    elementHeight?: number;
     slideToggle: boolean;
 }
 
@@ -123,14 +123,14 @@ export class SlideToggleDirective implements AfterViewInit {
         let self = this,
             timePassedPercentage: number = Math.ceil(Math.abs(timePassed) / self.duration * 100),
             currentTimePassedPercentage = self._direction === "up" ? 100 - timePassedPercentage : timePassedPercentage,
-            heightPercentage = self._height * currentTimePassedPercentage / 100;
+            elementHeight = self._height * currentTimePassedPercentage / 100;
 
-        self._currentStyleHeight = heightPercentage;
+        self._currentStyleHeight = elementHeight;
         self.element.style.height = self._currentStyleHeight + 'px';
 
         self.onSlideTick.emit({
             element: self.element,
-            heightPercentage,
+            elementHeight,
             timePassedPercentage,
             slideToggle: self._toggled
         });
