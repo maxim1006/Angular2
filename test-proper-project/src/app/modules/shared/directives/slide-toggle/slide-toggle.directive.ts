@@ -1,6 +1,14 @@
 import {AfterViewInit, Directive, ElementRef, EventEmitter, Input, NgZone, Output} from '@angular/core';
 
 
+export interface SlideToggleEvent {
+    element: HTMLElement;
+    timePassedPercentage?: number;
+    heightPercentage?: number;
+    slideToggle: boolean;
+}
+
+
 @Directive({
     selector: '[slideToggle]'
 })
@@ -13,22 +21,11 @@ export class SlideToggleDirective implements AfterViewInit {
     private _requestAnimationFrameId: number;
     private _direction: string = 'up';
     private _height: number;
-    private _elementStyleHeight: number;
+    private _currentStyleHeight: number;
     private _initOverflowStyle: string | any;
 
-    constructor(private _elementRef: ElementRef,
-                private _zone: NgZone) {
-    }
-
     @Input()
-    public duration: number = 2000;
-
-    ngAfterViewInit(): void {
-        let self = this;
-
-        self.element = self._elementRef.nativeElement;
-        self._initOverflowStyle = getComputedStyle(self.element).overflow;
-    }
+    public duration: number = 200;
 
     @Input()
     public set slideToggle(value: boolean) {
@@ -45,13 +42,33 @@ export class SlideToggleDirective implements AfterViewInit {
         return this._toggled;
     };
 
+    @Output() public onSlideStart = new EventEmitter<SlideToggleEvent>();
+    @Output() public onSlideEnd = new EventEmitter<SlideToggleEvent>();
+    @Output() public onSlideTick = new EventEmitter<SlideToggleEvent>();
+
+    constructor(private _elementRef: ElementRef,
+                private _zone: NgZone) {
+    }
+
+    ngAfterViewInit(): void {
+        let self = this;
+
+        self.element = self._elementRef.nativeElement;
+        self._initOverflowStyle = getComputedStyle(self.element).overflow;
+    }
+
     private _runAnimation() {
         let self = this;
 
         self._toggleStateOnAnimationStart = self._toggled;
-        self._setElHeight();
         self._isAnimating = true;
         self._direction = self._toggled ? 'down' : 'up';
+        self._setElHeight();
+
+        self.onSlideStart.emit({
+            element: self.element,
+            slideToggle: self._toggled
+        });
 
         self._zone.runOutsideAngular(() => {
             self.element.style.overflow = 'hidden';
@@ -74,8 +91,8 @@ export class SlideToggleDirective implements AfterViewInit {
             self._tick(timePassed);
 
             if (timePassed < self.duration &&
-                self._direction === "up" && self._elementStyleHeight > 0 ||
-                self._direction === "down" && self._elementStyleHeight < self._height
+                self._direction === "up" && self._currentStyleHeight > 0 ||
+                self._direction === "down" && self._currentStyleHeight < self._height
             ) {
                 self._requestAnimationFrameId = requestAnimationFrame(animate);
             }
@@ -86,27 +103,37 @@ export class SlideToggleDirective implements AfterViewInit {
         let self = this;
         window.cancelAnimationFrame(self._requestAnimationFrameId);
 
-        if (self._toggled) {
-            self.element.style.overflow = self._initOverflowStyle;
-        }
-
         if (self._toggleStateOnAnimationStart !== self._toggled) {
-            self._toggleStateOnAnimationStart = self._toggled;
-            self._runAnimation();
+            requestAnimationFrame(self._runAnimation.bind(self));
         } else {
+            if (self._toggled) {
+                self.element.style.overflow = self._initOverflowStyle;
+            }
+
             self._isAnimating = false;
         }
 
-        console.log(123);
+        self.onSlideEnd.emit({
+            element: self.element,
+            slideToggle: self._toggled
+        });
     }
 
     private _tick(timePassed: number):void {
         let self = this,
             timePassedPercentage: number = Math.ceil(Math.abs(timePassed) / self.duration * 100),
-            currentTimePassedPercentage = self._direction === "up" ? 100 - timePassedPercentage : timePassedPercentage;
+            currentTimePassedPercentage = self._direction === "up" ? 100 - timePassedPercentage : timePassedPercentage,
+            heightPercentage = self._height * currentTimePassedPercentage / 100;
 
-        self._elementStyleHeight = self._height * currentTimePassedPercentage / 100;
-        self.element.style.height = self._elementStyleHeight + 'px';
+        self._currentStyleHeight = heightPercentage;
+        self.element.style.height = self._currentStyleHeight + 'px';
+
+        self.onSlideTick.emit({
+            element: self.element,
+            heightPercentage,
+            timePassedPercentage,
+            slideToggle: self._toggled
+        });
 
         if (timePassedPercentage === 100) {
             self._onAnimationEnd();
@@ -118,9 +145,9 @@ export class SlideToggleDirective implements AfterViewInit {
             elementInitComputedStyle = getComputedStyle(self.element),
             initVisibilityParametersMap = {},
             visibilityParametersMap = {
+                height: "auto",
                 opacity: 0,
-                visibility: "hidden",
-                height: "auto"
+                visibility: "hidden"
             };
 
         for (let key in visibilityParametersMap) {
