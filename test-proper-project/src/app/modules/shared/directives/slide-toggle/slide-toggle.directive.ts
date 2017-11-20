@@ -4,7 +4,7 @@ import {AfterViewInit, Directive, ElementRef, EventEmitter, Input, NgZone, Outpu
 export interface SlideToggleEvent {
     element: HTMLElement;
     timePassedPercentage?: number;
-    elementHeight?: number;
+    elementHeight: number;
     slideToggle: boolean;
 }
 
@@ -67,6 +67,7 @@ export class SlideToggleDirective implements AfterViewInit {
 
         self.onSlideStart.emit({
             element: self.element,
+            elementHeight: self.element.offsetHeight,
             slideToggle: self._toggled
         });
 
@@ -115,6 +116,7 @@ export class SlideToggleDirective implements AfterViewInit {
 
         self.onSlideEnd.emit({
             element: self.element,
+            elementHeight: self.element.offsetHeight,
             slideToggle: self._toggled
         });
     }
