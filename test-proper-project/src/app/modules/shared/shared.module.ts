@@ -7,6 +7,7 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {ContentEditableDirective} from "./directives/content-editable/content-editable.directive";
 import {CommonModule} from "@angular/common";
 import {EllipsisDirective} from "./directives/ellipsis/ellipsis.directive";
+import {SlideToggleDirective} from "./directives/slide-toggle/slide-toggle.directive";
 import {MLoaderComponent} from "./components/m-loader/m-loader.component";
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MLoaderComponent} from "./components/m-loader/m-loader.component";
         ClickOutsideDirective,
         ContentEditableDirective,
         EllipsisDirective,
+        SlideToggleDirective,
 
         /*Components*/
         MLoaderComponent,
@@ -37,6 +39,7 @@ import {MLoaderComponent} from "./components/m-loader/m-loader.component";
         ClickOutsideDirective,
         ContentEditableDirective,
         EllipsisDirective,
+        SlideToggleDirective,
 
         /*Pipes*/
         CustomPipe,
