@@ -31,3 +31,5 @@ https://angular.io/docs/ts/latest/api/common/index/
 https://docs.npmjs.com/misc/config и с webpack-bundle-analyzer
 
 сделать пример с проверкой на contentChild
+
+Cделать пример с ngModel

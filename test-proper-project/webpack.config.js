@@ -345,6 +345,12 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
         //         { from: '/', to: '/index.html'}
         //     ]
         // },
+
+        // historyApiFallback: {
+        //     rewrites: [
+        //         { from: /^\/([a-zA-Z0-9\-]*)$/, to: '/html/cart_wizard.html' },
+        //     ],
+        // },
         historyApiFallback: true,
         compress: true, // enable gzip compression
         quiet: false,
