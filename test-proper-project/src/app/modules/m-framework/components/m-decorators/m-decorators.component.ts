@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {decorator, decorator1} from "./decorators";
+import {Component, OnInit, Input} from '@angular/core';
+import {decorator, decorator1, logProperty, logProperty1} from "./decorators";
 
 @Component({
     selector: 'm-decorators',
@@ -7,13 +7,22 @@ import {decorator, decorator1} from "./decorators";
 })
 
 export class MDecoratorsComponent implements OnInit {
+    @logProperty1()
+    @logProperty
+    @Input()
     a: number;
 
     constructor() {}
 
-    @decorator()
-    @decorator1
+    // @decorator()
+    // @decorator1
+    // private method() {
+    //     console.log(this.a, ` method is triggered`);
+    // }
+
     ngOnInit() {
-        console.log(this, ' decorator this');
+        // this.method();
+        this.a = 2;
+
     }
 }
