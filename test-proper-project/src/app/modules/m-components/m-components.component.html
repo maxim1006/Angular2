@@ -1,4 +1,18 @@
-<slide-toggle></slide-toggle>
+<div>
+    Value  <input type="text" [(ngModel)]="value">
+</div>
+<div>
+    Speed  <input type="text" [(ngModel)]="speed">
+</div>
+<div>
+    text  <input type="text" [(ngModel)]="text">
+</div>
+
+
+
+<progress-bar [text]="text" [animationSpeed]="speed" [value]="value"></progress-bar>
+
+<!--<slide-toggle></slide-toggle>-->
 
 <!--<h2>HighChart graphs</h2>-->
 <!--<m-graph-wrapper></m-graph-wrapper>-->

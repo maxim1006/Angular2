@@ -19,6 +19,7 @@ import {MGraphComponent} from "./components/m-graph/m-graph.component";
 import {MGraphWrapperComponent} from "./components/m-graph/wrapper/m-graph-wrapper.component";
 import {MSparklineGraphComponent} from "./components/m-graph/sparkline/m-sparkline-graph.component";
 import {MSlideToggleComponent} from "./components/slide-toggle/slide-toggle.component";
+import {ProgressBarComponent} from "./components/progress-bar/progress-bar.component";
 
 const routes: Routes = [
     {path: '', component: MComponentsComponent},
@@ -40,7 +41,8 @@ let components = [
     MGraphComponent,
     MSparklineGraphComponent,
     MGraphWrapperComponent,
-    MSlideToggleComponent
+    MSlideToggleComponent,
+    ProgressBarComponent
 ];
 
 let directives = [

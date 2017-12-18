@@ -204,8 +204,6 @@ module.exports = function makeWebpackConfig(webpackEnv, argv) {
             ] : []);
     }
 
-
-
     if (isDll) {
         config.plugins.push(
             new webpack.DllPlugin({
