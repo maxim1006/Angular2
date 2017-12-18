@@ -14,8 +14,13 @@ import {ValidationConstants} from "../shared/constants/validation.constant";
 export class MFormComponent implements OnInit {
     public myForm: FormGroup;
     public formModel: any = {};
+    public service: string;
 
     constructor(fb: FormBuilder) {
+        let self = this;
+
+        self.service = "testService";
+
         this.myForm = fb.group({
             'name': new FormControl(
                 {
@@ -24,7 +29,8 @@ export class MFormComponent implements OnInit {
                     //disable state
                     disabled: false
                 },
-                Validators.compose([Validators.required, nameValidator, Validators.maxLength(10)])
+                Validators.compose([Validators.required, Validators.maxLength(10)]),
+                nameValidator.bind(self)
             ), //пример с кастомной валидацией
             'surname': new FormControl(
                 {

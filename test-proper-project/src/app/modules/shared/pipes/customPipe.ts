@@ -1,3 +1,5 @@
+//2 компонентыа - 2 разных инстанса пайпа
+
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe ({
