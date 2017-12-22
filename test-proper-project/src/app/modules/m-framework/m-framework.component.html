@@ -1,88 +1,88 @@
-<parent-component></parent-component>
-
-<renderer-example></renderer-example>
-
-<ng-template
-        #dynamicTemplate
-    let-prop="prop"
->
-    <div>
-   insert here dynamic content {{prop}}
-    </div>
-</ng-template>
-
-<outside-dynamic-template [inputTemplate]="dynamicTemplate"></outside-dynamic-template>
-
-<m-decorators></m-decorators>
-
-<ng-template-example></ng-template-example>
-
-<ng-if-example></ng-if-example>
-
-<custom-change-detection></custom-change-detection>
-
-<detect-property-change [visible]="detectVisiblePropertyChange"></detect-property-change>   <button class="button" (click)="detectPropertyChange()">!!!Change Visible property!!!</button>
-
-<ng-for-example-with-object></ng-for-example-with-object>
-
-
-<h1 (click)="onClick($event)">
-    {{title}}
-</h1>
-
-
-<p>{{2+2}}</p>
-
-<p>{{getValue()}}</p>
-
-<p>{{person.name}}</p>
-
-<p></p>
-
-<element-link></element-link>
-
-<data-binding></data-binding>
-
-<class-example></class-example>
-
-<attribute-example></attribute-example>
-
-<style-example></style-example>
-
-<event-example></event-example>
-
-<encapsulation-example></encapsulation-example>
-
-<component-with-directive></component-with-directive>
-
 <ng-for-example></ng-for-example>
 
-<ngswitch-example></ngswitch-example>
+<!--<parent-component></parent-component>-->
 
-<pipe-example></pipe-example>
+<!--<renderer-example></renderer-example>-->
 
-<transclude-example>
-    Transclude component
+<!--<ng-template-->
+        <!--#dynamicTemplate-->
+    <!--let-prop="prop"-->
+<!--&gt;-->
+    <!--<div>-->
+   <!--insert here dynamic content {{prop}}-->
+    <!--</div>-->
+<!--</ng-template>-->
 
-    <div #innerTranscludeExampleDiv>
-        Inner Transclude component
-    </div>
+<!--<outside-dynamic-template [inputTemplate]="dynamicTemplate"></outside-dynamic-template>-->
 
-    <div ts-content>
-        Transcluded content that was initially after div #innerTranscludeExampleDiv
-    </div>
-</transclude-example>
+<!--<m-decorators></m-decorators>-->
 
-<parent-component></parent-component>
+<!--<ng-template-example></ng-template-example>-->
 
-<rxjs-example></rxjs-example>
+<!--<ng-if-example></ng-if-example>-->
+
+<!--<custom-change-detection></custom-change-detection>-->
+
+<!--<detect-property-change [visible]="detectVisiblePropertyChange"></detect-property-change>   <button class="button" (click)="detectPropertyChange()">!!!Change Visible property!!!</button>-->
+
+<!--<ng-for-example-with-object></ng-for-example-with-object>-->
 
 
-<!--<h3>Dynamic component</h3>-->
-<!--<dynamic-component [template]="'<p>Outer html with dynamic component &laquo;class-example&raquo; inside <class-example></class-example></p>'"></dynamic-component>-->
+<!--<h1 (click)="onClick($event)">-->
+    <!--{{title}}-->
+<!--</h1>-->
 
-<el-native-element></el-native-element>
 
-<host-binding></host-binding>
+<!--<p>{{2+2}}</p>-->
+
+<!--<p>{{getValue()}}</p>-->
+
+<!--<p>{{person.name}}</p>-->
+
+<!--<p></p>-->
+
+<!--<element-link></element-link>-->
+
+<!--<data-binding></data-binding>-->
+
+<!--<class-example></class-example>-->
+
+<!--<attribute-example></attribute-example>-->
+
+<!--<style-example></style-example>-->
+
+<!--<event-example></event-example>-->
+
+<!--<encapsulation-example></encapsulation-example>-->
+
+<!--<component-with-directive></component-with-directive>-->
+
+<!--<ngswitch-example></ngswitch-example>-->
+
+<!--<pipe-example></pipe-example>-->
+
+<!--<transclude-example>-->
+    <!--Transclude component-->
+
+    <!--<div #innerTranscludeExampleDiv>-->
+        <!--Inner Transclude component-->
+    <!--</div>-->
+
+    <!--<div ts-content>-->
+        <!--Transcluded content that was initially after div #innerTranscludeExampleDiv-->
+    <!--</div>-->
+<!--</transclude-example>-->
+
+<!--<parent-component></parent-component>-->
+
+<!--<rxjs-example></rxjs-example>-->
+
+
+<!--&lt;!&ndash;<h3>Dynamic component</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;<dynamic-component [template]="'<p>Outer html with dynamic component &laquo;class-example&raquo; inside <class-example></class-example></p>'"></dynamic-component>&ndash;&gt;-->
+
+<!--<el-native-element></el-native-element>-->
+
+<!--<host-binding></host-binding>-->
 
 

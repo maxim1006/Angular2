@@ -2,16 +2,19 @@
     {
         "name": "Max",
         "age": 29,
-        "sex": "male"
+        "sex": "male",
+        "id": 1
     },
     {
        "name": "Aliya",
        "age": 30,
-       "sex": "female"
+       "sex": "female",
+        "id": 2
     },
     {
         "name": "Anton",
         "age": 30,
-        "sex": "male"
+        "sex": "male",
+        "id": 3
     }
 ]

@@ -30,6 +30,39 @@ export class NgforExampleComponent {
         //console.log(this.tokens.domenToken);
     }
 
+    updateList() {
+        let arr = this.family.slice();
+        console.log(123);
+        console.log(arr === this.family);
+
+        this.family = [
+            {
+                "name": "Max",
+                "age": 29,
+                "sex": "male",
+                "id": 1
+            },
+            {
+                "name": "Max",
+                "age": 29,
+                "sex": "male",
+                "id": 2
+            },
+            {
+                "name": "Aliya",
+                "age": 30,
+                "sex": "female",
+                "id": 3
+            },
+            {
+                "name": "Anton",
+                "age": 30,
+                "sex": "male",
+                "id": 4
+            }
+        ];
+    }
+
     addItem() {
         let arr = [];
         arr = arr.concat(this.family);
@@ -41,8 +74,8 @@ export class NgforExampleComponent {
     }
 
     trackByFn(index, item) {
-        // console.log(index, " trackBy");
-        return index; // or item.id
+        console.log(item.id || index, " trackBy");
+        return item.id || index; // or item.id
     }
 
 }
