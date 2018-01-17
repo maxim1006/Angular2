@@ -9,6 +9,9 @@
  Inputs, Outputs, View or Content Child(ren), Hostbindings, and any field you use from the template or annotate for Angular should be public
 * */
 
+// получить сервис через инжектор
+// this.authService = this.injector.get(AuthService); // get it here within intercept
+
 import './ng-polyfills';
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {AppModule} from "./app.module";
