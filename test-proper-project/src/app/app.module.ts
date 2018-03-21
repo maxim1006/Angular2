@@ -1,4 +1,4 @@
-import {BrowserModule, HammerGestureConfig} from "@angular/platform-browser";
+import {BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG} from "@angular/platform-browser";
 import {APP_INITIALIZER, ApplicationRef, NgModule, NgZone} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
@@ -60,6 +60,10 @@ require("style-loader!../assets/base.less");
         PageLoaderService,
         {provide: domenToken, useValue: domenToken},
         {provide: "NamedService", useClass: AppService, multi: true},
+        {
+            provide: HAMMER_GESTURE_CONFIG,
+            useClass: MyHammerConfig
+        },
 
         /*Эта часть нужна, чтобы загрузить какие-то данные перед всей аппликухой*/
         RouteService,
