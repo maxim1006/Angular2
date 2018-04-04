@@ -19,6 +19,7 @@ import {PageLoaderService} from "./common/services/page-loader.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppService} from "./modules/app.service";
 import {MForRootModule} from "./modules/m-for-root/m-for-root.module";
+import {HttpClientModule} from "@angular/common/http";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -46,6 +47,7 @@ require("style-loader!../assets/base.less");
         FormsModule, //подключает ngModel модуль
         BrowserAnimationsModule, //модуль для анимаций
         HttpModule,
+        HttpClientModule,
         MHomeModule,
         MFormsModule,
         MHttpModule,

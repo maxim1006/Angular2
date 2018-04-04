@@ -1,5 +1,5 @@
-import {OpaqueToken} from "@angular/core";
+import {InjectionToken} from "@angular/core";
 
-const opaqueToken = new OpaqueToken('domen');
+const opaqueToken = new InjectionToken('domen');
 
 export const domenToken = "./mocks/";

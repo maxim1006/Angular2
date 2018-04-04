@@ -7,6 +7,8 @@ import {Observer} from "rxjs/Observer";
 @Injectable()
 export class MWebsocketService {
 
+    private webSocket: any;
+
     constructor() {
     }
 
