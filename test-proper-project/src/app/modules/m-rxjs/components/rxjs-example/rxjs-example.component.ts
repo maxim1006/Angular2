@@ -146,7 +146,7 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
             this._http.get(`${domenToken}family0.json`),
             this._http.get(`${domenToken}family1.json`),
             this._http.get(`${domenToken}family2.json`)
-        ]).subscribe(all => console.log(all));
+        ]).subscribe(all => console.log(all)); //(3) [Array(3), Array(3), Array(3)] - результат сразу 3 запроса в 1 ом
 
 
         // https://www.youtube.com/watch?v=QfvwQEJVOig&feature=youtu.be&t=1h12s
