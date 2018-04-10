@@ -166,3 +166,17 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
         clearInterval(this.interval);
     }
 }
+
+
+//Создать кастомный оператор
+// type Operator<I, O> = (in: Observable<I>) => Observable<O>;
+//
+// function countChars(): Operator<string, number> {
+//     return (obs: Observable<string>) => {
+//         return obs.pipe(map(str => str.length));
+//     }
+// }
+//
+// const strings$ = Observable.of(["1", "2"]);
+//
+// const charCount$ = strings$.pipe(countChars());
