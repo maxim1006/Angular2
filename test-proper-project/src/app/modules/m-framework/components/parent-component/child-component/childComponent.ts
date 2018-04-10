@@ -20,6 +20,9 @@ export class ChildComponent implements OnInit, OnDestroy {
     @Input()
     public inputValue:string;
 
+    @Input()
+    public functionInput: Function;
+
     @Output()
     onClickOutput: EventEmitter<string> = new EventEmitter();
     private subscription: Subscription;
@@ -31,6 +34,8 @@ export class ChildComponent implements OnInit, OnDestroy {
             (value) => {
                 console.log(value);
             });
+
+        this.functionInput("functionInput text");
     }
 
     ngOnDestroy() {

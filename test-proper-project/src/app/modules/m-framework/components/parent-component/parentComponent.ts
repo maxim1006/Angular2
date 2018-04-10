@@ -51,4 +51,8 @@ export class ParentComponent implements OnInit {
         this.childComponent.stop();
     }
 
+    public functionForChild(message: string): void {
+        console.log(message);
+    }
+
 }
