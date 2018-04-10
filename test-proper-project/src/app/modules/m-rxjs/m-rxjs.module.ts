@@ -8,6 +8,7 @@ import {RxJsComponent} from "./components/rx-js/rx-js.component";
 import {RouterModule, Routes} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MRxjsAsyncPipeComponent} from "./components/async-pipe/m-rxjs-async-pipe.component";
+import {RxjsOnDestroyComponent} from "./components/rxjs-example/rxjs-ondestroy.component";
 // import {NgrxDispatchComponent} from "./components/ngrx-dispatch/ngrx-dispatch.component";
 // import {NgrxSubscribeComponent} from "./components/ngrx-subscribe/ngrx-subscribe.component";
 
@@ -42,7 +43,8 @@ const routes: Routes = [
         MRxjsComponent,
         RxjsExampleComponent,
         RxJsComponent,
-        MRxjsAsyncPipeComponent
+        MRxjsAsyncPipeComponent,
+        RxjsOnDestroyComponent
         // NgrxDispatchComponent,
         // NgrxSubscribeComponent
     ],

@@ -13,10 +13,17 @@ import {forkJoin} from "rxjs/observable/forkJoin";
     template: `
         <h2>Rxjs Example</h2>
         {{number}}
+        
+        <p *ngIf="_rxjsOnDestroyVisible">
+            <rxjs-ondestroy></rxjs-ondestroy>  <button (click)="_rxjsOnDestroyVisible = false">Remove component</button>
+        </p>
+        
     `
 })
 
 export class RxjsExampleComponent implements OnInit, OnDestroy {
+    public _rxjsOnDestroyVisible: boolean = true;
+
     interval: number;
     observerSubscription: Subscription;
     number:number = 1;
@@ -153,7 +160,9 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.observerSubscription.unsubscribe();
+        if (this.observerSubscription) {
+            this.observerSubscription.unsubscribe();
+        }
         clearInterval(this.interval);
     }
 }
