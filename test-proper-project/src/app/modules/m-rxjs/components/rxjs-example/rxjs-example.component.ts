@@ -81,6 +81,18 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
 //         });
 
 
+        //пример c finally
+        // this.http.get(url, {withCredentials: true, responseType: "text"})
+        //     .finally(() => {
+        //
+        //     })
+        //     .subscribe(
+        //         () => {},
+        //         (error) => Observable.throw(error),
+        //         () => {}
+        //     );
+
+
 
         const source = of(
             this._http.get(`${domenToken}family0.json`),
