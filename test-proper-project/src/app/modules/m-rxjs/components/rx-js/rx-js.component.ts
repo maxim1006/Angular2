@@ -3,6 +3,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {Subscriber} from "rxjs/Subscriber";
+import {Subject} from "rxjs/Subject";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observer} from "rxjs/Observer";
 
 @Component({
     selector: 'rx-js',
@@ -16,6 +19,7 @@ export class RxJsComponent implements OnInit {
     subscription: any;
     number: number = 1;
     private subscriber: Subscriber<number>;
+    private subject: Subject<any> = new Subject<any>();
     constructor() {}
 
     ngOnInit() {
@@ -40,6 +44,65 @@ export class RxJsComponent implements OnInit {
         //если не будет хоть 1 сабскайбера, то this.subscriber.next(number) не сработает, | async - это тоже что и subscribe, только автоматом через view
 
 
+        let observableComplete$ = new Observable((observer: Observer<any>) => {
+            observer.next(1);
+
+            // observer.error("error");
+            // observer.complete();
+
+            return () => {
+                console.log("observableComplete return");
+            };
+        })
+            .catch((e) => Observable.throw("observableComplete$ error ", e))
+            .finally(() => console.log("observableComplete$ finally"));
+
+        let observableCompleteSubscription = observableComplete$.subscribe({
+            next(data) {
+                console.log("observableComplete data ", data);
+            },
+            error(e) {
+                console.log("observableComplete error ", e);
+            },
+            complete() {
+                console.log("observableComplete complete");
+            }
+        });
+
+        setTimeout(() => {
+            observableCompleteSubscription.unsubscribe();
+        }, 2000);
+
+
+
+        /********************Subject**********************/
+        // this.subject.subscribe({
+        //     next(data) {console.log("Subject data ", data);},
+        //     error(e) {console.log("Subject error ", e);},
+        //     complete() {console.log("Subject complete ");},
+        // });
+
+        // this.subject.next("some data");
+        // this.subject.error("some error");
+
+        // this.subject.complete();
+        // this.subject.next("some data"); //не будет вызван
+
+        // let subject = new BehaviorSubject(0); // будет вызван 1ый раз без next с инит значением 0
+        //
+        // subject.subscribe({
+        //     next: (v) => console.log('BehaviorSubject A: ' + v)
+        // });
+
+        // subject.next(1);
+        // subject.next(2);
+        //
+        // subject.subscribe({
+        //     next: (v) => console.log('BehaviorSubject B: ' + v)
+        // });
+        // subject.next(3);
+
+        /******************** /Subject **********************/
     }
 
     ngAfterViewInit() {
