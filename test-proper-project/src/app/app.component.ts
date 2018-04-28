@@ -71,6 +71,8 @@ export class AppComponent implements OnInit {
         return outlet.activatedRouteData.state;
     }
 
+    prop: boolean = false;
+
 
 }
 

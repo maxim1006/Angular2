@@ -18,3 +18,10 @@
     <router-outlet #o="outlet" (activate)="activateEvent($event)" (deactivate)="deactivateEvent($event)"></router-outlet>
 </main>
 
+<button (click)="prop = true">start
+</button>
+<ng-container *ngIf="prop">
+    <some-component></some-component>
+</ng-container>
+
+
