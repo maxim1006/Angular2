@@ -1,6 +1,6 @@
 <!--<ng-for-example></ng-for-example>-->
 
-<parent-component></parent-component>
+<!--<parent-component></parent-component>-->
 
 <!--<renderer-example></renderer-example>-->
 
@@ -61,17 +61,24 @@
 
 <!--<pipe-example></pipe-example>-->
 
-<!--<transclude-example>-->
-    <!--Transclude component-->
+<transclude-example>
+    Transclude content
 
-    <!--<div #innerTranscludeExampleDiv>-->
-        <!--Inner Transclude component-->
-    <!--</div>-->
+    <!--Если оставить просто в <ng-container> то результат попадет после дива в котором он должен отобразиться, это и лечит ngProjectAs-->
+    <ng-container ngProjectAs="class-example">
+        <class-example></class-example>
+        <class-example></class-example>
+        <class-example></class-example>
+    </ng-container>
 
-    <!--<div ts-content>-->
-        <!--Transcluded content that was initially after div #innerTranscludeExampleDiv-->
-    <!--</div>-->
-<!--</transclude-example>-->
+    <div #innerTranscludeExampleDiv>
+        Inner Transclude component
+    </div>
+
+    <div ts-content>
+        Transcluded content that was initially after div #innerTranscludeExampleDiv
+    </div>
+</transclude-example>
 
 <!--<parent-component></parent-component>-->
 
