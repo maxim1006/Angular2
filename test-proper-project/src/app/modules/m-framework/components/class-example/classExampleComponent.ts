@@ -7,6 +7,7 @@ import {Component} from '@angular/core';
 
 export class ClassExampleComponent {
     public constructor() {
+        console.log("class-example component constructor init");
     }
 
     getClasses() {

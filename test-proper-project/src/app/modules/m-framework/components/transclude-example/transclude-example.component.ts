@@ -1,6 +1,6 @@
 //еще больше примеров https://scotch.io/tutorials/angular-2-transclusion-using-ng-content
 
-import { Component } from "@angular/core";
+import {Component, Input, TemplateRef} from "@angular/core";
 
 @Component({
     selector: "transclude-example",
@@ -8,5 +8,9 @@ import { Component } from "@angular/core";
 })
 
 export class TranscludeExampleComponent {
+    @Input()
+    public template: TemplateRef<any>;
+
+    public _toggleNgContent: boolean = true;
 
 }

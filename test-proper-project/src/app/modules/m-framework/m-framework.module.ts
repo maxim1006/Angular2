@@ -33,6 +33,7 @@ import {MDecoratorsComponent} from "./components/m-decorators/m-decorators.compo
 import {RouterModule, Routes} from "@angular/router";
 import {OutsideDynamicTemplateComponent} from "./components/outside-dynamic-template/outside-dynamic-template";
 import {RendererExampleComponent} from "./components/renderer-example/renderer-example.component";
+import {TranscludeDirective} from "./directives/transclude.directive";
 
 const routes: Routes = [
     {path: '', component: MFrameworkComponent},
@@ -71,7 +72,8 @@ const routes: Routes = [
         NgTemplateExampleComponent,
         MDecoratorsComponent,
         OutsideDynamicTemplateComponent,
-        RendererExampleComponent
+        RendererExampleComponent,
+        TranscludeDirective
     ],
     exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
     providers: []

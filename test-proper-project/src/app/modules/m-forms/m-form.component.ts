@@ -1,8 +1,8 @@
 //Форм билдер не сохраняет в форме дизейблд значения
 //Встроенные валидаторы https://angular.io/api/forms/Validators
 
-import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators, AbstractControl, FormControl} from "@angular/forms";
+import {Component, OnInit, ViewChild} from "@angular/core";
+import {FormBuilder, FormGroup, Validators, AbstractControl, FormControl, NgForm} from "@angular/forms";
 import {nameValidator} from "./validators/validators";
 import {ValidationConstants} from "../shared/constants/validation.constant";
 
@@ -12,6 +12,11 @@ import {ValidationConstants} from "../shared/constants/validation.constant";
 })
 
 export class MFormComponent implements OnInit {
+
+    //так могу получить любую форму
+    @ViewChild("myNgForm")
+    myNgForm: NgForm;
+
     public myForm: FormGroup;
     public formModel: any = {};
     public service: string;

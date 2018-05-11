@@ -61,7 +61,13 @@
 
 <!--<pipe-example></pipe-example>-->
 
-<transclude-example>
+
+
+<!--#transcludeExample здесь для использования со случаем
+      <class-example *transclude="transcludeExample"></class-example>
+-->
+<!--<transclude-example #transcludeExample [template]="transcludeTemplate">-->
+<transclude-example #transcludeExample>
     Transclude content
 
     <!--Если оставить просто в <ng-container> то результат попадет после дива в котором он должен отобразиться, это и лечит ngProjectAs-->
@@ -79,6 +85,25 @@
         Transcluded content that was initially after div #innerTranscludeExampleDiv
     </div>
 </transclude-example>
+
+
+<!--этот код такой же  -->
+<ng-template #transcludeTemplate transclude>
+    <class-example></class-example>
+    <class-example></class-example>
+    <class-example></class-example>
+</ng-template>
+<!--что и этот, только проблема в том, что спроектируется только 1ый <class-example *transclude="transcludeExample" или див>-->
+<div class="transcluded-outside" *transclude="transcludeExample"
+>
+    outside transcluded div content
+    {{item}}
+</div>
+<!--<class-example *transclude="transcludeExample"></class-example>-->
+<!--<class-example *transclude="transcludeExample"></class-example>-->
+
+
+
 
 <!--<parent-component></parent-component>-->
 

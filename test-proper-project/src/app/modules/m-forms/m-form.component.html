@@ -1,7 +1,11 @@
 <h3>m-form</h3>
 
+myNgForm.valid {{myNgForm.valid}}<br />
+myNgForm.dirty {{myNgForm.dirty}}
+
 <form class="m-form"
         novalidate
+        #myNgForm="ngForm"
         [formGroup]="myForm"
         (ngSubmit)="onSubmit(myForm?.value)"
 >

@@ -4,14 +4,34 @@
 
 
 <div class="class">
-    <ng-content select="class-example"></ng-content>
+    <!--*ngIf=true - не будет убивать и заново создавать элементы, которые сюда передали, она работает как appendChild в этом случае, те просто забирает контент и вставляет сюда-->
+    <!--ng-content - работает как parent.appendChild(el), те ничего нового не создает, а просто аппендит код в нужное место из места где этот код отрендерился-->
+    <ng-content
+            *ngIf="_toggleNgContent && !template; else template"
+            select="class-example"
+    ></ng-content>
 </div>
 
-<ng-content></ng-content>
+<!--Могу задать через ; else template, а могу так -->
+<div class="templateOutlet"
+     [ngTemplateOutlet]="template"
+></div>
+<!--или-->
+<ng-container
+     [ngTemplateOutlet]="template"
+></ng-container>
+<ng-template
+        [ngTemplateOutlet]="template"
+        [ngTemplateOutletContext]="{
+            item: 1
+        }"
+></ng-template>
+<!--или-->
+<!--<ng-container-->
+        <!--*ngFor="let item of [1,2]; template: template"-->
+<!--&gt;</ng-container>-->
 
-
-<!--*ngIf=true - не будет убивать и заново создавать элементы, которые сюда передали, она работает как appendChild в этом случае, те просто забирает контент и вставляет сюда-->
-<ng-content *ngIf="true"></ng-content>
+<span (click)="_toggleNgContent = !_toggleNgContent">Toggle ng-content</span>
 
 
 
