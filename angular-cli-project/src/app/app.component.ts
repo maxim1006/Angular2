@@ -8,7 +8,7 @@ import {Component, HostBinding} from '@angular/core';
 export class AppComponent {
 
     @HostBinding("class")
-    private appComponentClass = "app-component";
+    private hostClass = "app-component";
 
     constructor() {
     }

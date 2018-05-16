@@ -29,8 +29,7 @@
                         "extractCss": true,
                         "statsJson": true,
                         "styles": [
-                            "src/assets/themes/base/styles/base.less",
-                            "src/assets/themes/base/styles/components/app.component.less"
+                            "src/assets/themes/base/styles/base.less"
                         ],
                         "scripts": []
                     },
