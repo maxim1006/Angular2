@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, HostBinding} from '@angular/core';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-component',
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'app';
+
+    @HostBinding("class")
+    private appComponentClass = "app-component";
+
+    constructor() {
+    }
 }
