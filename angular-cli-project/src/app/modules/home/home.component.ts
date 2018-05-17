@@ -1,12 +1,13 @@
 import {Component, HostBinding} from "@angular/core";
 
 @Component({
-    selector: 'home-component',
-    templateUrl: 'home.component.html'
+    selector: "a-home",
+    templateUrl: "home.component.html",
+    styleUrls: ["home.component.less"]
 })
 export class HomeComponent {
 
     @HostBinding("class")
-    private hostClass = "home-component";
+    private hostClass = "a-home";
 
 }

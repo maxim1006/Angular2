@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-    selector: 'lazy-component',
+    selector: 'a-lazy',
     templateUrl: "./lazy.component.html"
 })
 export class LazyComponent {

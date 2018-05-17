@@ -26,10 +26,10 @@
                             "src/favicon.ico",
                             "src/assets"
                         ],
-                        "extractCss": true,
                         "statsJson": true,
                         "styles": [
-                            "src/assets/themes/base/styles/base.less"
+                            "src/assets/themes/base/styles/common/normalize.less",
+                            "src/assets/themes/base/styles/components/nav.less"
                         ],
                         "scripts": []
                     },
@@ -40,8 +40,7 @@
                                     "src": "src/environments/environment.ts",
                                     "replaceWith": "src/environments/environment.hmr.ts"
                                 }
-                            ],
-                            "watch": true
+                            ]
                         },
                         "production": {
                             "fileReplacements": [
@@ -55,6 +54,7 @@
                             "sourceMap": false,
                             "namedChunks": false,
                             "aot": true,
+                            "extractCss": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true
