@@ -2,7 +2,7 @@ import {Component, HostBinding} from "@angular/core";
 
 
 @Component({
-    selector: "app-component",
+    selector: "a-app",
     templateUrl: "app.component.html",
     styleUrls: ["app.component.less"]
 })
