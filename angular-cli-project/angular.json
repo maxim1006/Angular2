@@ -93,9 +93,6 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
-                        ],
-                        "styles": [
-                            "./src/assets/themes/base/styles/base.less"
                         ]
                     }
                 },
