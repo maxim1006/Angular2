@@ -6,6 +6,8 @@ import {Subscriber} from "rxjs/Subscriber";
 import {Subject} from "rxjs/Subject";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observer} from "rxjs/Observer";
+import {domenToken} from "../../../shared/tokens/tokens";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'rx-js',
@@ -20,7 +22,8 @@ export class RxJsComponent implements OnInit {
     number: number = 1;
     private subscriber: Subscriber<number>;
     private subject: Subject<any> = new Subject<any>();
-    constructor() {}
+
+    constructor(private _http: HttpClient) {}
 
     ngOnInit() {
 
@@ -56,6 +59,22 @@ export class RxJsComponent implements OnInit {
         })
             .catch((e) => Observable.throw("observableComplete$ error ", e))
             .finally(() => console.log("observableComplete$ finally"));
+
+
+
+        let observableComplete1$ = this._http.get(`${domenToken}mocks.json`);
+
+        observableComplete1$.subscribe({
+            next() {
+                console.log("observableComplete1$ next");
+            },
+            error() {
+                console.log("observableComplete1$ error");
+            },
+            complete() {
+                console.log("observableComplete1$ complete");
+            }
+        });
 
         let observableCompleteSubscription = observableComplete$.subscribe({
             next(data) {
