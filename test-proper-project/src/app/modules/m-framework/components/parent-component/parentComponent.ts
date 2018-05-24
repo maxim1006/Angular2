@@ -45,7 +45,7 @@ export class ParentComponent implements OnInit {
     @ViewChild('child', {read: ElementRef})
     private childComponentElementRef: ChildComponent;
 
-    @ViewChildren(".button")
+    @ViewChildren("button")
     private buttonsList: QueryList<HTMLElement>;
 
     @ViewChildren(ChildComponent)
@@ -55,9 +55,7 @@ export class ParentComponent implements OnInit {
         console.log("this.childComponent ", this.childComponent);
         console.log("this.childComponentElementRef ", this.childComponentElementRef);
         console.log("childComponentList ", this.childComponentList);
-        this.buttonsList.changes.subscribe((data) => {
-            console.log("data ", data); //undefined
-        })
+        console.log("buttonsList ", this.buttonsList.toArray());
     }
 
     public childStart() {
