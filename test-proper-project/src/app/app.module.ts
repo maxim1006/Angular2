@@ -20,8 +20,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppService} from "./modules/app.service";
 import {MForRootModule} from "./modules/m-for-root/m-for-root.module";
 import {HttpClientModule} from "@angular/common/http";
-import {SomeService} from "./some.service";
-import {SomeComponent} from "./some.component";
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -42,8 +40,7 @@ require("style-loader!../assets/base.less");
 @NgModule({
     declarations: [
         /*Components*/
-        AppComponent,
-        SomeComponent
+        AppComponent
     ],
     imports: [
         BrowserModule, //подключает коммон модуль, директивы, пайпы
@@ -63,7 +60,6 @@ require("style-loader!../assets/base.less");
     providers: [
         PageUtilsService,
         PageLoaderService,
-        SomeService,
         {provide: domenToken, useValue: domenToken},
         {provide: "NamedService", useClass: AppService, multi: true},
         {
@@ -92,7 +88,7 @@ export class AppModule {
     // ngDoBootstrap() {} //чтобы забутстрапить без app компонента
     constructor(public appRef: ApplicationRef, private zone: NgZone) {
         zone.onMicrotaskEmpty.subscribe(() => {
-            console.log(console.log("zone onMicrotaskEmpty change"));
+            console.log("zone onMicrotaskEmpty change");
         })
         //window['zoneImpl'] = _zone; //for zone().run(()=>{}) для апдейта извне.
     }
