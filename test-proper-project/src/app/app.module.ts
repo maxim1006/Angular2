@@ -90,7 +90,10 @@ require("style-loader!../assets/base.less");
 
 export class AppModule {
     // ngDoBootstrap() {} //чтобы забутстрапить без app компонента
-    constructor(public appRef: ApplicationRef) {
+    constructor(public appRef: ApplicationRef, private zone: NgZone) {
+        zone.onMicrotaskEmpty.subscribe(() => {
+            console.log(console.log("zone onMicrotaskEmpty change"));
+        })
         //window['zoneImpl'] = _zone; //for zone().run(()=>{}) для апдейта извне.
     }
     hmrOnInit(store) {
