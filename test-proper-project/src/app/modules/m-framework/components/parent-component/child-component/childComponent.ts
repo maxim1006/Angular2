@@ -35,7 +35,9 @@ export class ChildComponent implements OnInit, OnDestroy {
                 console.log(value);
             });
 
-        this.functionInput("functionInput text");
+        if (this.functionInput) {
+            this.functionInput("functionInput text");
+        }
     }
 
     ngOnDestroy() {

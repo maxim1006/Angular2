@@ -1,4 +1,4 @@
-import {Component, ViewChild, OnInit, ElementRef} from "@angular/core";
+import {Component, ViewChild, OnInit, ElementRef, ViewChildren, QueryList} from "@angular/core";
 import {ChildComponent} from "./child-component/childComponent";
 import {ParentComponentService} from "./parent-component.service";
 
@@ -41,6 +41,24 @@ export class ParentComponent implements OnInit {
     //@ViewChild('child', {read: ElementRef}) //если кастомный элемент, то пишу так, чтобы получить его дом элемент, даже п
     @ViewChild('child')
     private childComponent: ChildComponent;
+
+    @ViewChild('child', {read: ElementRef})
+    private childComponentElementRef: ChildComponent;
+
+    @ViewChildren(".button")
+    private buttonsList: QueryList<HTMLElement>;
+
+    @ViewChildren(ChildComponent)
+    private childComponentList: QueryList<ChildComponent>;
+
+    ngAfterViewInit() {
+        console.log("this.childComponent ", this.childComponent);
+        console.log("this.childComponentElementRef ", this.childComponentElementRef);
+        console.log("childComponentList ", this.childComponentList);
+        this.buttonsList.changes.subscribe((data) => {
+            console.log("data ", data); //undefined
+        })
+    }
 
     public childStart() {
         this.childComponent.getProp();
