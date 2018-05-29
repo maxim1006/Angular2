@@ -27,10 +27,10 @@
                             "src/assets"
                         ],
                         "statsJson": true,
-                        "styles": [
-                            "src/assets/themes/base/styles/common/normalize.less",
-                            "src/assets/themes/base/styles/components/nav.less"
-                        ],
+                        "styles": [{
+                            "input": "src/assets/themes/base/styles/base.less",
+                            "bundleName": "base"
+                        }],
                         "scripts": []
                     },
                     "configurations": {

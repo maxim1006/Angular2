@@ -1,0 +1,43 @@
+import {Component, HostBinding, OnInit} from '@angular/core';
+import {MDynamicComponentConstructor} from "./components/m-dynamic/m-dynamic.component";
+import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
+
+@Component({
+    selector: 'm-components',
+    templateUrl: './m-components.component.html',
+})
+export class MComponentsComponent implements OnInit {
+    dynamicModel: MDynamicComponentConstructor;
+
+    @HostBinding('style.padding')  margin = '20px';
+    @HostBinding('style.display')  display = 'block';
+
+    public autocomplete: any;
+    public currentAutocompleteItem: any;
+
+    public _checked:boolean = true;
+
+    ngOnInit() {
+
+        setTimeout(() => {
+            this.autocomplete = [{name: 'Max'}, {name: 'Aliya'}, {name: 'Anton'}];
+            console.log('autocomplete model loaded');
+        }, 2000);
+
+        // setInterval(() => {
+        //     console.log(this.currentAutocompleteItem);
+        // }, 1000)
+
+        this.dynamicModel = new MDynamicComponentConstructor(MCheckboxComponent, {
+            text: 'dynamic checkbox',
+            checked: true
+        });
+
+    }
+
+    treeClick(e: any) {
+        console.log('tree click ', e);
+    }
+
+
+}
