@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {PageLoaderService} from "./common/services/page-loader.service";
 import {trigger, animate, style, group, animateChild, query, stagger, transition} from "@angular/animations";
 
@@ -52,6 +52,11 @@ export const routerTransition1: any = trigger('routerTransition', [
     animations: [ routerTransition1 ]
 })
 export class AppComponent implements OnInit {
+
+    @HostBinding("class")
+    public hostClass: String = "app-component";
+
+
     constructor(public pageLoaderService: PageLoaderService) {}
 
     ngOnInit() {
