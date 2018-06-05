@@ -14,11 +14,11 @@ import {RouteService} from "./route.service";
 import {MFormsModule} from "./modules/m-forms/m-forms.module";
 import {MHttpModule} from "./modules/m-http/m-http.module";
 import {AppRoutingModule} from "./app-routing.module";
-import {PageLoaderService} from "./common/services/page-loader.service";
 import {PageUtilsService} from "./common/services/page-utils.service";
 import {domenToken} from "./modules/shared/tokens/tokens";
 import {AppService} from "./modules/app.service";
 import {HammerPluginPatch} from "./common/patches/hammer-plugin.patch";
+import {PageLoaderService} from "./common/services/page-loader.service";
 
 
 

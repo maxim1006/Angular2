@@ -4,7 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "gulp svg && ng serve --open",
-        "hmr": "gulp svg && ng serve --configuration hmr --open",
+        "hmr": "gulp svg && ng serve --configuration hmr --open --port 4201",
         "build": "gulp svg && ng build --prod",
         "svg": "gulp svg",
         "test": "ng test",
@@ -29,6 +29,7 @@
         "@angular/router": "^6.0.0",
         "@ngrx/store": "^6.0.1",
         "core-js": "^2.5.4",
+        "hammerjs": "^2.0.8",
         "highcharts": "^6.1.0",
         "less-loader": "^3.0.0",
         "rxjs": "^6.0.0",

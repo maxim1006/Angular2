@@ -2,6 +2,8 @@ import {Inject} from "@angular/core";
 import {HAMMER_GESTURE_CONFIG, HammerGestureConfig, ɵHammerGesturesPlugin} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
 
+import "hammerjs/hammer";
+
 /**
  * Hot fix of built-in HammerGesturesPlugin to avoid memory leaks,
  * Added proper events queue and event.stopPropagation() support
@@ -12,7 +14,7 @@ import {DOCUMENT} from "@angular/common";
 export class HammerPluginPatch extends ɵHammerGesturesPlugin {
     constructor(@Inject(DOCUMENT) doc: any,
                 @Inject(HAMMER_GESTURE_CONFIG) private config: HammerGestureConfig) {
-        super(doc, config);
+        super(doc, config, {log(message: string){}, warn(message: string){}});
     }
 
     addEventListener(element: HTMLElement, eventName: string, handler: Function): Function {
