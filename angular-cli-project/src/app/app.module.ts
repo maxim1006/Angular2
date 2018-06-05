@@ -1,4 +1,4 @@
-import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig, EVENT_MANAGER_PLUGINS} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
@@ -18,6 +18,7 @@ import {PageLoaderService} from "./common/services/page-loader.service";
 import {PageUtilsService} from "./common/services/page-utils.service";
 import {domenToken} from "./modules/shared/tokens/tokens";
 import {AppService} from "./modules/app.service";
+import {HammerPluginPatch} from "./common/patches/hammer-plugin.patch";
 
 
 
@@ -70,6 +71,13 @@ export class MyHammerConfig extends HammerGestureConfig  {
             multi: true
         },
         ///////////////
+
+        //hammer fix
+        {
+            provide: EVENT_MANAGER_PLUGINS,
+            useClass: HammerPluginPatch,
+            multi: true
+        },
 
         //{provide: APP_BASE_HREF, useValue: '/'} //можно исxjsExampleComponent.tsпользовать вместо <base href="/">
     ],
