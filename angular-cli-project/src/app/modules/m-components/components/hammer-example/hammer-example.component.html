@@ -9,3 +9,15 @@
     <p>Swiped {{isSwiped}}</p>
 </div>
 
+<div class="draggable-area"
+     style="width: 400px;height: 400px;background-color: darkgreen; overflow: hidden;"
+     #draggableArea
+>
+    <div class="draggable-area__content"
+         style="width: 200px;height: 200px;background-color: #4B8AB8;cursor: pointer"
+         #draggableContent
+    >
+        <ng-content></ng-content>
+    </div>
+</div>
+
