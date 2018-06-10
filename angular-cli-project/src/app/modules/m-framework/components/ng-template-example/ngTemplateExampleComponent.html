@@ -6,10 +6,13 @@
 
 <ng-container
         [ngTemplateOutlet]="example"
-        [ngTemplateOutletContext ]="{from: 'ng-container'}"
+        [ngTemplateOutletContext]="{from: 'ng-container'}"
 ></ng-container>
 
 <ng-template
         [ngTemplateOutlet]="example"
-        [ngTemplateOutletContext ]="{from: 'ng-template'}"
+        [ngTemplateOutletContext]="{from: 'ng-template'}"
+></ng-template>
+
+<ng-template *ngTemplateOutlet="example; context: {from: 'ng-template like structual directive'}"
 ></ng-template>

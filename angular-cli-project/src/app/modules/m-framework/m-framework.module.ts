@@ -34,6 +34,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {OutsideDynamicTemplateComponent} from "./components/outside-dynamic-template/outside-dynamic-template";
 import {RendererExampleComponent} from "./components/renderer-example/renderer-example.component";
 import {TranscludeDirective} from "./directives/transclude.directive";
+import {MColoryDirective} from "./directives/colory.directive";
+import {MDirectiveExampleComponent} from "./components/directive-example/directive-example.component";
 
 const routes: Routes = [
     {path: '', component: MFrameworkComponent},
@@ -42,6 +44,8 @@ const routes: Routes = [
 @NgModule({
     imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)],
     declarations: [
+        MColoryDirective,
+        MDirectiveExampleComponent,
         MFrameworkComponent,
         ElementLinkComponent,
         DataBindingComponent,

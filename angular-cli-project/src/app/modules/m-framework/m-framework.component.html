@@ -1,6 +1,8 @@
+<m-directive-example></m-directive-example>
+
 <!--<ng-for-example></ng-for-example>-->
 
-<parent-component></parent-component>
+<!--<parent-component></parent-component>-->
 
 <!--<renderer-example></renderer-example>-->
 
@@ -67,38 +69,38 @@
       <class-example *transclude="transcludeExample"></class-example>
 -->
 <!--<transclude-example #transcludeExample [template]="transcludeTemplate">-->
-<transclude-example #transcludeExample>
-    Transclude content
+<!--<transclude-example #transcludeExample>-->
+    <!--Transclude content-->
 
-    <!--Если оставить просто в <ng-container> то результат попадет после дива в котором он должен отобразиться, это и лечит ngProjectAs-->
-    <ng-container ngProjectAs="class-example">
-        <class-example></class-example>
-        <class-example></class-example>
-        <class-example></class-example>
-    </ng-container>
+    <!--&lt;!&ndash;Если оставить просто в <ng-container> то результат попадет после дива в котором он должен отобразиться, это и лечит ngProjectAs&ndash;&gt;-->
+    <!--<ng-container ngProjectAs="class-example">-->
+        <!--<class-example></class-example>-->
+        <!--<class-example></class-example>-->
+        <!--<class-example></class-example>-->
+    <!--</ng-container>-->
 
-    <div #innerTranscludeExampleDiv>
-        Inner Transclude component
-    </div>
+    <!--<div #innerTranscludeExampleDiv>-->
+        <!--Inner Transclude component-->
+    <!--</div>-->
 
-    <div ts-content>
-        Transcluded content that was initially after div #innerTranscludeExampleDiv
-    </div>
-</transclude-example>
+    <!--<div ts-content>-->
+        <!--Transcluded content that was initially after div #innerTranscludeExampleDiv-->
+    <!--</div>-->
+<!--</transclude-example>-->
 
 
 <!--этот код такой же  -->
-<ng-template #transcludeTemplate transclude>
-    <class-example></class-example>
-    <class-example></class-example>
-    <class-example></class-example>
-</ng-template>
+<!--<ng-template #transcludeTemplate transclude>-->
+    <!--<class-example></class-example>-->
+    <!--<class-example></class-example>-->
+    <!--<class-example></class-example>-->
+<!--</ng-template>-->
 <!--что и этот, только проблема в том, что спроектируется только 1ый <class-example *transclude="transcludeExample" или див>-->
-<div class="transcluded-outside" *transclude="transcludeExample"
->
-    outside transcluded div content
-    {{item}}
-</div>
+<!--<div class="transcluded-outside" *transclude="transcludeExample"-->
+<!--&gt;-->
+    <!--outside transcluded div content-->
+    <!--{{item}}-->
+<!--</div>-->
 <!--<class-example *transclude="transcludeExample"></class-example>-->
 <!--<class-example *transclude="transcludeExample"></class-example>-->
 
