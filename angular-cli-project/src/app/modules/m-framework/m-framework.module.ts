@@ -36,6 +36,8 @@ import {RendererExampleComponent} from "./components/renderer-example/renderer-e
 import {TranscludeDirective} from "./directives/transclude.directive";
 import {MColoryDirective} from "./directives/colory.directive";
 import {MDirectiveExampleComponent} from "./components/directive-example/directive-example.component";
+import {CustomStructuralDirective} from "./directives/custom-structural.directive";
+import {CustomStructuralDirectiveComponent} from "./components/custom-structure-directive/custom-structural-directive.component";
 
 const routes: Routes = [
     {path: '', component: MFrameworkComponent},
@@ -45,6 +47,8 @@ const routes: Routes = [
     imports: [SharedModule, HttpModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)],
     declarations: [
         MColoryDirective,
+        CustomStructuralDirective,
+        CustomStructuralDirectiveComponent,
         MDirectiveExampleComponent,
         MFrameworkComponent,
         ElementLinkComponent,
