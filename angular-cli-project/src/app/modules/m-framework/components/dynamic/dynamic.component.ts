@@ -1,104 +1,73 @@
-import {
-    Component,
-    ViewChild,
-    ViewContainerRef,
-    Input,
-    ComponentRef,
-    Compiler,
-    ComponentFactory,
-    NgModule
-} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
-
+import {Component, ComponentFactoryResolver, ComponentRef, ViewChild, ViewContainerRef} from "@angular/core";
+import {ClassExampleComponent} from "../class-example/classExampleComponent";
+import {MDirectiveExampleComponent} from "../directive-example/directive-example.component";
+import {DynamicHostDirective} from "./dynamic-host.directive";
 
 
 @Component({
     selector: 'dynamic-component',
-    template: `<ng-template #wrapper></ng-template>`
+    template: `
+    
+        <ng-template #tmpl let-options>
+            
+            Template createEmbeddedView with property: {{options?.prop}} 
+            
+        </ng-template>
+
+        <h3>Вывожу динамический компонент 3ий способ</h3>
+        <ng-container
+            *ngComponentOutlet="_dynamicComponentClass;"
+        ></ng-container>
+
+        <h3>Вывожу динамический компонент через <i>dynamicHost</i> директиву</h3>
+        <div dynamicHost></div>
+    
+    `
 })
 export class DynamicComponent {
-    public static templateFactoryCache: {[key: string]: ComponentFactory<any>} = {};
+    @ViewChild("tmpl")
+    public template: any;
 
-    @ViewChild("wrapper", {read: ViewContainerRef}) wrapper: ViewContainerRef;
-    private componentRef: ComponentRef<any>;
+    @ViewChild(DynamicHostDirective) host: DynamicHostDirective;
 
-    private isViewInitialized: boolean = false;
+    /** @internal */
+    public _dynamicComponentClass:any = MDirectiveExampleComponent;
 
-    @Input()
-    public template: string;
+    private _componentRef: ComponentRef<any>;
 
-    @Input()
-    public handlers: {[key: string]: (event: {}) => void};
+    constructor(
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private view: ViewContainerRef
+    ) {}
 
-    @Input()
-    public data: {};
+    public ngOnInit() {
+        // первый способ
+        this.view.createEmbeddedView(this.template, {$implicit: {prop: "createEmbeddedView prop"}});
 
-    constructor(private compiler: Compiler) {
-    }
+        // второй способ
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ClassExampleComponent);
 
-    ngAfterViewInit() {
-        let self = this;
-        self.isViewInitialized = true;
-        self.createComponent();
-    }
+        this._componentRef = this.view.createComponent(componentFactory);
 
-    private createComponent() {
-        let self = this;
-        if (self.isViewInitialized) {
-            if (self.componentRef) {
-                self.componentRef.destroy();
-            }
-            if (self.template) {
-                (self.compileToComponent(self.template)).then((factory: ComponentFactory<any>) => {
-                    self.componentRef = self.wrapper.createComponent(factory);
+        this.host.view.createComponent(componentFactory);
 
-                    self.componentRef.instance.handlers = self.handlers;
-                    self.componentRef.instance.data = self.data;
-                });
-            }
+        const data = {prop: "createComponent prop"};
+
+        if (data) {
+            Object.keys(data).forEach((key: string) => {
+                (this._componentRef.instance)[key] = data[key];
+            });
         }
+
+        setTimeout(() => {
+            this._dynamicComponentClass = ClassExampleComponent;
+        }, 3000);
+
     }
 
     ngOnDestroy() {
-        let self = this;
-        if (self.componentRef) {
-            self.componentRef.destroy();
-            self.componentRef = null;
-        }
-        self.isViewInitialized = false;
-    }
-
-    private compileToComponent(template: string): Promise<ComponentFactory<any>> {
-        let factory = DynamicComponent.templateFactoryCache[template];
-        if (factory) {
-            return Promise.resolve(factory);
-        } else {
-            @Component({
-                template: template,
-
-            })
-            class MDynamicComponent {
-                @Input()
-                public handlers: {[key: string]: (event: {}) => void};
-
-                @Input()
-                public data: {};
-            }
-
-            @NgModule({
-                imports: [BrowserModule],
-                declarations: [MDynamicComponent]
-            })
-            class DynamicModule {
-            }
-
-            return this.compiler.compileModuleAndAllComponentsAsync(DynamicModule).then(
-                module => {
-                    let factory = module.componentFactories.find(x => x.componentType === MDynamicComponent);
-                    DynamicComponent.templateFactoryCache[template] = factory;
-                    return factory;
-                }
-            );
+        if (this._componentRef) {
+            this._componentRef.destroy();
         }
     }
 }

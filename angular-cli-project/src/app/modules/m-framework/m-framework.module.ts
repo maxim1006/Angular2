@@ -38,6 +38,7 @@ import {MColoryDirective} from "./directives/colory.directive";
 import {MDirectiveExampleComponent} from "./components/directive-example/directive-example.component";
 import {CustomStructuralDirective} from "./directives/custom-structural.directive";
 import {CustomStructuralDirectiveComponent} from "./components/custom-structure-directive/custom-structural-directive.component";
+import {DynamicHostDirective} from "./components/dynamic/dynamic-host.directive";
 
 const routes: Routes = [
     {path: '', component: MFrameworkComponent},
@@ -81,10 +82,12 @@ const routes: Routes = [
         MDecoratorsComponent,
         OutsideDynamicTemplateComponent,
         RendererExampleComponent,
-        TranscludeDirective
+        TranscludeDirective,
+        DynamicHostDirective
     ],
     exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
-    providers: []
+    providers: [],
+    entryComponents: [ClassExampleComponent, MDirectiveExampleComponent]
 })
 export class MFrameworkModule {
 }

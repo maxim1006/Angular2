@@ -16,7 +16,7 @@ export class CustomStructuralDirective {
 }
 
 //
-/*
+/* 1) Эта директива как пример создания динамической компоненты через createEmbeddedView
 *
 *   <div *ngIf="value"><div>
 *
@@ -25,4 +25,8 @@ export class CustomStructuralDirective {
 *   <ng-template [ngIf]="value">
 *       <div></div>
 *   </ng-template>
+*
+*
+*
+*
 * */

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: "class-example",
@@ -6,6 +6,10 @@ import {Component} from '@angular/core';
 })
 
 export class ClassExampleComponent {
+
+    @Input()
+    public prop;
+
     public constructor() {
         console.log("class-example component constructor init");
     }
