@@ -31,6 +31,7 @@ export class DynamicComponent {
     @ViewChild(DynamicHostDirective) host: DynamicHostDirective;
 
     /** @internal */
+    // 3ий способ через ngComponentOutlet
     public _dynamicComponentClass:any = MDirectiveExampleComponent;
 
     private _componentRef: ComponentRef<any>;
@@ -49,8 +50,6 @@ export class DynamicComponent {
 
         this._componentRef = this.view.createComponent(componentFactory);
 
-        this.host.view.createComponent(componentFactory);
-
         const data = {prop: "createComponent prop"};
 
         if (data) {
@@ -59,9 +58,14 @@ export class DynamicComponent {
             });
         }
 
+        // 3ий способ через ngComponentOutlet
         setTimeout(() => {
             this._dynamicComponentClass = ClassExampleComponent;
         }, 3000);
+
+
+        // 4ый способ через директиву host
+        this.host.view.createComponent(componentFactory);
 
     }
 

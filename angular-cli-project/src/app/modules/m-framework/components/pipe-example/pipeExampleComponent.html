@@ -8,3 +8,5 @@
 <p *ngFor="let member of family | custom:filterString; let i = index">
     {{i}} {{member.name}}
 </p>
+
+{{"impure pipe" | impure}}

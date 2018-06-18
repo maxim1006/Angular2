@@ -9,6 +9,7 @@ import {CommonModule} from "@angular/common";
 import {EllipsisDirective} from "./directives/ellipsis/ellipsis.directive";
 import {SlideToggleDirective} from "./directives/slide-toggle/slide-toggle.directive";
 import {MLoaderComponent} from "./components/m-loader/m-loader.component";
+import {ImpurePipe} from "./pipes/impure.pipe";
 
 @NgModule({
     imports: [CommonModule],
@@ -27,6 +28,7 @@ import {MLoaderComponent} from "./components/m-loader/m-loader.component";
 
         /*Pipes*/
         CustomPipe,
+        ImpurePipe,
         objToArrPipe
     ],
     declarations: [
@@ -43,6 +45,7 @@ import {MLoaderComponent} from "./components/m-loader/m-loader.component";
 
         /*Pipes*/
         CustomPipe,
+        ImpurePipe,
         objToArrPipe
     ]
 })
