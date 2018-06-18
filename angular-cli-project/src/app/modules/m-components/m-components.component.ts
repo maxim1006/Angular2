@@ -1,6 +1,7 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, ComponentRef, HostBinding, OnInit} from '@angular/core';
 import {MDynamicComponentConstructor} from "./components/m-dynamic/m-dynamic.component";
 import {MCheckboxComponent} from "./components/m-checkbox/m-checkbox.component";
+import {ProgressBarComponent} from "src/app/modules/m-components/components/progress-bar/progress-bar.component";
 
 @Component({
     selector: 'm-components',
@@ -39,5 +40,5 @@ export class MComponentsComponent implements OnInit {
         console.log('tree click ', e);
     }
 
-
+    public _dynamicComponentClass = ProgressBarComponent
 }
