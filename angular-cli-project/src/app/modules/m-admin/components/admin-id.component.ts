@@ -3,7 +3,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {domenToken} from "../../shared/tokens/tokens";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NavigationEnd, Router} from "@angular/router/";
-import {switchMap} from "rxjs/internal/operators";
+import {concatMap, map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 
 
@@ -60,27 +60,37 @@ export class AdminIdComponent implements OnInit {
 
     ngOnInit() {
         this.params = this.route.snapshot.params;
-        console.log(this.params);
 
         this.route.params.pipe(
-                switchMap(
+            concatMap(
                     (params: Params) => {
-                        console.log(params['id']);
-                        return this.http.get(`http://localhost:9000/mocks/family` + params['id'] + '.json')
+                        return this.http.get(`http://localhost:4201/assets/mocks/family` + params['id'] + '.json')
                     }
-                )
+            ))
+            .pipe(
+                map((family, params) => {
+                    return {family, params}
+                })
             )
-            .subscribe((family) => {
+            .subscribe(({family, params}) => {
+                console.log("params ", params);
                  this.family = family;
             }, (err) => {
                 this.family = 'There is no data fo you';
             });
+
+        this.route.queryParams.subscribe((queryParams) => {
+            console.log("queryParams ", queryParams);
+        });
+
+        this.route.data.subscribe((data) => {
+            console.log("dataParams ", data);
+        })
     }
 
     ngAfterViewInit() {
         this.routerSubscription = this.router.events.subscribe((url:any) => {
             if (url instanceof NavigationEnd) {
-                console.log(url.url);
                 this.cdr.detectChanges();
             }
         });

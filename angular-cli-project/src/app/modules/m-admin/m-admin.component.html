@@ -1,9 +1,22 @@
 <h3>Admin component</h3>
 
+
+<div>
+
+    <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="margin-right: 20px;">default admin</a>
+    <a routerLink="/admin/1" [queryParams]="{page: 1}" routerLinkActive="active" style="margin-right: 20px;">admin 1</a>
+    <!--[routerLink]="['/admin', 2]" - так передаю параметры, а также могу сделать 2ичку динамической-->
+    <a [routerLink]="['/admin', 2]" [queryParams]="{page: 2}" routerLinkActive="active">admin 2</a>
+
+</div>
+
+
 <p>Please insert your admin ID</p>
 <form (submit)="submit(id)" novalidate>
     <input [(ngModel)]="id" name="id" type="number">
     <button type="submit">Submit</button>
 </form>
+
+<admin-id></admin-id>
 
 <router-outlet></router-outlet>

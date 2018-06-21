@@ -1,9 +1,16 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from '@angular/core';
-import {AdminIdComponent} from "./components/admin-id.component";
+import {MAdminComponent} from "./m-admin.component";
 
 const routes: Routes = [
-    {path: 'admin/:id', component: AdminIdComponent}
+    {
+        path: 'admin',
+        data: {
+            title: "Admin"
+        },
+        component: MAdminComponent
+    },
+    {path: 'admin/:id', component: MAdminComponent}
 ];
 
 @NgModule({

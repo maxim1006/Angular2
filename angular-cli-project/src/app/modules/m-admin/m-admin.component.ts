@@ -22,8 +22,7 @@ export class MAdminComponent {
     constructor(private router: Router) {}
 
     submit(id: number) {
-        console.log(id);
-        this.router.navigate(['/admin', id, {param: 1}]);
+        this.router.navigate(['/admin', id, {param: 1}], { queryParams: { page: 1 }});
     }
 
 }
