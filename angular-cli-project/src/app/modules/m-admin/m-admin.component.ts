@@ -22,7 +22,16 @@ export class MAdminComponent {
     constructor(private router: Router) {}
 
     submit(id: number) {
-        this.router.navigate(['/admin', id, {param: 1}], { queryParams: { page: 1 }});
+        // this.router.navigate(['/admin', id, {param: 1}], { queryParams: { page: 1 }});
+        // чтобы тут относительный рут, нужно relativeTo: и в нем сущность _route: ActivatedRoute
+
+
+        //skipLocationChange - меняем роутер стейт без замены урлы
+        // '/admin/' - если первый слеш - путь от корня (для navigateByUrl)
+        // 'admin/' - от текущего урл (для navigateByUrl)
+        this.router.navigateByUrl('/admin/' + id, { queryParams: { page: 1 }, skipLocationChange: true}).then(() => {
+            console.log(`navigateByUrl & navigate returns Promise`);
+        }); //тоже, только строка первым аргументом
     }
 
 }
