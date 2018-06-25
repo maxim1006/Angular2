@@ -44,6 +44,7 @@ const routes: Routes = [
     {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule', data: {
         state: 'framework'
     }},
+    //  nopreload: true - делаю специально, чтобы не подгружать лезийный модуль с помощью прелоадинга
     {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule', data: { state: 'lazy',
             nopreload: true}},
     {
