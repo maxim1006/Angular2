@@ -13,7 +13,7 @@ import {SharedModule} from "./modules/shared/shared.module";
 import {RouteService} from "./route.service";
 import {MFormsModule} from "./modules/m-forms/m-forms.module";
 import {MHttpModule} from "./modules/m-http/m-http.module";
-import {AppRoutingModule} from "./app-routing.module";
+import {AppRoutingModule, MyPreloadStrategy} from "./app-routing.module";
 import {PageUtilsService} from "./common/services/page-utils.service";
 import {domenToken} from "./modules/shared/tokens/tokens";
 import {AppService} from "./modules/app.service";
@@ -57,6 +57,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
         PageLoaderService,
         {provide: domenToken, useValue: domenToken},
         {provide: "NamedService", useClass: AppService, multi: true},
+        MyPreloadStrategy,
         {
             provide: HAMMER_GESTURE_CONFIG,
             useClass: MyHammerConfig
