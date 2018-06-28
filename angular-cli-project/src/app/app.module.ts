@@ -1,5 +1,10 @@
-import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig, EVENT_MANAGER_PLUGINS} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {
+    BrowserModule,
+    EVENT_MANAGER_PLUGINS,
+    HAMMER_GESTURE_CONFIG,
+    HammerGestureConfig
+} from '@angular/platform-browser';
+import {APP_INITIALIZER, Injector, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormsModule} from "@angular/forms";
@@ -21,7 +26,6 @@ import {HammerPluginPatch} from "./common/patches/hammer-plugin.patch";
 import {PageLoaderService} from "./common/services/page-loader.service";
 
 
-
 export function routeServiceFactory (route: RouteService):()=>{} {
     return () => route.init()
 }
@@ -31,6 +35,14 @@ export class MyHammerConfig extends HammerGestureConfig  {
         'swipe': {velocity: 0.4, threshold: 20} // override default settings
     }
 }
+
+
+
+/*Создать инстанс сервиса*/
+const childInjector: Injector = Injector.create({
+    providers: [{provide: PageUtilsService, useClass: PageUtilsService, deps: []}]
+});
+
 
 
 
@@ -87,4 +99,16 @@ export class MyHammerConfig extends HammerGestureConfig  {
     ]
 })
 export class AppModule {
+    constructor (private injector: Injector) {
+        console.log(this.injector.get(PageUtilsService) === childInjector.get(PageUtilsService)); //создал новый инстанс сервиса (см. выше) и сравниваю с общим
+    }
 }
+
+
+
+/*как в дев моде получить севис из инжектора из консоли?
+* ng.probe($0).providerTokens - компоненты и сервисы
+* ng.probe($0).providerTokens.map(x => x.name) - посмотреть их имена
+* получить сервис ng.probe($0).providerTokens.find(x.name === "LogService")
+* получить инстанс сервиса компонента ng.probe($0).injector.get(ng.probe($0).providerTokens.find(x.name === "LogService"))
+* */
