@@ -27,3 +27,9 @@ if (environment.hmr) {
     bootstrap();
     console.log("You are in Dev mode");
 }
+
+
+
+//cat ./dist{file1, file2, file3}.js | gzip > gulpfile.js.gzip - //собрать все в 1 файл и добавить в gzip
+
+//ngx build plus

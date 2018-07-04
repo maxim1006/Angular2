@@ -24,6 +24,7 @@ import {domenToken} from "./modules/shared/tokens/tokens";
 import {AppService} from "./modules/app.service";
 import {HammerPluginPatch} from "./common/patches/hammer-plugin.patch";
 import {PageLoaderService} from "./common/services/page-loader.service";
+import {StaticInjector} from "@angular/core/src/di/injector";
 
 
 export function routeServiceFactory (route: RouteService):()=>{} {
@@ -42,7 +43,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
 const childInjector: Injector = Injector.create({
     providers: [{provide: PageUtilsService, useClass: PageUtilsService, deps: []}]
 });
-
 
 
 
