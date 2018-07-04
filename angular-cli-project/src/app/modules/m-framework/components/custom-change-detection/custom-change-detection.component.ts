@@ -12,6 +12,10 @@
 
  http://stackoverflow.com/questions/34827334/triggering-angular2-change-detection-manually
 *
+*
+* ApplicationRef.tick (same as setTimeout()), and zone.run() cause change detection on the whole application. Also event listeners added within Angular or by Angular (using view bindings or @HostBinding() cause change detectionf for the whole application.
+
+ChangeDetectorRef.detectChanges runs change detection for a specific component (and its descendants if applicable, for example because of input bindings)
 * */
 
 import {
