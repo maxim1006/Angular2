@@ -63,7 +63,7 @@ export class CustomChangeDetectionComponent implements OnInit {
               // this.ngZone.run(() => {
               //     this.obj.name = "browser click";
               // });
-              //this.cdr.markForCheck(); //marks the path from our component until root to be checked for the next change detection run. использую если есть onPush
+              //this.cdr.markForCheck(); //marks the path from our component until root and then starts changeDetection on that path. использую если есть onPush
               //this.cdr.detectChanges(); //после отключения детектов сделать кастомный триггер изменений, также используется если нужно победить ошибку об изменении перед инициализацией
           });
      }
