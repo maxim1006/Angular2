@@ -16,6 +16,8 @@
 * ApplicationRef.tick (same as setTimeout()), and zone.run() cause change detection on the whole application. Also event listeners added within Angular or by Angular (using view bindings or @HostBinding() cause change detectionf for the whole application.
 
 ChangeDetectorRef.detectChanges runs change detection for a specific component (and its descendants if applicable, for example because of input bindings)
+
+
 * */
 
 import {
@@ -31,7 +33,7 @@ import {
 @Component({
     selector: "custom-change-detection",
     templateUrl: "custom-change-detection.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush //если проставить это, то не будет changeDetection, хотя а2 клик сработает, а сеттаймаут и браузер клик не сработает
+    changeDetection: ChangeDetectionStrategy.OnPush //если проставить это, то не будет changeDetection, хотя а2 клик сработает, а сеттаймаут и браузер клик не сработает. Стратегия не наследуюется, поэтому должен и на этом элементе и на детях проставить эту стратегию
 })
 
 export class CustomChangeDetectionComponent implements OnInit {
@@ -39,7 +41,13 @@ export class CustomChangeDetectionComponent implements OnInit {
 
     @ViewChild("inner") inner;
 
-    constructor(private cdr: ChangeDetectorRef, private appRef: ApplicationRef, private ngZone: NgZone) {}
+    constructor(private cdr: ChangeDetectorRef, private appRef: ApplicationRef, private ngZone: NgZone) {
+
+        //для оптимизации приложения можно использовать хак при отключенных зонах
+        // setInterval(() => {
+        //     appRef.tick();
+        // }, 1000/60);
+    }
 
      ngOnInit() {
 

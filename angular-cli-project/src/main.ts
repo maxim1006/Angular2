@@ -13,7 +13,9 @@ if (environment.production) {
     console.log("You are in Prod mode");
 }
 
-const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
+const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule, {
+    //ngZone: "noop" //так отключаю зоны в приложении
+});
 
 if (environment.hmr) {
     console.log("You are in HMR mode");
@@ -33,3 +35,4 @@ if (environment.hmr) {
 //cat ./dist{file1, file2, file3}.js | gzip > gulpfile.js.gzip - //собрать все в 1 файл и добавить в gzip
 
 //ngx build plus
+
