@@ -28,7 +28,10 @@ const routes: Routes = [
                 },
             },
             {path: ':id', component: AdminIdComponent},
-            {path: 'adminPopup', component: MAdminPopupComponent, outlet: "adminPopup"
+            {
+                path: 'adminPopup',
+                component: MAdminPopupComponent,
+                outlet: "adminPopup"
             }
         ]
     }
