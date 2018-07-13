@@ -134,7 +134,7 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
         // })
 
 
-        
+
         // const intervalOne$ = Observable.interval(1000);
         // const intervalTwo$ = Observable.interval(2000);
         //
@@ -181,9 +181,23 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
 // function countChars(): Operator<string, number> {
 //     return (obs: Observable<string>) => {
 //         return obs.pipe(map(str => str.length));
-//     }                                                          
+//     }
 // }
 //
 // const strings$ = Observable.of(["1", "2"]);
 //
 // const charCount$ = strings$.pipe(countChars());
+
+
+
+//.pipe(doOnSubscribe(() => {console.log("subscribed");}))
+
+//export function doOnSubscribe<T>(onSubscribe: () => void): (source: Observable<T>) =>  Observable<T> {
+//     return function inner(source: Observable<T>): Observable<T> {
+//         return defer(() => {
+//             onSubscribe();
+//
+//             return source;
+//         });
+//     };
+// }
