@@ -38,6 +38,7 @@ import {
 
 export class CustomChangeDetectionComponent implements OnInit {
     obj: { name: number|string; };
+    name: string;
 
     @ViewChild("inner") inner;
 
@@ -61,6 +62,7 @@ export class CustomChangeDetectionComponent implements OnInit {
           setTimeout(() => {
               //this.cdr.detach(); //отключить все детекты изменений
               this.obj.name = 2;
+              this.name = "Max";
               // this.cdr.markForCheck(); //если не поставить, то при ChangeDetectionStrategy.OnPush не сработает
           }, 1000);
 
