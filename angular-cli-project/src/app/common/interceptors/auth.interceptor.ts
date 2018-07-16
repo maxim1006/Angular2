@@ -1,4 +1,3 @@
-import 'rxjs/add/operator/do';
 import {
     HttpErrorResponse,
     HttpEvent,
@@ -12,6 +11,12 @@ import {Injectable, Injector} from "@angular/core";
 import {tap} from "rxjs/internal/operators";
 import {Observable} from "rxjs/index";
 
+
+// {
+//     provide: HTTP_INTERCEPTORS,
+//     useClass: SessionInterceptor,
+//     multi: true
+// },
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
