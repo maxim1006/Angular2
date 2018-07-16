@@ -38,10 +38,7 @@ export class MFormComponent implements OnInit {
                 nameValidator.bind(self)
             ), //пример с кастомной валидацией
             'surname': new FormControl(
-                {
-                    value: "Maximov",
-                    disabled: true
-                },
+                "Maximov",
                 Validators.compose([Validators.required, nameValidator, Validators.maxLength(10)])
             ),
             'phone': new FormControl(
