@@ -43,6 +43,8 @@ myNgForm.dirty {{myNgForm.dirty}}
             (onControlChange)="formModel.email = $event"
     ></t-field>
 
+    <m-form-control [formControl]="customFormControl"></m-form-control>
+
     <div *ngIf="!myForm?.valid && !myForm?.pristine" class="m-form__error _margin-top-m">
         Form is invalid
     </div>
