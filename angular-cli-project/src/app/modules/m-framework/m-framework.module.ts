@@ -39,6 +39,7 @@ import {MDirectiveExampleComponent} from "./components/directive-example/directi
 import {CustomStructuralDirective} from "./directives/custom-structural.directive";
 import {CustomStructuralDirectiveComponent} from "./components/custom-structure-directive/custom-structural-directive.component";
 import {DynamicHostDirective} from "./components/dynamic/dynamic-host.directive";
+import { MAnimationsComponent } from "./components/animations/animationa.component";
 
 const routes: Routes = [
     {path: '', component: MFrameworkComponent},
@@ -83,7 +84,8 @@ const routes: Routes = [
         OutsideDynamicTemplateComponent,
         RendererExampleComponent,
         TranscludeDirective,
-        DynamicHostDirective
+        DynamicHostDirective,
+        MAnimationsComponent
     ],
     exports: [MFrameworkComponent, ClassExampleComponent, DynamicComponent],
     providers: [],
