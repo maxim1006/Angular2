@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/test-proper-project
 /tmp
 /out-tsc
 

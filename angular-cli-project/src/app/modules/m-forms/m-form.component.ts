@@ -57,6 +57,13 @@ export class MFormComponent implements OnInit {
                     // disabled: false
                 },
                 Validators.compose([Validators.required, Validators.pattern(ValidationConstants.EMAIL)])
+            ),
+            'customFormControl': new FormControl(
+                {
+                    value: null,
+                    // disabled: false
+                },
+                Validators.compose([Validators.required])
             )
         });
 
