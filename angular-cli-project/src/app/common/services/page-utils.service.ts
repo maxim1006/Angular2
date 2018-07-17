@@ -21,12 +21,15 @@ export class PageUtilsService {
             this.mediaSubscriber = subscriber;
             this.updateMediaData();
             this.mediaSubscriber.next(this.mediaData);
-        }).pipe(share()); //share result to all subscriber, if delete only the last one will get it
+        }).pipe(share()); // share result to all subscriber, if delete only the last one will get it
 
         window.addEventListener('resize', () => {
             this.documentWidth = document.documentElement.clientWidth;
             this.updateMediaData();
-            this.mediaSubscriber.next(this.mediaData);
+
+            if (this.mediaSubscriber) {
+                this.mediaSubscriber.next(this.mediaData);
+            }
         });
     }
 

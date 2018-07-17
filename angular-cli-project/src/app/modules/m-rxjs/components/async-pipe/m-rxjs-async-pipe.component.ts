@@ -1,5 +1,6 @@
-import {Component, OnInit, HostListener} from '@angular/core';
-import {fromEvent, Observable, Subscriber, Subscription} from "rxjs/index";
+import {Component, OnInit, HostListener, OnDestroy} from '@angular/core';
+import {fromEvent, Observable, Subscriber, Subscription} from 'rxjs/index';
+import { throttleTime, share } from 'rxjs/operators';
 
 @Component({
     selector: 'm-rxjs-async-pipe',
@@ -9,12 +10,8 @@ import {fromEvent, Observable, Subscriber, Subscription} from "rxjs/index";
     `
 })
 
-export class MRxjsAsyncPipeComponent implements OnInit {
-    clickSubscription: Subscription;
-    @HostListener('document:mousemove', ['$event']) onDocumentMouseMove = (event: MouseEvent) => {
-        this.subscriber.next(event.pageX);
-    };
-
+export class MRxjsAsyncPipeComponent implements OnInit, OnDestroy {
+    private clickSubscription: Subscription;
     private subscriber: Subscriber<number>;
 
     /** @Internal */
@@ -25,6 +22,11 @@ export class MRxjsAsyncPipeComponent implements OnInit {
 
     /** @Internal */
     public _clickPosition: number;
+    @HostListener('document:mousemove', ['$event']) onDocumentMouseMove = (event: MouseEvent) => {
+        if (this.subscriber) {
+            this.subscriber.next(event.pageX);
+        }
+    }
 
     constructor() {}
 
@@ -37,11 +39,11 @@ export class MRxjsAsyncPipeComponent implements OnInit {
 
         this._numberObservable$ = Observable.create((subscriber: Subscriber<any>) => {
             this.subscriber = subscriber;
-        }).throttleTime(200).share();
+        }).pipe(throttleTime(200), share());
     }
 
     ngAfterViewInit() {
-        //если этот обзервбл будет холодный, то он перебьет | async, поэтому поставил share()
+        // если этот обзервбл будет холодный, то он перебьет | async, поэтому поставил share()
         this._numberObservable$.subscribe((data: number) => {
             console.log('document:mousemove ', data);
         });

@@ -38,7 +38,7 @@ export class MRxjsComponent implements OnInit {
     }
 
     getState(outlet) {
-        //router fix, otherwise display: none on m-rxjs component
+        // router fix, otherwise display: none on m-rxjs component
         if (outlet.activatedRouteData && outlet.activatedRouteData.state) {
             this._el.nativeElement.style.display = 'block';
         }

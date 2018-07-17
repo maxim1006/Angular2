@@ -4,7 +4,7 @@ import {Component, OnInit} from "@angular/core";
 import {domenToken} from "../../../shared/tokens/tokens";
 import {HttpClient} from "@angular/common/http";
 import {Observable, Observer, Subject, Subscriber, throwError} from "rxjs/index";
-import {catchError, finalize} from "rxjs/internal/operators";
+import {catchError, finalize, share} from "rxjs/internal/operators";
 
 @Component({
     selector: 'rx-js',
@@ -24,13 +24,13 @@ export class RxJsComponent implements OnInit {
 
     ngOnInit() {
 
-        this.numberObservable = Observable.create((subscriber: Subscriber<any>) => { //эта функция будет отрабатывать каждый раз когда происходит subscription, поэтому останется только последний (в холодных обзервеблах)
+        this.numberObservable = Observable.create((subscriber: Subscriber<any>) => { // эта функция будет отрабатывать каждый раз когда происходит subscription, поэтому останется только последний (в холодных обзервеблах)
             this.subscriber = subscriber;
             this.subscriber.next(this.number);
 
-            //this.subscriber.complete(); //после этого те кто подписался не отработают
+            // this.subscriber.complete(); //после этого те кто подписался не отработают
 
-            //это для примера работы с холодным обзервеблом, через замыкание выведутся все сабскрипшены
+            // это для примера работы с холодным обзервеблом, через замыкание выведутся все сабскрипшены
             // setTimeout(() => { 
             //     subscriber.next(this.number);
             // }, 3000);
@@ -39,9 +39,9 @@ export class RxJsComponent implements OnInit {
                 console.log("rx-js unsubscribed in cold observable");
             };
 
-        }).share();
+        }).pipe(share());
 
-        //если не будет хоть 1 сабскайбера, то this.subscriber.next(number) не сработает, | async - это тоже что и subscribe, только автоматом через view
+        // если не будет хоть 1 сабскайбера, то this.subscriber.next(number) не сработает, | async - это тоже что и subscribe, только автоматом через view
 
 
         let observableComplete$ = new Observable((observer: Observer<any>) => {
