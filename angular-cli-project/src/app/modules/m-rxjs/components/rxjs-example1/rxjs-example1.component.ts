@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { fromEvent, Subject, of, from, range } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil, distinctUntilChanged, take } from 'rxjs/operators';
 
 @Component({
     selector: 'rxjs-example1',
@@ -22,34 +22,41 @@ export class RxjsExample1Component implements AfterViewInit, OnDestroy {
     public ngAfterViewInit(): void {
         const input = this.inputRef.nativeElement;
         
-        fromEvent(input, 'input')
-        .pipe(
-            debounceTime(500), 
-            takeUntil(this.destroy$)
-        )
-        .subscribe((event) => {
-            console.log(event['target'].value);    
-        });
+        // fromEvent(input, 'input')
+        // .pipe(
+        //     debounceTime(500), 
+        //     takeUntil(this.destroy$)
+        // )
+        // .subscribe((event) => {
+        //     console.log(`fromEvent(input, 'input') `, event['target'].value);    
+        // });
 
-        of([1, 2, 3])
-        .subscribe((event) => {
-            console.log(event); // [1, 2, 3]   
-        });
+        // of([1, 2, 3])
+        // .subscribe((event) => {
+        //     console.log('of([1, 2, 3]) ', event); // [1, 2, 3]   
+        // });
 
-        from([1, 2, 3])
-        .subscribe((event) => {
-            console.log(event); // 1, 2, 3   
-        });
+        // from([1, 1, 2, 3])
+        // .pipe(distinctUntilChanged())
+        // .subscribe((event) => {
+        //     console.log('from([1, 1, 2, 3]) ', event); // 1, 2, 3   
+        // });
 
-        from('str')
-        .subscribe((event) => {
-            console.log(event); // s, t, r   
-        });
+        // from('str')
+        // .subscribe((event) => {
+        //     console.log('from(str) ', event); // s, t, r   
+        // });
 
-        range(1, 10)
-        .subscribe((event) => {
-            console.log(event); // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10   
-        });
+        // range(1, 10)
+        // .subscribe((event) => {
+        //     console.log('range(1, 10) ', event); // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10   
+        // });
+
+        // range(1, 10)
+        // .pipe(take(5))
+        // .subscribe((event) => {
+        //     console.log('range(1, 10) .pipe(take(5)) ', event); // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10   
+        // });
     }
     
     public ngOnDestroy(): void {
