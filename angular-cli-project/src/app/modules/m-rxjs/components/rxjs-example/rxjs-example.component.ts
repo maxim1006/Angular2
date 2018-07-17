@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {domenToken} from "../../../shared/tokens/tokens";
 import {HttpClient} from "@angular/common/http";
 import {forkJoin, Observable, of, Subscription, interval} from "rxjs/index";
-import { combineLatest, zip } from 'rxjs/operators';
+import { combineLatest, zip, mergeAll } from 'rxjs/operators';
 
 @Component({
     selector: 'rxjs-example',
@@ -117,14 +117,14 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
 
 
 
-        // const mergeAll$ = source.pipe(mergeAll());
-        //
-        // mergeAll$.subscribe((data) => {
-        //     console.log(data);
-        //     //(3) [{…}, {…}, {…}]
-        //     //    //(3) [{…}, {…}, {…}]
-        //     //    //(3) [{…}, {…}, {…}] - подписка сразу ко всем обзервблам
-        // })
+        const mergeAll$ = source.pipe(mergeAll());
+        
+        mergeAll$.subscribe((data) => {
+            console.log(data);
+            // (3) [{…}, {…}, {…}]
+            //    //(3) [{…}, {…}, {…}]
+            //    //(3) [{…}, {…}, {…}] - подряд выводит 3 массива
+        });
 
 
 
@@ -165,11 +165,11 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
 
 
 
-        forkJoin([
-            this._http.get(`${domenToken}family0.json`),
-            this._http.get(`${domenToken}family1.json`),
-            this._http.get(`${domenToken}family2.json`)
-        ]).subscribe(all => console.log(all)); // (3) [Array(3), Array(3), Array(3)] - результат сразу 3 запроса в 1 ом
+        // forkJoin([
+        //     this._http.get(`${domenToken}family0.json`),
+        //     this._http.get(`${domenToken}family1.json`),
+        //     this._http.get(`${domenToken}family2.json`)
+        // ]).subscribe(all => console.log(all)); // (3) [Array(3), Array(3), Array(3)] - результат сразу 3 запроса в 1 ом
 
 
         // https://www.youtube.com/watch?v=QfvwQEJVOig&feature=youtu.be&t=1h12s

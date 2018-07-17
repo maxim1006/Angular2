@@ -22,14 +22,14 @@ export class RxjsExample1Component implements AfterViewInit, OnDestroy {
     public ngAfterViewInit(): void {
         const input = this.inputRef.nativeElement;
         
-        // fromEvent(input, 'input')
-        // .pipe(
-        //     debounceTime(500), 
-        //     takeUntil(this.destroy$)
-        // )
-        // .subscribe((event) => {
-        //     console.log(`fromEvent(input, 'input') `, event['target'].value);    
-        // });
+        fromEvent(input, 'input')
+        .pipe(
+            debounceTime(500), 
+            takeUntil(this.destroy$)
+        )
+        .subscribe((event) => {
+            console.log(`fromEvent(input, 'input') `, event['target'].value);    
+        });
 
         // of([1, 2, 3])
         // .subscribe((event) => {
