@@ -56,3 +56,6 @@ export class MNgrxComponent implements OnInit {
 //         return reducer(state, action);
 //     }
 // }
+
+// middleware - позволют подписываться на асинхронные события
+// в ngrx - это эффекты
