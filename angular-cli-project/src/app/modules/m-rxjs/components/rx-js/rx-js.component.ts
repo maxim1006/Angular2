@@ -3,7 +3,16 @@
 import {Component, OnInit} from "@angular/core";
 import {domenToken} from "../../../shared/tokens/tokens";
 import {HttpClient} from "@angular/common/http";
-import {Observable, Observer, Subject, Subscriber, throwError} from "rxjs/index";
+import {
+    AsyncSubject,
+    BehaviorSubject,
+    Observable,
+    Observer,
+    ReplaySubject,
+    Subject,
+    Subscriber,
+    throwError
+} from "rxjs/index";
 import {catchError, finalize, share} from "rxjs/internal/operators";
 
 @Component({
@@ -31,7 +40,7 @@ export class RxJsComponent implements OnInit {
             // this.subscriber.complete(); //после этого те кто подписался не отработают
 
             // это для примера работы с холодным обзервеблом, через замыкание выведутся все сабскрипшены
-            // setTimeout(() => { 
+            // setTimeout(() => {
             //     subscriber.next(this.number);
             // }, 3000);
 
@@ -44,52 +53,52 @@ export class RxJsComponent implements OnInit {
         // если не будет хоть 1 сабскайбера, то this.subscriber.next(number) не сработает, | async - это тоже что и subscribe, только автоматом через view
 
 
-        let observableComplete$ = new Observable((observer: Observer<any>) => {
-            observer.next(1);
+        // let observableComplete$ = new Observable((observer: Observer<any>) => {
+        //     observer.next(1);
+        //
+        //     // observer.error("error");
+        //     // observer.complete();
+        //
+        //     return () => {
+        //         console.log("observableComplete return");
+        //     };
+        // })
+        //     .pipe(
+        //         catchError((e) => throwError("observableComplete$ error ", e)),
+        //         finalize(() => console.log("observableComplete$ finally"))
+        //     );
 
-            // observer.error("error");
-            // observer.complete();
-
-            return () => {
-                console.log("observableComplete return");
-            };
-        })
-            .pipe(
-                catchError((e) => throwError("observableComplete$ error ", e)),
-                finalize(() => console.log("observableComplete$ finally"))
-            );
 
 
+        // let observableComplete1$ = this._http.get(`${domenToken}mocks.json`);
+        //
+        // observableComplete1$.subscribe({
+        //     next() {
+        //         console.log("observableComplete1$ next");
+        //     },
+        //     error() {
+        //         console.log("observableComplete1$ error");
+        //     },
+        //     complete() {
+        //         console.log("observableComplete1$ complete");
+        //     }
+        // });
 
-        let observableComplete1$ = this._http.get(`${domenToken}mocks.json`);
-
-        observableComplete1$.subscribe({
-            next() {
-                console.log("observableComplete1$ next");
-            },
-            error() {
-                console.log("observableComplete1$ error");
-            },
-            complete() {
-                console.log("observableComplete1$ complete");
-            }
-        });
-
-        let observableCompleteSubscription = observableComplete$.subscribe({
-            next(data) {
-                console.log("observableComplete data ", data);
-            },
-            error(e) {
-                console.log("observableComplete error ", e);
-            },
-            complete() {
-                console.log("observableComplete complete");
-            }
-        });
-
-        setTimeout(() => {
-            observableCompleteSubscription.unsubscribe();
-        }, 2000);
+        // let observableCompleteSubscription = observableComplete$.subscribe({
+        //     next(data) {
+        //         console.log("observableComplete data ", data);
+        //     },
+        //     error(e) {
+        //         console.log("observableComplete error ", e);
+        //     },
+        //     complete() {
+        //         console.log("observableComplete complete");
+        //     }
+        // });
+        //
+        // setTimeout(() => {
+        //     observableCompleteSubscription.unsubscribe();
+        // }, 2000);
 
 
 
@@ -111,15 +120,52 @@ export class RxJsComponent implements OnInit {
         // subject.subscribe({
         //     next: (v) => console.log('BehaviorSubject A: ' + v)
         // });
-
+        //
         // subject.next(1);
         // subject.next(2);
-        //
+        // //
         // subject.subscribe({
         //     next: (v) => console.log('BehaviorSubject B: ' + v)
         // });
         // subject.next(3);
 
+
+
+        // let replaySubject = new ReplaySubject(2);
+        // // либо по времени
+        // // let replaySubject = new ReplaySubject(Number.POSITIVE_INFINITY, 3000);
+        //
+        // replaySubject.subscribe((value) => {
+        //     console.log("replaySubject A ", value); // 1 затем 2 затем 3
+        // });
+        //
+        // replaySubject.next(1);
+        // replaySubject.next(2);
+        // replaySubject.next(3);
+        //
+        // replaySubject.subscribe((value) => {
+        //     console.log("replaySubject B ", value); // тут получу только 2 последних значения: 2 затем 3
+        // });
+
+
+
+        // let asyncSubject = new AsyncSubject();
+        // // либо по времени
+        // // let asyncSubject = new ReplaySubject(Number.POSITIVE_INFINITY, 3000);
+        //
+        // asyncSubject.subscribe((value) => {
+        //     console.log("asyncSubject A ", value); // 3
+        // });
+        //
+        // asyncSubject.next(1);
+        // asyncSubject.next(2);
+        // asyncSubject.next(3);
+        //
+        // asyncSubject.subscribe((value) => {
+        //     console.log("asyncSubject B ", value); // 3
+        // });
+        //
+        // asyncSubject.complete(); // только когда сделаю complete, то сабджект вернет последнее значение
         /******************** /Subject **********************/
     }
 

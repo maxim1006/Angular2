@@ -177,18 +177,18 @@ export class RxjsExample1Component implements AfterViewInit, OnDestroy {
         //     return subject;
         // }
 
-        let o = interval(1000)
-            .pipe(
-                tap((value) => {
-                    console.log("interval tap ", value);
-                }),
-                share() // shareReplay(2) - тоже, но говорим, что 2 оставляем в любом случае
-            );
-
-        o.subscribe();
-        o.subscribe();
-        o.subscribe();
-        o.subscribe();
+        // let o = interval(1000)
+        //     .pipe(
+        //         tap((value) => {
+        //             console.log("interval tap ", value);
+        //         }),
+        //         share() // shareReplay(2) - тоже, но говорим, что 2 оставляем в любом случае
+        //     );
+        //
+        // o.subscribe();
+        // o.subscribe();
+        // o.subscribe();
+        // o.subscribe();
     }
 
     public ngOnDestroy(): void {

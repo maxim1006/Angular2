@@ -12,13 +12,10 @@
     <a class="nav__link" routerLink="/admin" routerLinkActive="_active">Admin</a>
     <a class="nav__link" routerLink="/lazy" routerLinkActive="_active">Lazy</a>
     <a class="nav__link" routerLink="/rxjs" routerLinkActive="_active">Rxjs</a>
+    <a class="nav__link" routerLink="/ngrx" routerLinkActive="_active">Ngrx</a>
 </nav>
 
 <main class="main" [@routerTransition]="getState(o)">
     <router-outlet #o="outlet" (activate)="activateEvent($event)" (deactivate)="deactivateEvent($event)"></router-outlet>
 </main>
-
-<button (click)="prop = true">start
-</button>
-
 

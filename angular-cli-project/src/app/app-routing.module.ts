@@ -20,11 +20,11 @@ export class MyPreloadStrategy implements PreloadingStrategy {
     preload(route: Route, load: () => Observable<any>): Observable<any> {
         // return of(null); // если не хочу прелоад
 
-        if ( route.data && route.data["nopreload"] ) {
-            return of(null);
+        if ( route.data && route.data["preload"] ) {
+            return load();
         }
 
-        return load();
+        return of(null);
     }
 }
 
@@ -37,16 +37,14 @@ const routes: Routes = [
     // {path: '', redirectTo: '/framework', pathMatch: 'full'}, //redirect example
     // {path: 'framework', component: MFrameworkComponent}, //simple module loading
     // {path: 'components', component: MComponentsComponent},
-    {path: 'components', loadChildren: './modules/m-components/m-components.module#MComponentsModule', data: { state: 'components' }},
+    {path: 'components', loadChildren: './modules/m-components/m-components.module#MComponentsModule', data: { state: 'components', preload: true }},
     {path: 'http', component: MHttpComponent, data: { state: 'http' }},
     {path: 'forms', component: MFormComponent, data: { state: 'forms' }},
     {path: 'rxjs', component: MRxjsComponent, data: { state: 'rxjs' }},
-    {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule', data: {
-        state: 'framework'
-    }},
-    //  nopreload: true - делаю специально, чтобы не подгружать лезийный модуль с помощью прелоадинга
-    {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule', data: { state: 'lazy',
-            nopreload: true}},
+    {path: 'framework', loadChildren: './modules/m-framework/m-framework.module#MFrameworkModule', data: {state: 'framework', preload: true}},
+    {path: 'ngrx', loadChildren: './modules/ngrx/ngrx.module#MNgrxModule', data: {state: 'ngrx', preload: true}},
+    //  preload: true - делаю специально, чтобы не подгружать лезийный модуль с помощью прелоадинга
+    {path: 'lazy', loadChildren: './modules/m-lazy/m-lazy.module#MLazyModule', data: { state: 'lazy'}},
     {
         path: 'admin',
         component: MAdminComponent,
