@@ -22,9 +22,10 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         StoreModule.forRoot(
     {counter: counterReducer},
-            {initialState: {
-                counter: 0
-            }}
+            // могу задать initial state
+            // {initialState: {
+            //     counter: 0
+            // }}
         )
     ],
     exports: [],

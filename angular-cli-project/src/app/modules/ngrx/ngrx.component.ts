@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {COUNTER_DECREMENT, COUNTER_INCREMENT} from "./store/reducers/counter.reducer";
 import {Observable} from "rxjs/internal/Observable";
+import {CounterDecrementAction, CounterIncrementAction} from "./store/actions/counter.action";
 
 interface AppState {
     counter: number;
@@ -17,16 +17,12 @@ export class MNgrxComponent implements OnInit {
 
     /** @internal */
     public _increase(): void {
-        this.store.dispatch({
-            type: COUNTER_INCREMENT
-        })
+        this.store.dispatch(new CounterIncrementAction(1))
     };
 
     /** @internal */
     public _decrease(): void {
-        this.store.dispatch({
-            type: COUNTER_DECREMENT
-        })
+        this.store.dispatch(new CounterDecrementAction(-1))
     };
 
     constructor(private store: Store<AppState>) {

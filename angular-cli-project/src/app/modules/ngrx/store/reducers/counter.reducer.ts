@@ -1,19 +1,18 @@
-import {Action} from "@ngrx/store";
+import {CounterActionTypes, CounterActionsUnion} from "../actions/counter.action";
 
 
-export const COUNTER_INCREMENT = 'increment';
-export const COUNTER_DECREMENT = 'decrement';
+const INITIAL_STATE = 0;
 
 
-export function counterReducer(state: number, action: Action) {
+export function counterReducer(state: number = INITIAL_STATE, action: CounterActionsUnion) {
     switch (action.type) {
-        case COUNTER_INCREMENT:
+        case CounterActionTypes.Increment:
 
-            return ++state;
+            return state + action.payload;
 
-        case COUNTER_DECREMENT:
+        case CounterActionTypes.Decrement:
 
-            return --state;
+            return state + action.payload;
 
         default:
 
