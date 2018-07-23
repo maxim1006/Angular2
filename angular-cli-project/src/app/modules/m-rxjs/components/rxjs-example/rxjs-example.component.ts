@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {domenToken} from "../../../shared/tokens/tokens";
 import {HttpClient} from "@angular/common/http";
-import {forkJoin, Observable, of, Subscription, interval} from "rxjs/index";
-import { combineLatest, zip, mergeAll } from 'rxjs/operators';
+import {forkJoin, Observable, of, Subscription, interval, combineLatest, asyncScheduler} from "rxjs/index";
+import {zip, mergeAll, observeOn} from 'rxjs/operators';
 
 @Component({
     selector: 'rxjs-example',
@@ -44,7 +44,7 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
         //     this.number = data;
         // });
 
-        // Запросы по нескольким id в порядке очереди приходят, сабскрйбится к каждому обзерваблу в отдельности, 
+        // Запросы по нескольким id в порядке очереди приходят, сабскрйбится к каждому обзерваблу в отдельности,
         // дождется выполнения первого и лишь затем второго, сработает когда все придут
         // let idsObservable$ = Observable.from([0,1,2]);
 
@@ -117,14 +117,14 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
 
 
 
-        const mergeAll$ = source.pipe(mergeAll());
-        
-        mergeAll$.subscribe((data) => {
-            console.log(data);
-            // (3) [{…}, {…}, {…}]
-            //    //(3) [{…}, {…}, {…}]
-            //    //(3) [{…}, {…}, {…}] - подряд выводит 3 массива
-        });
+        // const mergeAll$ = source.pipe(mergeAll());
+        //
+        // mergeAll$.subscribe((data) => {
+        //     console.log(data);
+        //     // (3) [{…}, {…}, {…}]
+        //     //    //(3) [{…}, {…}, {…}]
+        //     //    //(3) [{…}, {…}, {…}] - подряд выводит 3 массива
+        // });
 
 
 
@@ -136,10 +136,10 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
         // })
 
 
-        
+
         // const intervalOne$ = interval(1000);
         // const intervalTwo$ = interval(3000);
-        
+
         // когда хоть одно значение хоть у 1 обзервабла сработало выдает результат 2х
         // intervalOne$.pipe(
         //      combineLatest(
@@ -147,7 +147,7 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
         //     )).subscribe(all => console.log('combineLatest ', all));
 
         // ждет результат 2х обзерваблов и затем срабатывает
-        // intervalOne$.pipe(zip( 
+        // intervalOne$.pipe(zip(
         //     intervalTwo$
         // )).subscribe(all => console.log('zip ', all));
 
@@ -162,6 +162,15 @@ export class RxjsExampleComponent implements OnInit, OnDestroy {
         // this._http.get(`${domenToken}family0.json`).pipe(
         //     combineLatest(this._http.get(`${domenToken}family1.json`), this._http.get(`${domenToken}family2.json`))
         // ).subscribe(all => console.log(all));
+
+
+        // расписания
+        const o1 = of(1,2).pipe(observeOn(asyncScheduler));
+        const o2 = of(10);
+
+        combineLatest(o1, o2).subscribe((value) => {
+            console.log("combineLatest value ", value);
+        });
 
 
 
