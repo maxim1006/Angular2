@@ -35,7 +35,7 @@ export class MNgrxComponent implements OnInit {
 
 
 // Redux
-// state, reducer, dispatch, Store
+// state, reducer, dispatch, Store, middleware (effects in ngrx)
 
 // Store {
 //     state
