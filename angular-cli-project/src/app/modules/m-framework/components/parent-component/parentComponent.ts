@@ -23,7 +23,9 @@ export class ParentComponent implements OnInit {
         return this._parentValue;
     }
 
-    constructor() {}
+    constructor() {
+        console.log("parent constructor");
+    }
 
     ngOnInit() {
         this.parentValue = {
@@ -35,6 +37,7 @@ export class ParentComponent implements OnInit {
         };
 
         console.log(this.childComponent, ' this.childComponent');
+        console.log("parent ngOnInit");
     }
 
     //так могу находить любой компонент в темплейте и дергать его апи, тоже самое, что и с #child, только с локальной переменной я могу это сделать только в шаблоне, а так могу и в контроллере
@@ -56,6 +59,7 @@ export class ParentComponent implements OnInit {
         console.log("this.childComponentElementRef ", this.childComponentElementRef);
         console.log("childComponentList ", this.childComponentList);
         console.log("buttonsList ", this.buttonsList.toArray());
+        console.log("parent ngAfterViewInit");
     }
 
     public childStart() {
@@ -71,4 +75,7 @@ export class ParentComponent implements OnInit {
         console.log(message);
     }
 
+    public ngOnDestroy() {
+        console.log("parent ngOnDestroy");
+    }
 }
