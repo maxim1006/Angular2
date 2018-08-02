@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable, Observer, Subscriber} from "rxjs";
 import {domenToken} from "../shared/tokens/tokens";
 import {HttpClient} from "@angular/common/http";
-import {map, share} from "rxjs/internal/operators";
+import {delay, map, share} from "rxjs/operators";
 
 @Injectable()
 export class MHttpService {
@@ -10,19 +10,16 @@ export class MHttpService {
     constructor(private _http: HttpClient) {}
 
     getData():Observable<any> {
-        if(!this._data){
-            this._data = this._http.get(`${domenToken}family.json`)
-                // .delay(2000)
-                .pipe(
-                    map (
-                        (data) => {
-                            return data
-                        }
-                    ),
-                    share()
-                );
-        }
-        return this._data;
+        return this._http.get(`${domenToken}family.json`)
+            .pipe(
+                delay(2000),
+                map (
+                    (data) => {
+                        return data
+                    }
+                ),
+                share()
+            );
     }
 
     postFile(url: string, files: File[]): { response: Observable<Response>, progress: Observable<number> } {
@@ -61,7 +58,7 @@ export class MHttpService {
             };
 
             xhr.open('POST', url, true);
-            
+
             xhr.send(formData);
         });
 

@@ -1,9 +1,31 @@
 <h3>Пример загрузки списка</h3>
-<ul>
+
+<p>Основной</p>
+<ng-container *ngIf="(family$ | async) as family; else loading">
+    <ul>
+        <li *ngFor="let member of family">
+            {{member?.name}} - {{member?.age}}
+        </li>
+    </ul>
+</ng-container>
+
+<p>Такой же хороший</p>
+<ul *ngIf="(family$ | async) as family; else loading">
     <li *ngFor="let member of family">
-       {{member?.name}}
+        {{member?.name}} - {{member?.age}}
     </li>
 </ul>
+
+<p>Похуже</p>
+<ul>
+    <li *ngFor="let member of (family$ | async)">
+        {{member?.name}} - {{member?.age}}
+    </li>
+</ul>
+
+<ng-template #loading>
+    Loading...
+</ng-template>
 
 <h3>Пример загрузки файла</h3>
 <div class="upload-button">

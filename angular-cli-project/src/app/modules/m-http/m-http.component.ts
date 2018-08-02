@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import {MHttpService} from "./m-http.service";
 import {NewService} from "./new.service";
+import {Observable} from "rxjs";
 
 
 
@@ -25,7 +26,7 @@ export class MHttpComponent implements OnInit {
     progress: string;
     isLoading: boolean;
     uploadedFiles: UploadedFile[] = [];
-    public family: FamilyMember[];
+    public family$: Observable<FamilyMember[]>;
 
     constructor(
         @Inject('KEY1') private key1: string,
@@ -36,26 +37,7 @@ export class MHttpComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        let getData = this._mHttpService.getData();
-
-        getData.subscribe(data => {
-            console.log(data);
-            this.family = data;
-        });
-
-        getData.subscribe(data => {
-            console.log(data);
-            this.family = data;
-        });
-
-        getData.subscribe(data => {
-            console.log(data);
-            this.family = data;
-        });
-        
-        console.log(this._value);
-
-        console.log(this._newService);
+        this.family$ = this._mHttpService.getData();
     }
 
     uploadButtonClick() {
